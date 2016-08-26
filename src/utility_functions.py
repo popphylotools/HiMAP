@@ -9,13 +9,13 @@ def create_db(db_path, gff_path, species):
             os.path.join(os.path.abspath(os.path.curdir), db_path + gff_name + ".db")):
         fn = gffutils.example_filename(
             os.path.join(os.path.abspath(os.path.curdir), gff_path + gff_name))
-        db = gffutils.create_db(fn,
-                                dbfn=db_path + gff_name + ".db",
-                                force=True,
-                                merge_strategy='merge',
-                                id_spec=['ID', 'Name'])
+        gffutils.create_db(fn,
+                           dbfn=db_path + gff_name + ".db",
+                           force=True,
+                           merge_strategy='merge',
+                           id_spec=['ID', 'Name'])
         created = True
-    return (species, created)
+    return species, created
 
 
 def connect_db(db_path, species):
@@ -23,12 +23,14 @@ def connect_db(db_path, species):
     if os.path.isfile(os.path.join(os.path.abspath(os.path.curdir), db_path + gff_name + ".db")):
         db = gffutils.FeatureDB(
             os.path.join(os.path.abspath(os.path.curdir), db_path + gff_name + ".db"))
-    return (species, db)
+        return species, db
+    else:
+        return False
 
 
 def get_exons(db_path, species):
     species, db = connect_db(db_path, species)
-    return (species, [exon for exon in db.features_of_type('exon')])
+    return species, [exon for exon in db.features_of_type('exon')]
 
 
 def get_ortho_groups(ortho_group_path):
@@ -43,4 +45,4 @@ def get_ortho_groups(ortho_group_path):
         data = data.strip().split()
         data = {elem.split("|")[0]: elem.split("|")[1] for elem in data}
         groups[ortho] = data
-    return (groups)
+    return groups
