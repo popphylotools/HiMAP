@@ -1,6 +1,8 @@
-# orthoExon
-setup
-=====
+orthoExon
+=========
+
+install
+-----
 
  - install Anaconda
  - create environment with:
@@ -13,3 +15,8 @@ setup
    - source deactivate orthoExon
  - if needed, remove with:
   - conda env remove --name orthoExon
+
+data
+----
+imput and intermediate data avalible at:
+http://moana.dnsalias.org/~woods26/

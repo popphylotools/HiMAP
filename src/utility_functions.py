@@ -5,12 +5,11 @@ import gffutils
 def create_db(db_path, gff_path, species):
     gff_name = species + ".gff"
     created = False
-    if not os.path.isfile(
-            os.path.join(os.path.abspath(os.path.curdir), db_path + gff_name + ".db")):
-        fn = gffutils.example_filename(
-            os.path.join(os.path.abspath(os.path.curdir), gff_path + gff_name))
-        gffutils.create_db(fn,
-                           dbfn=db_path + gff_name + ".db",
+    gff_name = os.path.join(os.path.abspath(os.path.curdir), gff_path + species + ".gff")
+    db_name = os.path.join(os.path.abspath(os.path.curdir), db_path + species + ".gff.db")
+    if not os.path.isfile(db_name):
+        gffutils.create_db(gff_name,
+                           dbfn=db_name,
                            force=True,
                            merge_strategy='merge',
                            id_spec=['ID', 'Name'])
