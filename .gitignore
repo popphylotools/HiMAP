@@ -1,7 +1,10 @@
 # data files
 *.gff
 *.fasta
+*.fasta.fai
 *.db
+*.txt
+*.json
 
 # mac
 *.DS_Store
