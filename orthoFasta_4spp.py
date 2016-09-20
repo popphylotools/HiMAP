@@ -35,11 +35,14 @@ for ortho in parent_groups:
     with open(output_path + ortho + ".fasta", "w") as f:
         for sp in species_list:
             parent = gff[sp][parent_groups[ortho][sp]]
-            cds_list = gff[sp].children(parent, featuretype="CDS")
+            strand = parent.strand
+            cds_list = gff[sp].children(parent, featuretype="CDS", order_by="start")
             cat_seq = Seq("", IUPAC.ambiguous_dna)
             for i, cds in enumerate(cds_list):
                 if i > 0:
                     cat_seq += nnn
-                cat_seq += Seq(str(cds.sequence(fasta[sp])), IUPAC.ambiguous_dna)
+                cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)), IUPAC.ambiguous_dna)
+            if strand == '-':
+                cat_seq = cat_seq.reverse_complement()
             seqReq = SeqRecord(cat_seq, id=sp, description=parent.id)
             f.write(seqReq.format("fasta"))
