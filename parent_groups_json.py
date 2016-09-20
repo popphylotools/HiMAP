@@ -9,8 +9,8 @@ intermediate_path = "./intermediate/"
 groups_fn = "./input/groups_filtered_6181genes.txt"
 
 # create handles for all .db files in intermediate directory
-db = {name.split('_')[0]: name for name in os.listdir(intermediate_path) if "_gff.db" in name}
-db = {key: gffutils.FeatureDB(intermediate_path + value) for key, value in db.items()}
+gff = {name.split('.gff.db')[0]: name for name in os.listdir(intermediate_path) if ".gff.db" in name}
+gff = {key: gffutils.FeatureDB(intermediate_path + value) for key, value in gff.items()}
 
 # import ortholog groups
 with open(groups_fn, 'r') as f:
@@ -34,14 +34,15 @@ for ortho in groups.keys():
         if sp not in acc_of_interest:
             acc_of_interest[sp] = set()
             acc_ortho_dict[sp] = {}
-        acc_of_interest[sp].add(groups[ortho][sp])
-        acc_ortho_dict[sp][groups[ortho][sp]] = ortho
+        acc = groups[ortho][sp]
+        acc_of_interest[sp].add(acc)
+        acc_ortho_dict[sp][acc] = ortho
 
 # find all cds of interest for each ortho and species
 parent_groups = {}
-for sp in db:
+for sp in gff:
     print(sp)
-    for cds in db[sp].features_of_type(featuretype='CDS', order_by='start'):
+    for cds in gff[sp].features_of_type(featuretype='CDS', order_by='start'):
         if sp in ["Bcur", "Bdor", "Bole", "Ccap"]:
             acc = cds.attributes['Name'][0]
         else:
@@ -51,7 +52,7 @@ for sp in db:
             ortho = acc_ortho_dict[sp][acc]
             if ortho not in parent_groups:
                 parent_groups[ortho] = {}
-            parents = [parent for parent in db[sp].parents(cds) if parent.featuretype in ["mRNA", "prediction"]]
+            parents = [parent for parent in gff[sp].parents(cds) if parent.featuretype in ["mRNA", "prediction"]]
             if len(parents) is not 1:
                 print("error in cds: {}\nparents: {}".format(cds, parents))
             parent_groups[ortho][sp] = parents[0].id
