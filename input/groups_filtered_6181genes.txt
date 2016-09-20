@@ -1,1 +1,0 @@
-/projects/geibLabs/Flies/RNAseq_phylogenomics/orthomcl_fasta_13spp/orthomcl_adjusted_fasta/cluster_select_min8_out/groups_filtered_6181genes.txt
