@@ -5,6 +5,10 @@
 *.db
 *.txt
 *.json
+*.p3.out
+*.completeConsensus
+*.fasta.aln
+*.fasta.aln.fai
 
 # mac
 *.DS_Store
