@@ -10,15 +10,15 @@ from pyfaidx import Fasta
 
 # globals
 species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
-gff_path = "./input/gff/"
-fasta_path = "./input/fasta/"
-groups_fn = "./input/groups_filtered_6181genes.txt"
-output_path = "./output/"
-intermediate_path = "./intermediate/"
+fasta_path = "../input/fasta/"
+groups_fn = "../input/groups_filtered_6181genes.txt"
+output_path = "../intermediate/4spp_alignment/input/"
+db_path = "../intermediate/gff_databases/"
+json_path = "../intermediate/json/"
 
 # create handles for all .db files in intermediate directory
-gff = {name.split('.gff.db')[0]: name for name in os.listdir(intermediate_path) if ".gff.db" in name}
-gff = {key: gffutils.FeatureDB(intermediate_path + value) for key, value in gff.items()}
+gff = {name.split('.gff.db')[0]: name for name in os.listdir(db_path) if ".gff.db" in name}
+gff = {key: gffutils.FeatureDB(db_path + value) for key, value in gff.items()}
 
 # create handles for all .fasta files in fasta directory
 fasta = {name.split('.nt.fasta')[0]: name for name in os.listdir(fasta_path) if
@@ -26,7 +26,7 @@ fasta = {name.split('.nt.fasta')[0]: name for name in os.listdir(fasta_path) if
 fasta = {key: Fasta(fasta_path + value) for key, value in fasta.items()}
 
 # import ortholog groups
-with open(intermediate_path + "groups.json", 'r') as f:
+with open(json_path + "groups.json", 'r') as f:
     parent_groups = json.load(f)
 
 # concatinate cds's for each species,ortho and output a fasta for each ortho

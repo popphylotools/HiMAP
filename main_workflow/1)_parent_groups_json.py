@@ -5,12 +5,13 @@ import gffutils
 import json
 
 # globals
-intermediate_path = "./intermediate/"
-groups_fn = "./input/groups_filtered_6181genes.txt"
+groups_fn = "../input/groups_filtered_6181genes.txt"
+db_path = "../intermediate/gff_databases/"
+json_path = "../intermediate/json/"
 
 # create handles for all .db files in intermediate directory
-gff = {name.split('.gff.db')[0]: name for name in os.listdir(intermediate_path) if ".gff.db" in name}
-gff = {key: gffutils.FeatureDB(intermediate_path + value) for key, value in gff.items()}
+gff = {name.split('.gff.db')[0]: name for name in os.listdir(db_path) if ".gff.db" in name}
+gff = {key: gffutils.FeatureDB(db_path + value) for key, value in gff.items()}
 
 # import ortholog groups
 with open(groups_fn, 'r') as f:
@@ -58,5 +59,5 @@ for sp in gff:
             parent_groups[ortho][sp] = parents[0].id
 
 # output parent_groups to groups.json
-with open(intermediate_path + "groups.json", 'w') as f:
+with open(json_path + "groups.json", 'w') as f:
     json.dump(parent_groups, f)
