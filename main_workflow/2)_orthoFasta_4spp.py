@@ -12,7 +12,7 @@ from pyfaidx import Fasta
 species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
 fasta_path = "../input/fasta/"
 groups_fn = "../input/groups_filtered_6181genes.txt"
-output_path = "../intermediate/4spp_alignment/input/"
+output_path = "../intermediate/4spp_alignment/"
 db_path = "../intermediate/gff_databases/"
 json_path = "../intermediate/json/"
 
