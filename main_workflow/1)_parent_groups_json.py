@@ -53,7 +53,8 @@ for sp in gff:
             ortho = acc_ortho_dict[sp][acc]
             if ortho not in parent_groups:
                 parent_groups[ortho] = {}
-            parents = [parent for parent in gff[sp].parents(cds) if parent.featuretype in ["mRNA", "prediction"]]
+            parents = [parent for parent in gff[sp].parents(cds) if
+                       parent.featuretype in ["mRNA", "prediction"]]
             if len(parents) is not 1:
                 print("error in cds: {}\nparents: {}".format(cds, parents))
             parent_groups[ortho][sp] = parents[0].id
