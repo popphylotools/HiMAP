@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d0c2c79-8659-42f9-8ca8-d95266fc35a2" name="Default" comment="can create directories if needed">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/1)_parent_groups_json.py" afterPath="$PROJECT_DIR$/main_workflow/1)_parent_groups_json.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/2)_orthoFasta_4spp.py" afterPath="$PROJECT_DIR$/main_workflow/2)_orthoFasta_4spp.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/4)_4sppAlignedFilter_13sppFasta.py" afterPath="$PROJECT_DIR$/main_workflow/4)_4sppAlignedFilter_13sppFasta.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/6)_13sppAlignedFilter.py" afterPath="$PROJECT_DIR$/main_workflow/6)_13sppAlignedFilter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py" afterPath="$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py" afterPath="$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/10)_PI-stub" afterPath="$PROJECT_DIR$/main_workflow/10)_PI-stub" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/config.py" afterPath="$PROJECT_DIR$/main_workflow/config.py" />
     </list>
     <ignored path="orthoExon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +26,8 @@
       <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main_workflow/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+            <state relative-caret-position="315">
+              <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -70,8 +66,8 @@
       <file leaf-file-name="10)_PI-stub" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main_workflow/10)_PI-stub">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -98,8 +94,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main_workflow/config.py" />
-        <option value="$PROJECT_DIR$/main_workflow/10)_PI-stub" />
         <option value="$PROJECT_DIR$/main_workflow/1)_parent_groups_json.py" />
         <option value="$PROJECT_DIR$/main_workflow/2)_orthoFasta_4spp.py" />
         <option value="$PROJECT_DIR$/main_workflow/4)_4sppAlignedFilter_13sppFasta.py" />
@@ -107,6 +101,8 @@
         <option value="$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py" />
         <option value="$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py" />
         <option value="$PROJECT_DIR$/main_workflow/11)_summary.py" />
+        <option value="$PROJECT_DIR$/main_workflow/config.py" />
+        <option value="$PROJECT_DIR$/main_workflow/10)_PI-stub" />
       </list>
     </option>
   </component>
@@ -346,6 +342,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="3d0c2c79-8659-42f9-8ca8-d95266fc35a2" name="Default" comment="" />
@@ -494,14 +493,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main_workflow/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main_workflow/3)_align-4spp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -526,10 +517,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main_workflow/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main_workflow/10)_PI-stub">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state relative-caret-position="165">
+          <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
           <folding />
         </state>
       </provider>

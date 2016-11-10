@@ -5,9 +5,11 @@ module load parallel
 
 /bin/ls ../intermediate/phylo_informativeness/fasta/*.fasta | parallel 'perl ./convertfasta2nex.pl {} > {}.nex'
 
+rm -r ../intermediate/phylo_informativeness/nex/
 touch ../intermediate/phylo_informativeness/nex/
 mv ../intermediate/phylo_informativeness/fasta/*.nex ../intermediate/phylo_informativeness/nex/
 
+rm -r ../intermediate/phylo_informativeness/tapir_out*
 touch ../intermediate/phylo_informativeness/tapir_out
 
 tapir_compute.py ../intermediate/phylo_informativeness/nex/ ../input/959genes.phy.contree_AgeRooted_wholeNumbs.tre --intervals=2-3,3-5,5-8,8-10,10-18 --times=2,3,5,8,10,17 --tree-format=newick --output ../intermediate/phylo_informativeness/tapir_out
