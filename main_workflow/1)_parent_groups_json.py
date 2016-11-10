@@ -3,11 +3,12 @@
 import os
 import gffutils
 import json
+from config import groups_fn, db_path, json_path
 
 # globals
-groups_fn = "../input/groups_filtered_6181genes.txt"
-db_path = "../intermediate/gff_databases/"
-json_path = "../intermediate/json/"
+# groups_fn = "../input/groups_filtered_6181genes.txt"
+# db_path = "../intermediate/gff_databases/"
+# json_path = "../intermediate/json/"
 
 # create handles for all .db files in intermediate directory
 gff = {name.split('.gff.db')[0]: name for name in os.listdir(db_path) if ".gff.db" in name}
@@ -53,7 +54,8 @@ for sp in gff:
             ortho = acc_ortho_dict[sp][acc]
             if ortho not in parent_groups:
                 parent_groups[ortho] = {}
-            parents = [parent for parent in gff[sp].parents(cds) if parent.featuretype in ["mRNA", "prediction"]]
+            parents = [parent for parent in gff[sp].parents(cds) if
+                       parent.featuretype in ["mRNA", "prediction"]]
             if len(parents) is not 1:
                 print("error in cds: {}\nparents: {}".format(cds, parents))
             parent_groups[ortho][sp] = parents[0].id

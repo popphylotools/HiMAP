@@ -7,14 +7,16 @@ from Bio.SeqRecord import SeqRecord
 from Bio.Alphabet import IUPAC
 import json
 from pyfaidx import Fasta
+from config import species_list, fasta_path, groups_fn, subset_alignment_path, db_path, json_path
 
 # globals
-species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
-fasta_path = "../input/fasta/"
-groups_fn = "../input/groups_filtered_6181genes.txt"
-output_path = "../intermediate/4spp_alignment/"
-db_path = "../intermediate/gff_databases/"
-json_path = "../intermediate/json/"
+# species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
+# fasta_path = "../input/fasta/"
+# groups_fn = "../input/groups_filtered_6181genes.txt"
+# subset_alignment_path = "../intermediate/4spp_alignment/"
+# db_path = "../intermediate/gff_databases/"
+# json_path = "../intermediate/json/"
+
 
 # create handles for all .db files in intermediate directory
 gff = {name.split('.gff.db')[0]: name for name in os.listdir(db_path) if ".gff.db" in name}
@@ -32,7 +34,7 @@ with open(json_path + "groups.json", 'r') as f:
 # concatinate cds's for each species,ortho and output a fasta for each ortho
 nnn = Seq("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", IUPAC.ambiguous_dna)
 for ortho in parent_groups:
-    with open(output_path + ortho + ".fasta", "w") as f:
+    with open(subset_alignment_path + ortho + ".fasta", "w") as f:
         for sp in species_list:
             parent = gff[sp][parent_groups[ortho][sp]]
             strand = parent.strand
@@ -41,7 +43,8 @@ for ortho in parent_groups:
             for i, cds in enumerate(cds_list):
                 if i > 0:
                     cat_seq += nnn
-                cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)), IUPAC.ambiguous_dna)
+                cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)),
+                               IUPAC.ambiguous_dna)
             if strand == '-':
                 cat_seq = cat_seq.reverse_complement()
             seqReq = SeqRecord(cat_seq, id=sp, description=parent.id)
