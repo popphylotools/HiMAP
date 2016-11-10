@@ -2,14 +2,9 @@
 # coding: utf-8
 
 import os
-import gffutils
-from Bio.Seq import Seq
-from Bio.SeqRecord import SeqRecord
 from Bio.Alphabet import IUPAC
-from pyfaidx import Fasta
 from Bio import SeqIO
-import re
-from pprint import pprint as pp
+import shutil
 from config import full_species_list, species_list, transvestigated_species_set, primer3_path, \
     orthoCds_path
 

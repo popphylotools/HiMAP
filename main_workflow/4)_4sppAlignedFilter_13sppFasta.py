@@ -12,6 +12,7 @@ import json
 from pyfaidx import Fasta
 from Bio import SeqIO
 import re
+import shutil
 from config import groups_fn, fasta_path, fullset_alignment_path, subset_alignment_path, db_path, \
     json_path
 

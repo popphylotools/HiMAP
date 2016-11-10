@@ -10,6 +10,7 @@ import json
 from pyfaidx import Fasta
 from Bio import SeqIO
 import re
+import shutil
 from config import template_species_list, transvestigated_species_set, fasta_path, orthoCds_path, \
     fullset_alignment_path, db_path, json_path
 

@@ -2,15 +2,11 @@
 # coding: utf-8
 
 import os
-import gffutils
-from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from Bio.Alphabet import IUPAC
 import json
-from pyfaidx import Fasta
 from Bio import SeqIO
-import re
-
+import shutil
 from config import full_species_list, species_list, transvestigated_species_set, \
     padded_primer_product_path, unpadded_primer_product_path, orthoCds_path, primer3_path, \
     json_path

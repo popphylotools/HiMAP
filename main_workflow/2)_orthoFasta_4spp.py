@@ -8,6 +8,7 @@ from Bio.Alphabet import IUPAC
 import json
 from pyfaidx import Fasta
 from config import species_list, fasta_path, groups_fn, subset_alignment_path, db_path, json_path
+import shutil
 
 # globals
 # species_list = ["Bcur", "Bdor", "Bole", "Ccap"]

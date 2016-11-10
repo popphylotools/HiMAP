@@ -3,13 +3,9 @@
 
 import os
 import gffutils
-from Bio.Seq import Seq
-from Bio.SeqRecord import SeqRecord
 from Bio.Alphabet import IUPAC
 import json
-from pyfaidx import Fasta
 from Bio import SeqIO
-import re
 import sqlite3
 from config import full_species_list, species_list, transvestigated_species_set, summary_fn, \
     primer3_path, unpadded_primer_product_path, db_path, json_path, pi_score_path
