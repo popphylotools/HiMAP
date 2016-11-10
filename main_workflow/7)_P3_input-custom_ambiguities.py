@@ -81,7 +81,9 @@ primer_thermodynamic_parameters_path = '/data0/opt/Primer3/primer3-2.3.6/src/pri
 primer_max_ns_accepted = '1'
 primer_liberal_base = '1'
 for ortho in fasta.keys():
-    with open(primer3_path + ortho + ".degenerate.p3", "w") as f:
+    filename = primer3_path + ortho + ".degenerate.p3"
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, "w") as f:
         sequence_id = ortho
         sequence_template = fasta_degenerate[ortho]
         f.write(

@@ -109,8 +109,9 @@ header = ['Exon_Name',
           'PRIMER_RIGHT_0_TM']
 
 import csv
-
-with open(summary_fn, "w") as f:
+filename = summary_fn
+os.makedirs(os.path.dirname(filename), exist_ok=True)
+with open(filename, "w") as f:
     f.write(",".join(header))
     for record in data:
         f.write("\n" + ",".join(record))

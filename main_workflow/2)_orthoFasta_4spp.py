@@ -34,7 +34,9 @@ with open(json_path + "groups.json", 'r') as f:
 # concatinate cds's for each species,ortho and output a fasta for each ortho
 nnn = Seq("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", IUPAC.ambiguous_dna)
 for ortho in parent_groups:
-    with open(subset_alignment_path + ortho + ".fasta", "w") as f:
+    filename = subset_alignment_path + ortho + ".fasta"
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, "w") as f:
         for sp in species_list:
             parent = gff[sp][parent_groups[ortho][sp]]
             strand = parent.strand

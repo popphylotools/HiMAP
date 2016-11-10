@@ -206,6 +206,8 @@ fasta_prep = {ortho: seq_list for ortho, seq_list in fasta_prep.items() if len(s
 
 # fasta output
 for ortho in fasta_prep:
-    with open(orthoCds_output + ortho + ".13spp.fasta", "w") as f:
+    filename = orthoCds_output + ortho + ".13spp.fasta"
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, "w") as f:
         for seqReq in fasta_prep[ortho]:
             f.write(seqReq.format("fasta"))

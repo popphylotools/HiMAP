@@ -196,8 +196,9 @@ for ortho in universal_ortho_coords:
 nnn = Seq("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", IUPAC.ambiguous_dna)
 for ortho in fasta_prep:
     for coord in fasta_prep[ortho]:
-        with open(fullset_alignment_path + ortho + "_" + str(coord[0]) + "-" + str(
-                coord[1]) + ".13spp.fasta", "w") as f:
+        filename = fullset_alignment_path + ortho + "_" + str(coord[0]) + "-" + str(coord[1]) + ".13spp.fasta"
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        with open(filename, "w") as f:
             for sp in species_list:
                 cds = fasta_prep[ortho][coord][sp]
                 start, end = coord

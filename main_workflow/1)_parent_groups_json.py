@@ -61,5 +61,7 @@ for sp in gff:
             parent_groups[ortho][sp] = parents[0].id
 
 # output parent_groups to groups.json
-with open(json_path + "groups.json", 'w') as f:
+filename = json_path + "groups.json"
+os.makedirs(os.path.dirname(filename), exist_ok=True)
+with open(filename, 'w') as f:
     json.dump(parent_groups, f)

@@ -97,15 +97,21 @@ sp_order = {'Bcur': 1,
             'Btry': 13}
 
 # output fasta to pre_padding_species.json
-with open(json_path + "pre_padding_species.json", 'w') as f:
+filename = json_path + "pre_padding_species.json"
+os.makedirs(os.path.dirname(filename), exist_ok=True)
+with open(filename, 'w') as f:
     json.dump({ortho: [sp for sp in trimmed_fasta[ortho]] for ortho in trimmed_fasta}, f)
 
 for ortho in trimmed_fasta.keys():
-    with open(unpadded_primer_product_path + ortho + ".13spp.fasta", "w") as f:
+    filename = unpadded_primer_product_path + ortho + ".13spp.fasta"
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, "w") as f:
         for seqReq in sorted(trimmed_fasta[ortho].values(), key=lambda x: sp_order[x.id]):
             f.write(seqReq.format("fasta"))
 
 for ortho in padded_fasta.keys():
-    with open(padded_primer_product_path + ortho + ".13spp.fasta", "w") as f:
+    filename = padded_primer_product_path + ortho + ".13spp.fasta"
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, "w") as f:
         for seqReq in sorted(padded_fasta[ortho].values(), key=lambda x: sp_order[x.id]):
             f.write(seqReq.format("fasta"))
