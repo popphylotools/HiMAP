@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[ ]:
@@ -12,6 +12,7 @@ import json
 from pyfaidx import Fasta
 from Bio import SeqIO
 import re
+import sqlite3
 
 
 # In[ ]:
@@ -25,6 +26,7 @@ p3_out_path = "../intermediate/primer_design/"
 primer_products_path = "../output/primerProducts/"
 db_path = "../intermediate/gff_databases/"
 json_path = "../intermediate/json/"
+pi_score_path = "../intermediate/phylo_informativeness/tapir_out.1/phylogenetic-informativeness.sqlite"
 
 
 # In[ ]:
@@ -42,12 +44,14 @@ for ortho in fasta_fn.keys():
 # In[ ]:
 
 primer = {}
-for p3_out_fn in os.listdir(p3_out_path):
+for p3_out_fn in [fn for fn in os.listdir(p3_out_path) if ".p3.out" in fn]:
     ortho = p3_out_fn.split('.degenerate.p3.out')[0]
     with open(p3_out_path + p3_out_fn, 'r') as f:
         lines = f.readlines()
         lines = [line.strip().split('=') for line in lines]
         lines = {key:value for key,value in lines if key is not ''}
+        if 'PRIMER_PAIR_NUM_RETURNED' not in lines.keys():
+            continue
         if lines['PRIMER_PAIR_NUM_RETURNED'] is not '0':
             left,l_len = lines['PRIMER_LEFT_0'].split(',')
             right,r_len = lines['PRIMER_RIGHT_0'].split(',')
@@ -60,8 +64,11 @@ for p3_out_fn in os.listdir(p3_out_path):
 
 # In[ ]:
 
-with open("input/net_PI_avg_edited.txt", 'r') as f:
-    name_score = [line.strip().split() for line in f.readlines()[1:]]
+#with open(pi_score_path, 'r') as f:
+#    name_score = [line.strip().split() for line in f.readlines()[1:]]
+
+conn = sqlite3.connect(pi_score_path)
+name_score = conn.execute("select loci.locus, pi from loci, net where loci.id = net.id").fetchall()
 name_score = {line[0].split(".13spp.fasta")[0] : line[1] for line in name_score}
 
 
@@ -96,7 +103,7 @@ for ortho in primer:
         else:
             product = "N/A"
         score = name_score[ortho]
-        data.append((ortho, score, sp, product, *primer[ortho]))
+        data.append((ortho, str(score), sp, product, *primer[ortho]))
 
 
 # In[ ]:

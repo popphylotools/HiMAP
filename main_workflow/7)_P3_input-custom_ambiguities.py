@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[2]:
@@ -26,7 +26,7 @@ aligned_fasta_path = "../output/orthoCds/"
 
 # In[4]:
 
-iupac = {
+collapse_iupac = {
 ('-',): '-',
 ('A',): 'A',
 ('G',): 'G',
@@ -45,17 +45,19 @@ iupac = {
 ('A', 'C', 'G', 'T'): 'n',
 }
 
+expand_iupac = {value.upper():set(key) for key,value in collapse_iupac.items()}
+
 def Consensus(aligned_seq_list):
     consensus = ""
     length = len(aligned_seq_list[0])
     for seq in aligned_seq_list:
         assert len(seq) == length
     for loc in range(length):
-        base_set = {seq[loc].upper() for seq in aligned_seq_list}
+        base_set = set.union(*[expand_iupac[seq[loc].upper()] for seq in aligned_seq_list])
         if '-' in base_set:
             consensus += '-'
         else:
-            consensus += iupac[tuple(sorted(base_set))]
+            consensus += collapse_iupac[tuple(sorted(base_set))]
     return(consensus)
 
 
@@ -88,7 +90,7 @@ for ortho in fasta:
 # In[12]:
 
 # output
-primer_product_size_range = '400-600'
+primer_product_size_range = '200-10000'
 primer_thermodynamic_parameters_path = '/data0/opt/Primer3/primer3-2.3.6/src/primer3_config/'
 primer_max_ns_accepted = '1'
 primer_liberal_base = '1'

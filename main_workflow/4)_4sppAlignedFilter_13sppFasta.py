@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[ ]:
@@ -32,7 +32,7 @@ json_path = "../intermediate/json/"
 max_gap_percent = 0
 max_gap_length = 0
 # cds length filter parameters
-min_cds_length = 400
+min_cds_length = 100
 #max_cds_length = 600
 
 

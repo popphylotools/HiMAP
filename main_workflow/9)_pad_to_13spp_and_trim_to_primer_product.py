@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[ ]:
@@ -20,7 +20,7 @@ full_species_list = ['Bjar', 'Aobl', 'Bmin', 'Asus', 'Btry', 'Afra', 'Blat', 'Bz
 species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
 transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl'}
 
-output_padded_path = "../intermediate/phylo_informativeness/"
+output_padded_path = "../intermediate/phylo_informativeness/fasta/"
 output_unpadded_path = "../output/primerProducts/"
 aligned_fasta_path = "../output/orthoCds/"
 p3_out_path = "../intermediate/primer_design/"
@@ -53,12 +53,14 @@ for ortho in fasta_fn.keys():
 # In[ ]:
 
 primer = {}
-for p3_out_fn in os.listdir(p3_out_path):
+for p3_out_fn in (fn for fn in os.listdir(p3_out_path) if ".p3.out" in fn):
     ortho = p3_out_fn.split('.degenerate.p3.out')[0]
     with open(p3_out_path + p3_out_fn, 'r') as f:
         lines = f.readlines()
         lines = [line.strip().split('=') for line in lines]
         lines = {key:value for key,value in lines if key is not ''}
+        if 'PRIMER_PAIR_NUM_RETURNED' not in lines.keys():
+            continue
         if lines['PRIMER_PAIR_NUM_RETURNED'] is not '0':
             test = lines
             left,l_len = lines['PRIMER_LEFT_0'].split(',')
@@ -66,12 +68,6 @@ for p3_out_fn in os.listdir(p3_out_path):
             start = int(left) + int(l_len)
             end = int(right) - int(r_len) + 1
             primer[ortho] = (start,end)
-
-
-# In[ ]:
-
-trimmed_fasta = {ortho:{sp:fasta[ortho][sp][start:end] for sp in fasta[ortho]}}
-
 
 # In[ ]:
 
@@ -89,14 +85,16 @@ for ortho in fasta.keys():
             for alt_sp in alternate_sp[sp]:
                 if alt_sp in fasta[ortho].keys():
                     seq = fasta[ortho][alt_sp].seq[start:end]
-                    des = fasta[ortho][alt_sp].description
-                    des = "PADDING " + des
+                    des = "PADDING"
                     padding[sp] = SeqRecord(seq, id=sp, description=des)
                     break
     trimmed_fasta[ortho] = {sp:fasta[ortho][sp][start:end] for sp in fasta[ortho]}
     padded_fasta[ortho] = padding
     padded_fasta[ortho].update(trimmed_fasta[ortho])
 
+for ortho in padded_fasta:
+    for sp in padded_fasta[ortho]:
+        padded_fasta[ortho][sp].description = ""
 
 # In[ ]:
 

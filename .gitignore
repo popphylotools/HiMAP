@@ -9,6 +9,14 @@
 *.completeConsensus
 *.fasta.aln
 *.fasta.aln.fai
+*.nex
+*.p3
+*.rates
+*.sqlite
+*.csv
+*maft_log
+*.newick
+*.tre
 
 # mac
 *.DS_Store
