@@ -205,9 +205,10 @@ for ortho in fasta_prep:
 fasta_prep = {ortho: seq_list for ortho, seq_list in fasta_prep.items() if len(seq_list) >= 8}
 
 # fasta output
+shutil.rmtree(orthoCds_path)
+os.makedirs(orthoCds_path, exist_ok=True)
 for ortho in fasta_prep:
-    filename = orthoCds_output + ortho + ".13spp.fasta"
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    filename = orthoCds_path + ortho + ".13spp.fasta"
     with open(filename, "w") as f:
         for seqReq in fasta_prep[ortho]:
             f.write(seqReq.format("fasta"))

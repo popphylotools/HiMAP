@@ -194,10 +194,11 @@ for ortho in universal_ortho_coords:
             fasta_prep[ortho][coord][sp] = cds
 
 nnn = Seq("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", IUPAC.ambiguous_dna)
+shutil.rmtree(fullset_alignment_path)
+os.makedirs(fullset_alignment_path, exist_ok=True)
 for ortho in fasta_prep:
     for coord in fasta_prep[ortho]:
         filename = fullset_alignment_path + ortho + "_" + str(coord[0]) + "-" + str(coord[1]) + ".13spp.fasta"
-        os.makedirs(os.path.dirname(filename), exist_ok=True)
         with open(filename, "w") as f:
             for sp in species_list:
                 cds = fasta_prep[ortho][coord][sp]

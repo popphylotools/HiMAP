@@ -80,9 +80,10 @@ primer_product_size_range = '200-10000'
 primer_thermodynamic_parameters_path = '/data0/opt/Primer3/primer3-2.3.6/src/primer3_config/'
 primer_max_ns_accepted = '1'
 primer_liberal_base = '1'
+shutil.rmtree(primer3_path)
+os.makedirs(primer3_path, exist_ok=True)
 for ortho in fasta.keys():
     filename = primer3_path + ortho + ".degenerate.p3"
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, "w") as f:
         sequence_id = ortho
         sequence_template = fasta_degenerate[ortho]

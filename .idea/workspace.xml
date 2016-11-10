@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d0c2c79-8659-42f9-8ca8-d95266fc35a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/10)_PI-stub" afterPath="$PROJECT_DIR$/main_workflow/10)_PI-stub" />
+    <list default="true" id="3d0c2c79-8659-42f9-8ca8-d95266fc35a2" name="Default" comment="can create directories if needed">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/1)_parent_groups_json.py" afterPath="$PROJECT_DIR$/main_workflow/1)_parent_groups_json.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/2)_orthoFasta_4spp.py" afterPath="$PROJECT_DIR$/main_workflow/2)_orthoFasta_4spp.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/4)_4sppAlignedFilter_13sppFasta.py" afterPath="$PROJECT_DIR$/main_workflow/4)_4sppAlignedFilter_13sppFasta.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/6)_13sppAlignedFilter.py" afterPath="$PROJECT_DIR$/main_workflow/6)_13sppAlignedFilter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py" afterPath="$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py" afterPath="$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py" />
     </list>
     <ignored path="orthoExon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,38 +27,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="1)_parent_groups_json.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main_workflow/1)_parent_groups_json.py">
+      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main_workflow/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="64" column="7" selection-start-line="64" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-              <folding>
-                <element signature="e#23#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="9)_pad_to_13spp_and_trim_to_primer_product.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="113" column="57" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="57" />
-              <folding>
-                <element signature="e#39#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="11)_summary.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main_workflow/11)_summary.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="113" column="30" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
-              <folding>
-                <element signature="e#39#48#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="519">
+              <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,6 +99,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/main_workflow/config.py" />
+        <option value="$PROJECT_DIR$/main_workflow/10)_PI-stub" />
         <option value="$PROJECT_DIR$/main_workflow/1)_parent_groups_json.py" />
         <option value="$PROJECT_DIR$/main_workflow/2)_orthoFasta_4spp.py" />
         <option value="$PROJECT_DIR$/main_workflow/4)_4sppAlignedFilter_13sppFasta.py" />
@@ -128,7 +107,6 @@
         <option value="$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py" />
         <option value="$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py" />
         <option value="$PROJECT_DIR$/main_workflow/11)_summary.py" />
-        <option value="$PROJECT_DIR$/main_workflow/10)_PI-stub" />
       </list>
     </option>
   </component>
@@ -446,50 +424,22 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main_workflow/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="787">
-          <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="85" column="13" selection-start-line="85" selection-start-column="4" selection-end-line="85" selection-end-column="13" />
-          <folding>
-            <element signature="e#39#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main_workflow/6)_13sppAlignedFilter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="42" column="9" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="9" />
-          <folding>
-            <element signature="e#39#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main_workflow/4)_4sppAlignedFilter_13sppFasta.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="200" column="17" selection-start-line="200" selection-start-column="8" selection-end-line="200" selection-end-column="17" />
+        <state relative-caret-position="124">
+          <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="37" />
           <folding>
             <element signature="e#49#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main_workflow/2)_orthoFasta_4spp.py">
+    <entry file="file://$PROJECT_DIR$/main_workflow/6)_13sppAlignedFilter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-123">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        <state relative-caret-position="372">
+          <caret line="207" column="27" selection-start-line="207" selection-start-column="27" selection-end-line="207" selection-end-column="27" />
           <folding>
-            <element signature="e#23#32#0" expanded="true" />
+            <element signature="e#39#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -497,17 +447,37 @@
     <entry file="file://$PROJECT_DIR$/main_workflow/1)_parent_groups_json.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
-          <caret line="64" column="7" selection-start-line="64" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <caret line="64" column="37" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main_workflow/2)_orthoFasta_4spp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="35" column="23" selection-start-line="35" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="e#23#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="81" column="25" selection-start-line="81" selection-start-column="25" selection-end-line="82" selection-end-column="27" />
+          <folding>
+            <element signature="e#39#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="113" column="57" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="57" />
+        <state relative-caret-position="399">
+          <caret line="111" column="43" selection-start-line="111" selection-start-column="43" selection-end-line="111" selection-end-column="43" />
           <folding>
             <element signature="e#39#48#0" expanded="true" />
           </folding>
@@ -516,11 +486,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main_workflow/11)_summary.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="113" column="30" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
+        <state relative-caret-position="414">
+          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
           <folding>
             <element signature="e#39#48#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_workflow/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>

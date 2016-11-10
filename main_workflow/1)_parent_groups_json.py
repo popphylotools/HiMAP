@@ -62,6 +62,6 @@ for sp in gff:
 
 # output parent_groups to groups.json
 filename = json_path + "groups.json"
-os.makedirs(os.path.dirname(filename), exist_ok=True)
+os.makedirs(json_path, exist_ok=True)
 with open(filename, 'w') as f:
     json.dump(parent_groups, f)
