@@ -1,43 +1,49 @@
+
 # coding: utf-8
 
 # In[2]:
 
 import os
-
-from Bio import SeqIO
+import gffutils
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
 from Bio.Alphabet import IUPAC
+from pyfaidx import Fasta
+from Bio import SeqIO
+import re
+from pprint import pprint as pp
+
 
 # In[6]:
 
-full_species_list = ['Bjar', 'Aobl', 'Bmin', 'Asus', 'Btry', 'Afra', 'Blat', 'Bzon', 'Bcor',
-                     'Ccap', 'Bcur', 'Bole', 'Bdor']
+full_species_list = ['Bjar', 'Aobl', 'Bmin', 'Asus', 'Btry', 'Afra', 'Blat', 'Bzon', 'Bcor', 'Ccap', 'Bcur', 'Bole', 'Bdor']
 species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
 transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl'}
 
 output_path = "../intermediate/primer_design/"
 aligned_fasta_path = "../output/orthoCds/"
 
+
 # In[4]:
 
 iupac = {
-    ('-',): '-',
-    ('A',): 'A',
-    ('G',): 'G',
-    ('C',): 'C',
-    ('T',): 'T',
-    ('C', 'T'): 'y',
-    ('A', 'G'): 'r',
-    ('A', 'T'): 'w',
-    ('C', 'G'): 's',
-    ('G', 'T'): 'k',
-    ('A', 'C'): 'm',
-    ('A', 'G', 'T'): 'd',
-    ('A', 'C', 'G'): 'v',
-    ('A', 'C', 'T'): 'h',
-    ('C', 'G', 'T'): 'b',
-    ('A', 'C', 'G', 'T'): 'n',
+('-',): '-',
+('A',): 'A',
+('G',): 'G',
+('C',): 'C',
+('T',): 'T',
+('C', 'T'): 'y',
+('A', 'G'): 'r',
+('A', 'T'): 'w',
+('C', 'G'): 's',
+('G', 'T'): 'k',
+('A', 'C'): 'm',
+('A', 'G', 'T'): 'd',
+('A', 'C', 'G'): 'v',
+('A', 'C', 'T'): 'h',
+('C', 'G', 'T'): 'b',
+('A', 'C', 'G', 'T'): 'n',
 }
-
 
 def Consensus(aligned_seq_list):
     consensus = ""
@@ -50,31 +56,34 @@ def Consensus(aligned_seq_list):
             consensus += '-'
         else:
             consensus += iupac[tuple(sorted(base_set))]
-    return consensus
+    return(consensus)
 
 
 # In[8]:
 
 # create handles for all .fasta files in fasta directory
-fasta_fn = {name.split('.13spp.fasta')[0]: aligned_fasta_path + name for name in
-            os.listdir(aligned_fasta_path) if
-            ((".13spp.fasta" in name) and (".13spp.fasta.fai" not in name))}
+fasta_fn = {name.split('.13spp.fasta')[0]: aligned_fasta_path + name for name in os.listdir(aligned_fasta_path) if
+         ((".13spp.fasta" in name) and (".13spp.fasta.fai" not in name))}
+
 
 # In[9]:
 
 # read and parse fasta files for each species
 fasta = {}
 for ortho in fasta_fn.keys():
-    fasta[ortho] = {seq_record.id: seq_record
-                    for seq_record in SeqIO.parse(fasta_fn[ortho],
-                                                  "fasta", alphabet=IUPAC.ambiguous_dna)}
+    fasta[ortho] = {seq_record.id : seq_record 
+                                      for seq_record in SeqIO.parse(fasta_fn[ortho],
+                                                                    "fasta", alphabet=IUPAC.ambiguous_dna)}
+
 
 # In[10]:
 
+from Bio import motifs
 fasta_degenerate = {}
 for ortho in fasta:
     seq = Consensus([fasta[ortho][sp].upper().seq for sp in fasta[ortho].keys()])
     fasta_degenerate[ortho] = seq
+
 
 # In[12]:
 
@@ -95,7 +104,7 @@ for ortho in fasta.keys():
             "PRIMER_MAX_NS_ACCEPTED={}\n"
             "PRIMER_LIBERAL_BASE={}\n"
             "PRIMER_MIN_TM=53\n"
-            "PRIMER_OPT_TM=56\n"
+            "PRIMER_OPT_TM=56\n"    
             "PRIMER_MAX_TM=60\n"
             "=".format(
                 sequence_id,
@@ -104,3 +113,4 @@ for ortho in fasta.keys():
                 primer_thermodynamic_parameters_path,
                 primer_max_ns_accepted,
                 primer_liberal_base))
+

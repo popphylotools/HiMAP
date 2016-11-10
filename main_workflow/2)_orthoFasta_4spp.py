@@ -41,8 +41,7 @@ for ortho in parent_groups:
             for i, cds in enumerate(cds_list):
                 if i > 0:
                     cat_seq += nnn
-                cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)),
-                               IUPAC.ambiguous_dna)
+                cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)), IUPAC.ambiguous_dna)
             if strand == '-':
                 cat_seq = cat_seq.reverse_complement()
             seqReq = SeqRecord(cat_seq, id=sp, description=parent.id)
