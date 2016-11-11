@@ -6,8 +6,13 @@ mkdir ../output$N
 mkdir -p ../intermediate$N/json/
 cp ../intermediate/json/*.json ../intermediate$N/json/
 
+echo 7
 ./7\)_P3_input-custom_ambiguities.py -n $N --primer3_path ../intermediate$N/primer_design/
+echo 8
 ./8\)_primer-design ../intermediate$N/primer_design/
+echo 9
 ./9\)_pad_to_13spp_and_trim_to_primer_product.py --primer3_path ../intermediate$N/primer_design/ --padded_primer_product_path ../intermediate$N/phylo_informativeness/fasta/ --unpadded_primer_product_path ../output$N/primerProducts/ --json_path../intermediate$N/json/
+echo 10
 ./10\)_PI-stub ../intermediate$N/phylo_informativeness
+echo 11
 ./11\)_summary.py --summary_fn ../output$N/summory.csv --primer3_path ../intermediate$N/primer_design/ --unpadded_primer_product_path ../output$N/primerProducts/ --json_path ../intermediate$N/json/ --pi_score_path ../intermediate$N/phylo_informativeness/tapir_out/phylogenetic-informativeness.sqlite
