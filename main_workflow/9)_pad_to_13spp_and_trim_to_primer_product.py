@@ -17,6 +17,7 @@ parser.add_argument('--orthoCds_path', help='orthoCds_path', default=orthoCds_pa
 parser.add_argument('--primer3_path',help='primer3_path', default=primer3_path)
 parser.add_argument('--padded_primer_product_path', help='padded_primer_product_path', default=padded_primer_product_path)
 parser.add_argument('--unpadded_primer_product_path',help='unpadded_primer_product_path', default=unpadded_primer_product_path)
+parser.add_argument('--json_path',help='json_path', default=json_path)
 
 args = parser.parse_args()
 
@@ -24,6 +25,7 @@ orthoCds_path = args.orthoCds_path
 primer3_path = args.primer3_path
 padded_primer_product_path = args.padded_primer_product_path
 unpadded_primer_product_path = args.unpadded_primer_product_path
+json_path = args.json_path
 
 # orthoCds_path = "../output/orthoCds/"
 # primer3_path = "../intermediate/primer_design/"

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+N=${1:-"0"}
+
+mkdir ../output$N
+mkdir -p ../intermediate$N/json/
+cp ../intermediate/json/*.json ../intermediate$N/json/
+
+./7\)_P3_input-custom_ambiguities.py -n $N --primer3_path ../intermediate$N/primer_design/
+./8\)_primer-design ../intermediate$N/primer_design/
+./9\)_pad_to_13spp_and_trim_to_primer_product.py --primer3_path ../intermediate$N/primer_design/ --padded_primer_product_path ../intermediate$N/phylo_informativeness/fasta/ --unpadded_primer_product_path ../output$N/primerProducts/ --json_path../intermediate$N/json/
+./10\)_PI-stub ../intermediate$N/phylo_informativeness
+./11\)_summary.py --summary_fn ../output$N/summory.csv --primer3_path ../intermediate$N/primer_design/ --unpadded_primer_product_path ../output$N/primerProducts/ --json_path ../intermediate$N/json/ --pi_score_path ../intermediate$N/phylo_informativeness/tapir_out/phylogenetic-informativeness.sqlite
