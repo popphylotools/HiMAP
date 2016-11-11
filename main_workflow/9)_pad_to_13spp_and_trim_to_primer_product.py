@@ -113,7 +113,7 @@ with open(filename, 'w') as f:
     json.dump({ortho: [sp for sp in trimmed_fasta[ortho]] for ortho in trimmed_fasta}, f)
 
 
-shutil.rmtree(unpadded_primer_product_path)
+shutil.rmtree(unpadded_primer_product_path, ignore_errors=True)
 os.makedirs(unpadded_primer_product_path, exist_ok=True)
 for ortho in trimmed_fasta.keys():
     filename = unpadded_primer_product_path + ortho + ".13spp.fasta"
@@ -121,7 +121,7 @@ for ortho in trimmed_fasta.keys():
         for seqReq in sorted(trimmed_fasta[ortho].values(), key=lambda x: sp_order[x.id]):
             f.write(seqReq.format("fasta"))
 
-shutil.rmtree(padded_primer_product_path)
+shutil.rmtree(padded_primer_product_path, ignore_errors=True)
 os.makedirs(padded_primer_product_path, exist_ok=True)
 for ortho in padded_fasta.keys():
     filename = padded_primer_product_path + ortho + ".13spp.fasta"

@@ -79,7 +79,7 @@ primer_product_size_range = '200-10000'
 primer_thermodynamic_parameters_path = '/data0/opt/Primer3/primer3-2.3.6/src/primer3_config/'
 primer_max_ns_accepted = args.ns_allowed
 primer_liberal_base = '1'
-shutil.rmtree(primer3_path)
+shutil.rmtree(primer3_path, ignore_errors=True)
 os.makedirs(primer3_path, exist_ok=True)
 for ortho in fasta.keys():
     filename = primer3_path + ortho + ".degenerate.p3"

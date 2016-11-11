@@ -112,7 +112,6 @@ header = ['Exon_Name',
           'PRIMER_LEFT_0_TM',
           'PRIMER_RIGHT_0_TM']
 
-import csv
 filename = summary_fn
 os.makedirs(os.path.dirname(filename), exist_ok=True)
 with open(filename, "w") as f:
