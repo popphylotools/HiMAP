@@ -3,13 +3,15 @@ shopt -s expand_aliases
 module load tapir
 module load parallel
 
-/bin/ls ../intermediate/phylo_informativeness/fasta/*.fasta | parallel 'perl ./convertfasta2nex.pl {} > {}.nex'
+DIRECTORY=${1:-"../intermediate/phylo_informativeness"}
 
-rm -r ../intermediate/phylo_informativeness/nex/
-mkdir ../intermediate/phylo_informativeness/nex/
-mv ../intermediate/phylo_informativeness/fasta/*.nex ../intermediate/phylo_informativeness/nex/
+/bin/ls $DIRECTORY/fasta/*.fasta | parallel 'perl ./convertfasta2nex.pl {} > {}.nex'
 
-rm -r ../intermediate/phylo_informativeness/tapir_out*
-mkdir ../intermediate/phylo_informativeness/tapir_out
+rm -r $DIRECTORY/nex/
+mkdir $DIRECTORY/nex/
+mv $DIRECTORY/fasta/*.nex $DIRECTORY/nex/
 
-tapir_compute.py ../intermediate/phylo_informativeness/nex/ ../input/959genes.phy.contree_AgeRooted_wholeNumbs.tre --intervals=2-3,3-5,5-8,8-10,10-18 --times=2,3,5,8,10,17 --tree-format=newick --output ../intermediate/phylo_informativeness/tapir_out
+rm -r $DIRECTORY/tapir_out*
+mkdir $DIRECTORY/tapir_out
+
+tapir_compute.py $DIRECTORY/nex/ ../input/959genes.phy.contree_AgeRooted_wholeNumbs.tre --intervals=2-3,3-5,5-8,8-10,10-18 --times=2,3,5,8,10,17 --tree-format=newick --output $DIRECTORY/tapir_out

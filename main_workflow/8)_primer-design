@@ -1,4 +1,7 @@
 #!/bin/bash
+
+DIRECTORY=${1:-"../intermediate/primer_design"}
+
 shopt -s expand_aliases
 module load parallel
-/bin/ls ../intermediate/primer_design/*.p3 | parallel "/data0/opt/Primer3/primer3-2.3.6/src/primer3_core {} > {}.out"
+/bin/ls DIRECTORY/*".p3" | parallel "/data0/opt/Primer3/primer3-2.3.6/src/primer3_core {} > {}.out"

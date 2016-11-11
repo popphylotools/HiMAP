@@ -5,15 +5,19 @@ import os
 from Bio.Alphabet import IUPAC
 from Bio import SeqIO
 import shutil
+import argparse
 from config import full_species_list, species_list, transvestigated_species_set, primer3_path, \
     orthoCds_path
 
-# full_species_list = ['Bjar', 'Aobl', 'Bmin', 'Asus', 'Btry', 'Afra', 'Blat', 'Bzon', 'Bcor', 'Ccap', 'Bcur', 'Bole', 'Bdor']
-# species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
-# transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl'}
-#
-# primer3_path = "../intermediate/primer_design/"
-# orthoCds_path = "../output/orthoCds/"
+parser = argparse.ArgumentParser(description='This script creates primer3 input files')
+parser.add_argument('--orthoCds_path', help='orthoCds_path', default=orthoCds_path)
+parser.add_argument('--primer3_path',help='primer3_path', default=primer3_path)
+parser.add_argument('-n','--ns_allowed',help="the number of n's allowed in primers", default='0')
+
+args = parser.parse_args()
+
+orthoCds_path = args.orthoCds_path
+primer3_path = args.primer3_path
 
 collapse_iupac = {
     ('-',): '-',
@@ -73,7 +77,7 @@ for ortho in fasta:
 # output
 primer_product_size_range = '200-10000'
 primer_thermodynamic_parameters_path = '/data0/opt/Primer3/primer3-2.3.6/src/primer3_config/'
-primer_max_ns_accepted = '2'
+primer_max_ns_accepted = args.ns_allowed
 primer_liberal_base = '1'
 shutil.rmtree(primer3_path)
 os.makedirs(primer3_path, exist_ok=True)

@@ -7,18 +7,30 @@ from Bio.Alphabet import IUPAC
 import json
 from Bio import SeqIO
 import shutil
+import argparse
 from config import full_species_list, species_list, transvestigated_species_set, \
     padded_primer_product_path, unpadded_primer_product_path, orthoCds_path, primer3_path, \
     json_path
 
-# full_species_list = ['Bjar', 'Aobl', 'Bmin', 'Asus', 'Btry', 'Afra', 'Blat', 'Bzon', 'Bcor', 'Ccap', 'Bcur', 'Bole', 'Bdor']
-# species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
-# transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl'}
-# padded_primer_product_path = "../intermediate/phylo_informativeness/fasta/"
-# unpadded_primer_product_path = "../output/primerProducts/"
+parser = argparse.ArgumentParser(description='This script creates primer3 input files')
+parser.add_argument('--orthoCds_path', help='orthoCds_path', default=orthoCds_path)
+parser.add_argument('--primer3_path',help='primer3_path', default=primer3_path)
+parser.add_argument('--padded_primer_product_path', help='padded_primer_product_path', default=padded_primer_product_path)
+parser.add_argument('--unpadded_primer_product_path',help='unpadded_primer_product_path', default=unpadded_primer_product_path)
+
+args = parser.parse_args()
+
+orthoCds_path = args.orthoCds_path
+primer3_path = args.primer3_path
+padded_primer_product_path = args.padded_primer_product_path
+unpadded_primer_product_path = args.unpadded_primer_product_path
+
 # orthoCds_path = "../output/orthoCds/"
 # primer3_path = "../intermediate/primer_design/"
 # json_path = "../intermediate/json/"
+
+# padded_primer_product_path = "../intermediate/phylo_informativeness/fasta/"
+# unpadded_primer_product_path = "../output/primerProducts/"
 
 with open(json_path + "alternate_sp.json", 'r') as f:
     alternate_sp = json.load(f)

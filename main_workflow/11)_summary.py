@@ -7,18 +7,26 @@ from Bio.Alphabet import IUPAC
 import json
 from Bio import SeqIO
 import sqlite3
+import argparse
 from config import full_species_list, species_list, transvestigated_species_set, summary_fn, \
     primer3_path, unpadded_primer_product_path, db_path, json_path, pi_score_path
 
-# full_species_list = ['Bjar', 'Aobl', 'Bmin', 'Asus', 'Btry', 'Afra', 'Blat', 'Bzon', 'Bcor', 'Ccap', 'Bcur', 'Bole', 'Bdor']
-# species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
-# transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl'}
-# summary_fn = "../output/"
-# primer3_path = "../intermediate/primer_design/"
-# unpadded_primer_product_path = "../output/primerProducts/"
-# db_path = "../intermediate/gff_databases/"
-# json_path = "../intermediate/json/"
-# pi_score_path = "../intermediate/phylo_informativeness/tapir_out.1/phylogenetic-informativeness.sqlite"
+parser = argparse.ArgumentParser(description='This script creates primer3 input files')
+parser.add_argument('--summary_fn', help='summary_fn', default=summary_fn)
+parser.add_argument('--primer3_path',help='primer3_path', default=primer3_path)
+parser.add_argument('--unpadded_primer_product_path', help='unpadded_primer_product_path', default=unpadded_primer_product_path)
+parser.add_argument('--db_path',help='db_path', default=db_path)
+parser.add_argument('--json_path', help='json_path', default=json_path)
+parser.add_argument('--pi_score_path',help='pi_score_path', default=pi_score_path)
+
+args = parser.parse_args()
+
+summary_fn = args.summary_fn
+primer3_path = args.primer3_path
+unpadded_primer_product_path = args.unpadded_primer_product_path
+db_path = args.db_path
+json_path = args.json_path
+pi_score_path = args.pi_score_path
 
 # create handles for all .fasta files in fasta directory
 fasta_fn = {name.split('.13spp.fasta')[0]: unpadded_primer_product_path + name for name in
