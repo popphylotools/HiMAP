@@ -73,7 +73,7 @@ for ortho in fasta:
 # output
 primer_product_size_range = '200-10000'
 primer_thermodynamic_parameters_path = '/data0/opt/Primer3/primer3-2.3.6/src/primer3_config/'
-primer_max_ns_accepted = '1'
+primer_max_ns_accepted = '2'
 primer_liberal_base = '1'
 shutil.rmtree(primer3_path)
 os.makedirs(primer3_path, exist_ok=True)

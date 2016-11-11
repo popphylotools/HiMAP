@@ -15,8 +15,8 @@ fullset_alignment_path = "../intermediate/13spp_alignment/"
 primer3_path = "../intermediate/primer_design/"
 
 padded_primer_product_path = "../intermediate/phylo_informativeness/fasta/"
-pi_score_path = "../intermediate/phylo_informativeness/tapir_out.1/phylogenetic-informativeness.sqlite"
+pi_score_path = "../intermediate/phylo_informativeness/tapir_out/phylogenetic-informativeness.sqlite"
 
 orthoCds_path = "../output/orthoCds/"
 unpadded_primer_product_path = "../output/primerProducts/"
-summary_fn = "../output/"
+summary_fn = "../output/summory.csv"
