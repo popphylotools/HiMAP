@@ -7,7 +7,7 @@
 #$-pe orte 32
 #$-cwd
 #$-V
-#$-M jrdupuis@hawaii.edu
+#$-M forest.bremer@gmail.com
 #$-m bea
 
 module load orthoExon

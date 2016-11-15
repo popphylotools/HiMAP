@@ -53,10 +53,10 @@ for p3_out_fn in (fn for fn in os.listdir(primer3_path) if ".p3.out" in fn):
             continue
         if lines['PRIMER_PAIR_NUM_RETURNED'] is not '0':
             primer[ortho] = []
-            for i in range(int(lines['PRIMER_PAIR_NUM_RETURNED'])):
+            for variation in range(int(lines['PRIMER_PAIR_NUM_RETURNED'])):
                 test = lines
-                left, l_len = lines['PRIMER_LEFT_0'].split(',')
-                right, r_len = lines['PRIMER_RIGHT_0'].split(',')
+                left, l_len = lines['PRIMER_LEFT_{}'.format(variation)].split(',')
+                right, r_len = lines['PRIMER_RIGHT_{}'.format(variation)].split(',')
                 start = int(left) + int(l_len)
                 end = int(right) - int(r_len) + 1
                 primer[ortho].append((start, end))
@@ -66,10 +66,10 @@ padded_fasta = {}
 for ortho in fasta.keys():
     if ortho not in primer.keys():
         continue
+    trimmed_fasta[ortho] = []
+    padded_fasta[ortho] = []
     for variation in range(len(primer[ortho])):
         start, end = primer[ortho][variation]
-        trimmed_fasta[ortho] = []
-        padded_fasta[ortho] = []
         padding = {}
         for sp in full_species_list:
             if sp not in fasta[ortho].keys():
@@ -81,11 +81,11 @@ for ortho in fasta.keys():
                         break
         trimmed_fasta[ortho].append({sp: fasta[ortho][sp][start:end] for sp in fasta[ortho]})
         padded_fasta[ortho].append(padding)
-        padded_fasta[ortho][variation].update(trimmed_fasta[ortho])
+        padded_fasta[ortho][variation].update(trimmed_fasta[ortho][variation])
 
 for ortho in padded_fasta:
-    for sp in padded_fasta[ortho]:
-        for variation in range(len(padded_fasta[ortho])):
+    for variation in range(len(padded_fasta[ortho])):
+        for sp in padded_fasta[ortho][variation]:
             padded_fasta[ortho][variation][sp].description = ""
 
 sp_order = {'Bcur': 1,
@@ -113,7 +113,7 @@ shutil.rmtree(unpadded_primer_product_path, ignore_errors=True)
 os.makedirs(unpadded_primer_product_path, exist_ok=True)
 for ortho in trimmed_fasta.keys():
     for variation in range(len(trimmed_fasta[ortho])):
-        filename = unpadded_primer_product_path + ortho + "_V" + variation + ".13spp.fasta"
+        filename = unpadded_primer_product_path + ortho + "_V" + str(variation) + ".13spp.fasta"
         with open(filename, "w") as f:
             for seqReq in sorted(trimmed_fasta[ortho][variation].values(), key=lambda x: sp_order[x.id]):
                 f.write(seqReq.format("fasta"))
@@ -122,7 +122,7 @@ shutil.rmtree(padded_primer_product_path, ignore_errors=True)
 os.makedirs(padded_primer_product_path, exist_ok=True)
 for ortho in padded_fasta.keys():
     for variation in range(len(padded_fasta[ortho])):
-        filename = padded_primer_product_path + ortho + "_V" + variation + ".13spp.fasta"
+        filename = padded_primer_product_path + ortho + "_V" + str(variation) + ".13spp.fasta"
         with open(filename, "w") as f:
             for seqReq in sorted(padded_fasta[ortho][variation].values(), key=lambda x: sp_order[x.id]):
                 f.write(seqReq.format("fasta"))
