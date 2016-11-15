@@ -68,8 +68,8 @@ for ortho in fasta.keys():
         continue
     for variation in range(len(primer[ortho])):
         start, end = primer[ortho][variation]
-        trimmed_fasta[ortho] = {}
-        padded_fasta[ortho] = {}
+        trimmed_fasta[ortho] = []
+        padded_fasta[ortho] = []
         padding = {}
         for sp in full_species_list:
             if sp not in fasta[ortho].keys():
