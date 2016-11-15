@@ -1,0 +1,20 @@
+#!/bin/sh
+#$-N orthoexon
+#$-S /bin/sh
+#$-o orthoexon_$JOB_ID.out
+#$-e orthoexon_$JOB_ID.err
+#$-q all.q
+#$-pe orte 32
+#$-cwd
+#$-V
+#$-M jrdupuis@hawaii.edu
+#$-m bea
+
+module load orthoExon
+
+./7-11_with_given_n 1
+
+
+# submitted with: qsub orthoexon.qsub
+# or qsub -l hostname=compute-3-5 orthoexon.qsub
+

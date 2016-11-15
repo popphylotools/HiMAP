@@ -1,4 +1,6 @@
 # data files
+*.err
+*.out
 *.gff
 *.fasta
 *.fasta.fai

@@ -60,7 +60,7 @@ for p3_out_fn in [fn for fn in os.listdir(primer3_path) if ".p3.out" in fn]:
                 lines['PRIMER_RIGHT_0_TM'])
 
 conn = sqlite3.connect(pi_score_path)
-name_score = conn.execute("select loci.locus, pi from loci, net where loci.id = net.id").fetchall()
+name_score = conn.execute("select loci.locus, avg(pi) from loci, discrete where loci.id = discrete.id group by loci.locus").fetchall()
 name_score = {line[0].split(".13spp.fasta")[0]: line[1] for line in name_score}
 
 # import pre_padding_species.json
