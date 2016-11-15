@@ -50,15 +50,18 @@ for p3_out_fn in [fn for fn in os.listdir(primer3_path) if ".p3.out" in fn]:
         if 'PRIMER_PAIR_NUM_RETURNED' not in lines.keys():
             continue
         if lines['PRIMER_PAIR_NUM_RETURNED'] is not '0':
-            left, l_len = lines['PRIMER_LEFT_0'].split(',')
-            right, r_len = lines['PRIMER_RIGHT_0'].split(',')
-            primer[ortho] = (
-                str(int(lines['PRIMER_PAIR_0_PRODUCT_SIZE']) - int(l_len) - int(r_len)),
-                lines['PRIMER_LEFT_0_SEQUENCE'],
-                lines['PRIMER_RIGHT_0_SEQUENCE'],
-                lines['PRIMER_LEFT_0_TM'],
-                lines['PRIMER_RIGHT_0_TM'])
+            primer[ortho] = []
+            for variation in range(int(lines['PRIMER_PAIR_NUM_RETURNED'])):
+                left, l_len = lines['PRIMER_LEFT_{}'.format(variation)].split(',')
+                right, r_len = lines['PRIMER_RIGHT_{}'.format(variation)].split(',')
+                primer[ortho].append((
+                    str(int(lines['PRIMER_PAIR_{}_PRODUCT_SIZE'.format(variation)]) - int(l_len) - int(r_len)),
+                    lines['PRIMER_LEFT_{}_SEQUENCE'.format(variation)],
+                    lines['PRIMER_RIGHT_{}_SEQUENCE'.format(variation)],
+                    lines['PRIMER_LEFT_{}_TM'.format(variation)],
+                    lines['PRIMER_RIGHT_{}_TM'.format(variation)]))
 
+# grab pi scores from sql database
 conn = sqlite3.connect(pi_score_path)
 name_score = conn.execute("select loci.locus, avg(pi) from loci, discrete where loci.id = discrete.id group by loci.locus").fetchall()
 name_score = {line[0].split(".13spp.fasta")[0]: line[1] for line in name_score}
@@ -77,14 +80,16 @@ gff_fn = {name.split('.gff.db')[0]: db_path + name for name in os.listdir(db_pat
 gff = {key: gffutils.FeatureDB(value) for key, value in gff_fn.items()}
 
 data = []
-for ortho in primer:
+for ortho_plus in name_score:
+    ortho = ortho_plus[:-3]
+    variation = int(ortho_plus[-1:])
     for sp in pre_padd_sp[ortho]:
         if 'product' in gff[sp][parent_groups[ortho.split("_")[0]][sp]].attributes.keys():
             product = gff[sp][parent_groups[ortho.split("_")[0]][sp]]['product'][0]
         else:
             product = "N/A"
-        score = name_score[ortho]
-        data.append((ortho, str(score), sp, product, *primer[ortho]))
+        score = name_score[ortho_plus]
+        data.append((ortho_plus, str(score), sp, product, *primer[ortho][variation]))
 
 sp_order = {'Bcur': 1,
             'Bdor': 2,

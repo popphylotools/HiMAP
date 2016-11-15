@@ -1,8 +1,8 @@
 #!/bin/sh
-#$-N orthoexon
+#$-N orthoexonN0
 #$-S /bin/sh
-#$-o orthoexon_$JOB_ID.out
-#$-e orthoexon_$JOB_ID.err
+#$-o orthoexonN0_$JOB_ID.out
+#$-e orthoexonN0_$JOB_ID.err
 #$-q all.q
 #$-pe orte 32
 #$-cwd
