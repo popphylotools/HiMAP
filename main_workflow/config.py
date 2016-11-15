@@ -20,3 +20,24 @@ pi_score_path = "../intermediate/phylo_informativeness/tapir_out/phylogenetic-in
 orthoCds_path = "../output/orthoCds/"
 unpadded_primer_product_path = "../output/primerProducts/"
 summary_fn = "../output/summory.csv"
+
+collapse_iupac = {
+    ('-',): '-',
+    ('A',): 'A',
+    ('G',): 'G',
+    ('C',): 'C',
+    ('T',): 'T',
+    ('C', 'T'): 'y',
+    ('A', 'G'): 'r',
+    ('A', 'T'): 'w',
+    ('C', 'G'): 's',
+    ('G', 'T'): 'k',
+    ('A', 'C'): 'm',
+    ('A', 'G', 'T'): 'd',
+    ('A', 'C', 'G'): 'v',
+    ('A', 'C', 'T'): 'h',
+    ('C', 'G', 'T'): 'b',
+    ('A', 'C', 'G', 'T'): 'n',
+}
+
+expand_iupac = {value.upper(): set(key) for key, value in collapse_iupac.items()}

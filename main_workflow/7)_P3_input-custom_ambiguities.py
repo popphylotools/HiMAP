@@ -7,7 +7,7 @@ from Bio import SeqIO
 import shutil
 import argparse
 from config import full_species_list, species_list, transvestigated_species_set, primer3_path, \
-    orthoCds_path
+    orthoCds_path, collapse_iupac, expand_iupac
 
 parser = argparse.ArgumentParser(description='This script creates primer3 input files')
 parser.add_argument('--orthoCds_path', help='orthoCds_path', default=orthoCds_path)
@@ -18,28 +18,6 @@ args = parser.parse_args()
 
 orthoCds_path = args.orthoCds_path
 primer3_path = args.primer3_path
-
-collapse_iupac = {
-    ('-',): '-',
-    ('A',): 'A',
-    ('G',): 'G',
-    ('C',): 'C',
-    ('T',): 'T',
-    ('C', 'T'): 'y',
-    ('A', 'G'): 'r',
-    ('A', 'T'): 'w',
-    ('C', 'G'): 's',
-    ('G', 'T'): 'k',
-    ('A', 'C'): 'm',
-    ('A', 'G', 'T'): 'd',
-    ('A', 'C', 'G'): 'v',
-    ('A', 'C', 'T'): 'h',
-    ('C', 'G', 'T'): 'b',
-    ('A', 'C', 'G', 'T'): 'n',
-}
-
-expand_iupac = {value.upper(): set(key) for key, value in collapse_iupac.items()}
-
 
 def Consensus(aligned_seq_list):
     consensus = ""
