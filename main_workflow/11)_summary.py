@@ -62,9 +62,12 @@ for p3_out_fn in [fn for fn in os.listdir(primer3_path) if ".p3.out" in fn]:
                     lines['PRIMER_RIGHT_{}_TM'.format(variation)]))
 
 # grab pi scores from sql database
-conn = sqlite3.connect(pi_score_path)
-name_score = conn.execute("select loci.locus, avg(pi) from loci, discrete where loci.id = discrete.id group by loci.locus").fetchall()
+name_score = []
+for fn in os.listdir(pi_score_path):
+    conn = sqlite3.connect(pi_score_path + fn)
+    name_score = name_score + conn.execute("select loci.locus, avg(pi) from loci, discrete where loci.id = discrete.id group by loci.locus").fetchall()
 name_score = {line[0].split(".13spp.fasta")[0]: line[1] for line in name_score}
+name_score
 
 # import pre_padding_species.json
 with open(json_path + "pre_padding_species.json", 'r') as f:
