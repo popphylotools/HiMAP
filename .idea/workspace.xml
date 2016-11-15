@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d0c2c79-8659-42f9-8ca8-d95266fc35a2" name="Default" comment="can create directories if needed">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py" afterPath="$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/config.py" afterPath="$PROJECT_DIR$/main_workflow/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/summory_combiner.py" afterPath="$PROJECT_DIR$/main_workflow/summory_combiner.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py" afterPath="$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py" />
     </list>
     <ignored path="orthoExon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,45 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="9)_pad_to_13spp_and_trim_to_primer_product.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="9)_pad_to_13spp_and_trim_to_primer_product.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1380">
-              <caret line="115" column="44" selection-start-line="115" selection-start-column="44" selection-end-line="115" selection-end-column="44" />
-              <folding>
-                <element signature="e#39#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="summory_combiner.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main_workflow/summory_combiner.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="51" column="57" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
-              <folding>
-                <element signature="e#50#60#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main_workflow/config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="42" column="81" selection-start-line="23" selection-start-column="0" selection-end-line="42" selection-end-column="81" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="7)_P3_input-custom_ambiguities.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+            <state relative-caret-position="1860">
+              <caret line="124" column="89" selection-start-line="124" selection-start-column="89" selection-end-line="124" selection-end-column="89" />
               <folding>
                 <element signature="e#39#48#0" expanded="true" />
               </folding>
@@ -99,10 +63,10 @@
         <option value="$PROJECT_DIR$/main_workflow/10)_PI-stub" />
         <option value="$PROJECT_DIR$/main_workflow/7-11_with_given_n" />
         <option value="$PROJECT_DIR$/main_workflow/11)_summary.py" />
-        <option value="$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py" />
         <option value="$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py" />
         <option value="$PROJECT_DIR$/main_workflow/config.py" />
         <option value="$PROJECT_DIR$/main_workflow/summory_combiner.py" />
+        <option value="$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py" />
       </list>
     </option>
   </component>
@@ -137,6 +101,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -172,7 +137,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -385,7 +349,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22327541" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3288757" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -424,12 +388,12 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main_workflow/11)_summary.py">
+    <entry file="file://$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="108" column="35" selection-start-line="108" selection-start-column="35" selection-end-line="108" selection-end-column="35" />
+        <state relative-caret-position="1725">
+          <caret line="115" column="44" selection-start-line="115" selection-start-column="44" selection-end-line="115" selection-end-column="44" />
           <folding>
-            <element signature="e#39#48#0" expanded="false" />
+            <element signature="e#39#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -439,7 +403,42 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#50#60#0" expanded="true" />
+            <element signature="e#50#60#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_workflow/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="81" selection-start-line="23" selection-start-column="0" selection-end-line="42" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding>
+            <element signature="e#39#48#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_workflow/11)_summary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1620">
+          <caret line="108" column="35" selection-start-line="108" selection-start-column="35" selection-end-line="108" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_workflow/summory_combiner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#50#60#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -448,9 +447,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1710">
           <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-          <folding>
-            <element signature="e#39#48#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -459,7 +455,7 @@
         <state relative-caret-position="1035">
           <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
           <folding>
-            <element signature="e#39#48#0" expanded="true" />
+            <element signature="e#39#48#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -478,9 +474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#39#48#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -586,7 +579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -594,28 +586,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="40" column="89" selection-start-line="40" selection-start-column="89" selection-end-line="40" selection-end-column="89" />
-          <folding>
-            <element signature="e#39#48#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="115" column="44" selection-start-line="115" selection-start-column="44" selection-end-line="115" selection-end-column="44" />
-          <folding>
-            <element signature="e#39#48#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main_workflow/7)_P3_input-custom_ambiguities.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
+        <state relative-caret-position="195">
           <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
           <folding>
-            <element signature="e#39#48#0" expanded="true" />
+            <element signature="e#39#48#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -630,10 +609,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main_workflow/summory_combiner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="51" column="57" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
+        <state relative-caret-position="1080">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding>
-            <element signature="e#50#60#0" expanded="true" />
+            <element signature="e#50#60#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_workflow/9)_pad_to_13spp_and_trim_to_primer_product.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1860">
+          <caret line="124" column="89" selection-start-line="124" selection-start-column="89" selection-end-line="124" selection-end-column="89" />
+          <folding>
+            <element signature="e#39#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
