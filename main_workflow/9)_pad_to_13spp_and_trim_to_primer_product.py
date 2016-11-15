@@ -27,13 +27,6 @@ padded_primer_product_path = args.padded_primer_product_path
 unpadded_primer_product_path = args.unpadded_primer_product_path
 json_path = args.json_path
 
-# orthoCds_path = "../output/orthoCds/"
-# primer3_path = "../intermediate/primer_design/"
-# json_path = "../intermediate/json/"
-
-# padded_primer_product_path = "../intermediate/phylo_informativeness/fasta/"
-# unpadded_primer_product_path = "../output/primerProducts/"
-
 with open(json_path + "alternate_sp.json", 'r') as f:
     alternate_sp = json.load(f)
 
@@ -59,38 +52,41 @@ for p3_out_fn in (fn for fn in os.listdir(primer3_path) if ".p3.out" in fn):
         if 'PRIMER_PAIR_NUM_RETURNED' not in lines.keys():
             continue
         if lines['PRIMER_PAIR_NUM_RETURNED'] is not '0':
-            test = lines
-            left, l_len = lines['PRIMER_LEFT_0'].split(',')
-            right, r_len = lines['PRIMER_RIGHT_0'].split(',')
-            start = int(left) + int(l_len)
-            end = int(right) - int(r_len) + 1
-            primer[ortho] = (start, end)
+            primer[ortho] = []
+            for i in range(int(lines['PRIMER_PAIR_NUM_RETURNED'])):
+                test = lines
+                left, l_len = lines['PRIMER_LEFT_0'].split(',')
+                right, r_len = lines['PRIMER_RIGHT_0'].split(',')
+                start = int(left) + int(l_len)
+                end = int(right) - int(r_len) + 1
+                primer[ortho].append((start, end))
 
-from copy import deepcopy
-
-padded_fasta = {}
 trimmed_fasta = {}
+padded_fasta = {}
 for ortho in fasta.keys():
-    if ortho in primer.keys():
-        start, end = primer[ortho]
-    else:
+    if ortho not in primer.keys():
         continue
-    padding = {}
-    for sp in full_species_list:
-        if sp not in fasta[ortho].keys():
-            for alt_sp in alternate_sp[sp]:
-                if alt_sp in fasta[ortho].keys():
-                    seq = fasta[ortho][alt_sp].seq[start:end]
-                    des = "PADDING"
-                    padding[sp] = SeqRecord(seq, id=sp, description=des)
-                    break
-    trimmed_fasta[ortho] = {sp: fasta[ortho][sp][start:end] for sp in fasta[ortho]}
-    padded_fasta[ortho] = padding
-    padded_fasta[ortho].update(trimmed_fasta[ortho])
+    for variation in range(len(primer[ortho])):
+        start, end = primer[ortho][variation]
+        trimmed_fasta[ortho] = {}
+        padded_fasta[ortho] = {}
+        padding = {}
+        for sp in full_species_list:
+            if sp not in fasta[ortho].keys():
+                for alt_sp in alternate_sp[sp]:
+                    if alt_sp in fasta[ortho].keys():
+                        seq = fasta[ortho][alt_sp].seq[start:end]
+                        des = "PADDING"
+                        padding[sp] = SeqRecord(seq, id=sp, description=des)
+                        break
+        trimmed_fasta[ortho].append({sp: fasta[ortho][sp][start:end] for sp in fasta[ortho]})
+        padded_fasta[ortho].append(padding)
+        padded_fasta[ortho][variation].update(trimmed_fasta[ortho])
 
 for ortho in padded_fasta:
     for sp in padded_fasta[ortho]:
-        padded_fasta[ortho][sp].description = ""
+        for variation in range(len(padded_fasta[ortho])):
+            padded_fasta[ortho][variation][sp].description = ""
 
 sp_order = {'Bcur': 1,
             'Bdor': 2,
@@ -110,21 +106,23 @@ sp_order = {'Bcur': 1,
 os.makedirs(json_path, exist_ok=True)
 filename = json_path + "pre_padding_species.json"
 with open(filename, 'w') as f:
-    json.dump({ortho: [sp for sp in trimmed_fasta[ortho]] for ortho in trimmed_fasta}, f)
+    json.dump({ortho: [sp for sp in trimmed_fasta[ortho][0]] for ortho in trimmed_fasta}, f)
 
 
 shutil.rmtree(unpadded_primer_product_path, ignore_errors=True)
 os.makedirs(unpadded_primer_product_path, exist_ok=True)
 for ortho in trimmed_fasta.keys():
-    filename = unpadded_primer_product_path + ortho + ".13spp.fasta"
-    with open(filename, "w") as f:
-        for seqReq in sorted(trimmed_fasta[ortho].values(), key=lambda x: sp_order[x.id]):
-            f.write(seqReq.format("fasta"))
+    for variation in range(len(trimmed_fasta[ortho])):
+        filename = unpadded_primer_product_path + ortho + "_V" + variation + ".13spp.fasta"
+        with open(filename, "w") as f:
+            for seqReq in sorted(trimmed_fasta[ortho][variation].values(), key=lambda x: sp_order[x.id]):
+                f.write(seqReq.format("fasta"))
 
 shutil.rmtree(padded_primer_product_path, ignore_errors=True)
 os.makedirs(padded_primer_product_path, exist_ok=True)
 for ortho in padded_fasta.keys():
-    filename = padded_primer_product_path + ortho + ".13spp.fasta"
-    with open(filename, "w") as f:
-        for seqReq in sorted(padded_fasta[ortho].values(), key=lambda x: sp_order[x.id]):
-            f.write(seqReq.format("fasta"))
+    for variation in range(len(padded_fasta[ortho])):
+        filename = padded_primer_product_path + ortho + "_V" + variation + ".13spp.fasta"
+        with open(filename, "w") as f:
+            for seqReq in sorted(padded_fasta[ortho][variation].values(), key=lambda x: sp_order[x.id]):
+                f.write(seqReq.format("fasta"))
