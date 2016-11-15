@@ -42,7 +42,7 @@ for i in range(len(fn)):
     with open(fn[i]) as f:
         lines = f.readlines()
         lines = [line.strip().split(",") for line in lines[1:]]
-        lines = {line[0]:(line[0], str(i), str(amb_count(line[6] + line[7])), str(amb_count(line[6])), str(amb_count(line[7])), str(amb_count(line[6]) + amb_count(line[7])), line[1], line[4], line[5], line[6], line[7], line[8]) for line in lines}
+        lines = {line[0]:(line[0], str(i), str(amb_count(line[5] + line[6])), str(amb_count(line[5])), str(amb_count(line[6])), str(max(amb_count(line[5]),  amb_count(line[6]))), line[1], line[4], line[5], line[6], line[7], line[8]) for line in lines}
         data = data + [rec for rec in lines.values()]
 
 
