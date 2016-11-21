@@ -1,0 +1,14 @@
+!/bin/sh
+#$-N tar
+#$-S /bin/sh
+#$-o ./tar_$JOB_ID.out
+#$-e ./tar_$JOB_ID.err
+#$-q all.q
+#$-pe orte 32
+#$-cwd
+#$-V
+#$-M jrdupuis@hawaii.edu
+#$-m bea
+
+tar -zcvf consensus.tar.gz ./consensus_fasta/
+tar -zcvf fasta.tar.gz ./exon_fasta/

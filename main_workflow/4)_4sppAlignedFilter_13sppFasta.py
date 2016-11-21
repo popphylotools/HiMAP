@@ -195,7 +195,7 @@ for ortho in universal_ortho_coords:
             fasta_prep[ortho][coord][sp] = cds
 
 nnn = Seq("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", IUPAC.ambiguous_dna)
-shutil.rmtree(fullset_alignment_path)
+shutil.rmtree(fullset_alignment_path, ignore_errors=True)
 os.makedirs(fullset_alignment_path, exist_ok=True)
 for ortho in fasta_prep:
     for coord in fasta_prep[ortho]:

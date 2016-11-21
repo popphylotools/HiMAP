@@ -34,7 +34,7 @@ with open(json_path + "groups.json", 'r') as f:
 
 # concatinate cds's for each species,ortho and output a fasta for each ortho
 nnn = Seq("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", IUPAC.ambiguous_dna)
-shutil.rmtree(subset_alignment_path)
+shutil.rmtree(subset_alignment_path, ignore_errors=True)
 os.makedirs(subset_alignment_path, exist_ok=True)
 for ortho in parent_groups:
     filename = subset_alignment_path + ortho + ".fasta"
