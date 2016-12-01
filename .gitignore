@@ -19,6 +19,7 @@
 *maft_log
 *.newick
 *.tre
+*.html
 
 # mac
 *.DS_Store
