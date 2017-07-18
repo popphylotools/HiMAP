@@ -1,7 +1,9 @@
-species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
+template_species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
 full_species_list = ['Bjar', 'Aobl', 'Bmin', 'Asus', 'Btry', 'Afra', 'Blat', 'Bzon', 'Bcor',
                      'Ccap', 'Bcur', 'Bole', 'Bdor']
 transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl'}
+
+n_count = 50  # number of n's used to create alignment boarders
 
 groups_fn = "../input/groups_filtered_6181genes.txt"
 fasta_path = "../input/fasta/"
