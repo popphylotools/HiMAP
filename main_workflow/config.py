@@ -1,4 +1,4 @@
-species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
+template_species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
 full_species_list = ['Bjar', 'Aobl', 'Bmin', 'Asus', 'Btry', 'Afra', 'Blat', 'Bzon', 'Bcor',
                      'Ccap', 'Bcur', 'Bole', 'Bdor']
 transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl'}
