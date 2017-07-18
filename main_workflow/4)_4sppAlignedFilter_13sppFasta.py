@@ -73,7 +73,7 @@ def longestGap(seq):
 
 
 def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alignment_path, db_path, json_path,
-                                 species_list, transvestigated_species_set, max_gap_percent, max_gap_length,
+                                 template_species_list, transvestigated_species_set, max_gap_percent, max_gap_length,
                                  min_cds_length):
     # create handles for all .db files in intermediate directory
     gff_fn = {name.split('.gff.db')[0]: db_path + name for name in os.listdir(db_path) if
@@ -111,7 +111,7 @@ def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alig
     coords = {}  # coords[ortho][sp] = [coord, ]
     for ortho in aligned_fasta:
         coords[ortho] = {}
-        for sp in species_list:
+        for sp in template_species_list:
             coords[ortho][sp] = findExonCoords(str(aligned_fasta[ortho][sp].seq))
 
     # Filter aligned exons
@@ -120,7 +120,7 @@ def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alig
     for ortho in coords:
         ortho_coords[ortho] = {}
         coord_index_dict[ortho] = {}
-        for sp in species_list:
+        for sp in template_species_list:
             for i in range(len(coords[ortho][sp])):
                 coord = coords[ortho][sp][i]
 
@@ -155,7 +155,7 @@ def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alig
     for ortho in ortho_coords:
         for coord in ortho_coords[ortho]:
             sp_set = ortho_coords[ortho][coord]
-            if len(sp_set) == len(species_list):
+            if len(sp_set) == len(template_species_list):
                 if ortho not in universal_ortho_coords.keys():
                     universal_ortho_coords[ortho] = set()
                 universal_ortho_coords[ortho].add(coord)
@@ -166,7 +166,7 @@ def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alig
         cds_list = {}
         for coord in universal_ortho_coords[ortho]:
             fasta_prep[ortho][coord] = {}
-            for sp in species_list:
+            for sp in template_species_list:
                 if sp not in cds_list.keys():
                     parent = gff[sp][parent_groups[ortho][sp]]
                     cds_list[sp] = [cds for cds in
@@ -183,7 +183,7 @@ def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alig
         for coord in fasta_prep[ortho]:
             filename = fullset_alignment_path + ortho + "_" + str(coord[0]) + "-" + str(coord[1]) + ".13spp.fasta"
             with open(filename, "w") as f:
-                for sp in species_list:
+                for sp in template_species_list:
                     cds = fasta_prep[ortho][coord][sp]
                     start, end = coord
                     seq = nnn + aligned_fasta[ortho][sp].seq[start:end] + nnn
@@ -191,7 +191,7 @@ def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alig
                     f.write(seqReq.format("fasta"))
 
                 for sp in sorted(parent_groups[ortho]):
-                    if sp in species_list:
+                    if sp in template_species_list:
                         continue
                     parent = gff[sp][parent_groups[ortho][sp]]
                     strand = parent.strand
@@ -218,11 +218,8 @@ def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alig
 
 
 if __name__ == '__main__':
-    from .config import fasta_path, fullset_alignment_path, subset_alignment_path, db_path, json_path
-
-    # globals
-    species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
-    transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl'}
+    from .config import fasta_path, fullset_alignment_path, subset_alignment_path, db_path, json_path, \
+        template_species_list, transvestigated_species_set
 
     # gap filter parameters
     max_gap_percent = 0
@@ -232,5 +229,5 @@ if __name__ == '__main__':
     # max_cds_length = 600
 
     alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alignment_path, db_path, json_path,
-                                 species_list, transvestigated_species_set, max_gap_percent, max_gap_length,
+                                 template_species_list, transvestigated_species_set, max_gap_percent, max_gap_length,
                                  min_cds_length)

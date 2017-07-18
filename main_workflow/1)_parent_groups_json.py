@@ -6,7 +6,7 @@ import os
 import gffutils
 
 
-def create_parent_groups_json(groups_fn, db_path, json_path):
+def create_parent_groups_json(groups_fn, db_path, json_path, template_species_list):
     # create handles for all .db files in intermediate directory
     gff = {name.split('.gff.db')[0]: name for name in os.listdir(db_path) if ".gff.db" in name}
     gff = {key: gffutils.FeatureDB(db_path + value) for key, value in gff.items()}
@@ -42,7 +42,7 @@ def create_parent_groups_json(groups_fn, db_path, json_path):
     for sp in gff:
         print(sp)
         for cds in gff[sp].features_of_type(featuretype='CDS', order_by='start'):
-            if sp in ["Bcur", "Bdor", "Bole", "Ccap"]:
+            if sp in template_species_list:
                 acc = cds.attributes['Name'][0]
             else:
                 acc = cds['Parent'][0].split('|')[-1].strip()
@@ -65,6 +65,6 @@ def create_parent_groups_json(groups_fn, db_path, json_path):
 
 
 if __name__ == '__main__':
-    from .config import groups_fn, db_path, json_path
+    from .config import groups_fn, db_path, json_path, template_species_list
 
-    create_parent_groups_json(groups_fn, db_path, json_path)
+    create_parent_groups_json(groups_fn, db_path, json_path, template_species_list)
