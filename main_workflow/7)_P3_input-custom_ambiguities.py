@@ -70,6 +70,7 @@ def P3_input_custom_ambiguities(primer3_path, orthoCds_path, primer_max_ns_accep
                     primer_max_ns_accepted,
                     primer_liberal_base))
 
+
 if __name__ == '__main__':
     import argparse
     from .config import primer3_path, orthoCds_path

@@ -8,6 +8,7 @@ import gffutils
 import pandas as pd
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
+
 from .config import sp_order
 
 
