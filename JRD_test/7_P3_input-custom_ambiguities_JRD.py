@@ -1,23 +1,22 @@
 #!/usr/bin/env python
-# coding: utf-8
 
 import os
 from Bio.Alphabet import IUPAC
 from Bio import SeqIO
 import shutil
 import argparse
-from config import full_species_list, species_list, transvestigated_species_set, primer3_path, \
-    orthoCds_path, collapse_iupac, expand_iupac
+from .config import primer3_path, orthoCds_path, collapse_iupac, expand_iupac
 
 parser = argparse.ArgumentParser(description='This script creates primer3 input files')
 parser.add_argument('--orthoCds_path', help='orthoCds_path', default=orthoCds_path)
-parser.add_argument('--primer3_path',help='primer3_path', default=primer3_path)
-parser.add_argument('-n','--ns_allowed',help="the number of n's allowed in primers", default='0')
+parser.add_argument('--primer3_path', help='primer3_path', default=primer3_path)
+parser.add_argument('-n', '--ns_allowed', help="the number of n's allowed in primers", default='0')
 
 args = parser.parse_args()
 
 orthoCds_path = args.orthoCds_path
 primer3_path = args.primer3_path
+
 
 def Consensus(aligned_seq_list):
     consensus = ""
@@ -45,8 +44,6 @@ for ortho in fasta_fn.keys():
                     for seq_record in SeqIO.parse(fasta_fn[ortho],
                                                   "fasta", alphabet=IUPAC.ambiguous_dna)}
 
-from Bio import motifs
-
 fasta_degenerate = {}
 for ortho in fasta:
     seq = Consensus([fasta[ortho][sp].upper().seq for sp in fasta[ortho].keys()])
@@ -69,4 +66,4 @@ for ortho in fasta.keys():
             "SEQUENCE_TEMPLATE={}\n"
             "=".format(
                 sequence_id,
-                sequence_template,))
+                sequence_template, ))
