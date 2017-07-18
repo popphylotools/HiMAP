@@ -43,3 +43,17 @@ collapse_iupac = {
 }
 
 expand_iupac = {value.upper(): set(key) for key, value in collapse_iupac.items()}
+
+sp_order = {'Bcur': 1,
+            'Bdor': 2,
+            'Bole': 3,
+            'Ccap': 4,
+            'Bcor': 5,
+            'Blat': 6,
+            'Bzon': 7,
+            'Afra': 8,
+            'Bmin': 9,
+            'Bjar': 10,
+            'Aobl': 11,
+            'Asus': 12,
+            'Btry': 13}

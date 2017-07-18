@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import argparse
 import os
 import shutil
 
@@ -24,7 +23,7 @@ def Consensus(aligned_seq_list):
     return consensus
 
 
-def P3_input_custom_ambiguities(primer3_path, orthoCds_path):
+def P3_input_custom_ambiguities(primer3_path, orthoCds_path, primer_max_ns_accepted):
     # create handles for all .fasta files in fasta directory
     fasta_fn = {name.split('.13spp.fasta')[0]: orthoCds_path + name for name in
                 os.listdir(orthoCds_path) if
@@ -45,7 +44,6 @@ def P3_input_custom_ambiguities(primer3_path, orthoCds_path):
     # output
     primer_product_size_range = '200-10000'
     primer_thermodynamic_parameters_path = '/data0/opt/Primer3/primer3-2.3.6/src/primer3_config/'
-    primer_max_ns_accepted = args.ns_allowed
     primer_liberal_base = '1'
     shutil.rmtree(primer3_path, ignore_errors=True)
     os.makedirs(primer3_path, exist_ok=True)
@@ -72,8 +70,8 @@ def P3_input_custom_ambiguities(primer3_path, orthoCds_path):
                     primer_max_ns_accepted,
                     primer_liberal_base))
 
-
 if __name__ == '__main__':
+    import argparse
     from .config import primer3_path, orthoCds_path
 
     parser = argparse.ArgumentParser(description='This script creates primer3 input files')
@@ -82,8 +80,8 @@ if __name__ == '__main__':
     parser.add_argument('-n', '--ns_allowed', help="the number of n's allowed in primers", default='0')
 
     args = parser.parse_args()
-
+    primer_max_ns_accepted = args.ns_allowed
     orthoCds_path = args.orthoCds_path
     primer3_path = args.primer3_path
 
-    P3_input_custom_ambiguities(primer3_path, orthoCds_path)
+    P3_input_custom_ambiguities(primer3_path, orthoCds_path, primer_max_ns_accepted)

@@ -1,7 +1,5 @@
 #!/usr/bin/env python
-# coding: utf-8
 
-import argparse
 import json
 import os
 import sqlite3
@@ -10,6 +8,7 @@ import gffutils
 import pandas as pd
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
+from .config import sp_order
 
 
 def summary(summary_fn, primer3_path, unpadded_primer_product_path, db_path, json_path, pi_score_path):
@@ -79,20 +78,6 @@ def summary(summary_fn, primer3_path, unpadded_primer_product_path, db_path, jso
             score = name_score[ortho_plus]
             data.append((ortho_plus, str(score), sp, product, *(primer[ortho][variation])))
 
-    sp_order = {'Bcur': 1,
-                'Bdor': 2,
-                'Bole': 3,
-                'Ccap': 4,
-                'Bcor': 5,
-                'Blat': 6,
-                'Bzon': 7,
-                'Afra': 8,
-                'Bmin': 9,
-                'Bjar': 10,
-                'Aobl': 11,
-                'Asus': 12,
-                'Btry': 13}
-
     data = sorted(data, key=lambda x: (x[0], sp_order[x[2]]))
 
     header = ['Exon_Name',
@@ -115,6 +100,7 @@ def summary(summary_fn, primer3_path, unpadded_primer_product_path, db_path, jso
 
 
 if __name__ == '__main__':
+    import argparse
     from .config import summary_fn, primer3_path, unpadded_primer_product_path, db_path, json_path, pi_score_path
 
     parser = argparse.ArgumentParser(description='This script creates primer3 input files')

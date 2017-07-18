@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import argparse
 import json
 import os
 import shutil
@@ -8,6 +7,8 @@ import shutil
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
 from Bio.SeqRecord import SeqRecord
+
+from .config import sp_order
 
 
 def pad_to_13spp_and_trim_to_primer_product(full_species_list, padded_primer_product_path, unpadded_primer_product_path,
@@ -72,20 +73,6 @@ def pad_to_13spp_and_trim_to_primer_product(full_species_list, padded_primer_pro
             for sp in padded_fasta[ortho][variation]:
                 padded_fasta[ortho][variation][sp].description = ""
 
-    sp_order = {'Bcur': 1,
-                'Bdor': 2,
-                'Bole': 3,
-                'Ccap': 4,
-                'Bcor': 5,
-                'Blat': 6,
-                'Bzon': 7,
-                'Afra': 8,
-                'Bmin': 9,
-                'Bjar': 10,
-                'Aobl': 11,
-                'Asus': 12,
-                'Btry': 13}
-
     # output fasta to pre_padding_species.json
     os.makedirs(json_path, exist_ok=True)
     filename = json_path + "pre_padding_species.json"
@@ -112,6 +99,7 @@ def pad_to_13spp_and_trim_to_primer_product(full_species_list, padded_primer_pro
 
 
 if __name__ == '__main__':
+    import argparse
     from .config import full_species_list, padded_primer_product_path, unpadded_primer_product_path, orthoCds_path, \
         primer3_path, json_path
 
@@ -132,5 +120,5 @@ if __name__ == '__main__':
     unpadded_primer_product_path = args.unpadded_primer_product_path
     json_path = args.json_path
 
-    pad_to_13spp_and_trim_to_primer_product(full_species_list, padded_primer_product_path, unpadded_primer_product_path,
-                                            orthoCds_path, primer3_path, json_path)
+    pad_to_13spp_and_trim_to_primer_product(full_species_list, padded_primer_product_path,
+                                            unpadded_primer_product_path, orthoCds_path, primer3_path, json_path)
