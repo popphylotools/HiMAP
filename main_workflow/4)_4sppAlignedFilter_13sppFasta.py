@@ -14,11 +14,11 @@ from Bio import SeqIO
 import re
 import shutil
 from config import groups_fn, fasta_path, fullset_alignment_path, subset_alignment_path, db_path, \
-    json_path
+    json_path, species_list, transvestigated_species_set, nnn
 
 # globals
-species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
-transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl'}
+#species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
+#transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl'}
 
 '''
 groups_fn = "../input/groups_filtered_6181genes.txt"
@@ -195,7 +195,7 @@ for ortho in universal_ortho_coords:
             fasta_prep[ortho][coord][sp] = cds
 
 nnn = Seq("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", IUPAC.ambiguous_dna)
-shutil.rmtree(fullset_alignment_path)
+shutil.rmtree(fullset_alignment_path, ignore_errors=True)
 os.makedirs(fullset_alignment_path, exist_ok=True)
 for ortho in fasta_prep:
     for coord in fasta_prep[ortho]:

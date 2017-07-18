@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import pandas as pd
 import os
 import gffutils
 from Bio.Alphabet import IUPAC
@@ -120,9 +121,10 @@ header = ['Exon_Name',
           'PRIMER_LEFT_0_TM',
           'PRIMER_RIGHT_0_TM']
 
+df = pd.DataFrame(data, columns=header)
+
+df["species"] = df.Exon_Name.apply(lambda ortho: [req.id for req in fasta[ortho].values()])
+
 filename = summary_fn
 os.makedirs(os.path.dirname(filename), exist_ok=True)
-with open(filename, "w") as f:
-    f.write(",".join(header))
-    for record in data:
-        f.write("\n" + ",".join(record))
+df.to_csv(summary_fn, index=False)

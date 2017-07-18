@@ -12,7 +12,7 @@ from Bio import SeqIO
 import re
 import shutil
 from config import template_species_list, transvestigated_species_set, fasta_path, orthoCds_path, \
-    fullset_alignment_path, db_path, json_path
+    fullset_alignment_path, db_path, json_path, sp_count_threshold
 
 # globals
 # template_species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
@@ -203,10 +203,10 @@ for ortho in fasta_prep:
                          (gapPercent(seqReq.seq) <= max_gap_percent) and (
                              longestGap(seqReq.seq) <= max_gap_length)]
 
-fasta_prep = {ortho: seq_list for ortho, seq_list in fasta_prep.items() if len(seq_list) >= 8}
+fasta_prep = {ortho: seq_list for ortho, seq_list in fasta_prep.items() if len(seq_list) >= sp_count_threshold}
 
 # fasta output
-shutil.rmtree(orthoCds_path)
+shutil.rmtree(orthoCds_path, ignore_errors=True)
 os.makedirs(orthoCds_path, exist_ok=True)
 for ortho in fasta_prep:
     filename = orthoCds_path + ortho + ".13spp.fasta"

@@ -1,7 +1,11 @@
-species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
-full_species_list = ['Bjar', 'Aobl', 'Bmin', 'Asus', 'Btry', 'Afra', 'Blat', 'Bzon', 'Bcor',
-                     'Ccap', 'Bcur', 'Bole', 'Bdor']
-transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl'}
+species_list = ["Bcur", "Bdor", "Bole"]
+template_species_list = ["Bcur", "Bdor", "Bole"]
+full_species_list = ['Bjar', 'Bmin', 'Btry', 'Blat', 'Bzon', 'Bcor',
+                     'Bcur', 'Bole', 'Bdor']
+transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Bmin', 'Bjar'}
+
+nnn = 50
+sp_count_threshold = 5 # number os species required to keep orthoCDS
 
 groups_fn = "../input/groups_filtered_6181genes.txt"
 fasta_path = "../input/fasta/"

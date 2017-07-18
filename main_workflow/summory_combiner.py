@@ -30,7 +30,8 @@ header = ('CDS_Ortholog',
  'PRIMER_LEFT_0_SEQUENCE',
  'PRIMER_RIGHT_0_SEQUENCE',
  'PRIMER_LEFT_0_TM',
- 'PRIMER_RIGHT_0_TM')
+ 'PRIMER_RIGHT_0_TM',
+ 'Species_List')
 
 def amb_count(seq):
     return sum([value for key,value in Counter(seq).items() if key in "yrwskmdvhbn-"])
@@ -58,7 +59,8 @@ for i in range(len(fn)):
                           line[5],
                           line[6],
                           float(line[7]),
-                          float(line[8])) for line in lines}
+                          float(line[8]),
+                          line[9]) for line in lines}
 
         data = data + [rec for rec in lines.values()]
 
