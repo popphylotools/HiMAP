@@ -12,7 +12,7 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from pyfaidx import Fasta
 
-from .config import n_count
+from config import n_count
 
 
 # define functions to parse coordinates of cds's from concatinated aligned fasta w/ n's and -'s
@@ -221,7 +221,7 @@ def filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path,
 
 
 if __name__ == '__main__':
-    from .config import fasta_path, enhanced_alignment_path, template_species_alignment_path, db_path, json_path, \
+    from config import fasta_path, enhanced_alignment_path, template_species_alignment_path, db_path, json_path, \
         template_species_list, transvestigated_species_set
 
     # gap filter parameters

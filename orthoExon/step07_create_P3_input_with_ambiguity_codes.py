@@ -6,7 +6,7 @@ import shutil
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
 
-from .config import collapse_iupac, expand_iupac
+from config import collapse_iupac, expand_iupac
 
 
 def Consensus(aligned_seq_list):
@@ -73,7 +73,7 @@ def create_P3_input_with_ambiguity_codes(primer3_path, orthoCds_path, primer_max
 
 if __name__ == '__main__':
     import argparse
-    from .config import primer3_path, orthoCds_path
+    from config import primer3_path, orthoCds_path
 
     parser = argparse.ArgumentParser(description='This script creates primer3 input files')
     parser.add_argument('--orthoCds_path', help='orthoCds_path', default=orthoCds_path)

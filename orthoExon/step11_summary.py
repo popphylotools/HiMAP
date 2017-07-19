@@ -9,7 +9,7 @@ import pandas as pd
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
 
-from .config import sp_order
+from config import sp_order
 
 
 def summary(json_path, db_path, primer3_path, unpadded_primer_product_path, pi_score_path, summary_fn):
@@ -102,7 +102,7 @@ def summary(json_path, db_path, primer3_path, unpadded_primer_product_path, pi_s
 
 if __name__ == '__main__':
     import argparse
-    from .config import summary_fn, primer3_path, unpadded_primer_product_path, db_path, json_path, pi_score_path
+    from config import summary_fn, primer3_path, unpadded_primer_product_path, db_path, json_path, pi_score_path
 
     parser = argparse.ArgumentParser(description='This script creates primer3 input files')
     parser.add_argument('--summary_fn', help='summary_fn', default=summary_fn)

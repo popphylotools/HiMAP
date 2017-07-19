@@ -8,7 +8,7 @@ from Bio import SeqIO
 from Bio.Alphabet import IUPAC
 from Bio.SeqRecord import SeqRecord
 
-from .config import sp_order
+from config import sp_order
 
 
 def pad_to_full_sp_count_and_trim_to_primer_product(json_path, padded_primer_product_path, unpadded_primer_product_path,
@@ -100,7 +100,7 @@ def pad_to_full_sp_count_and_trim_to_primer_product(json_path, padded_primer_pro
 
 if __name__ == '__main__':
     import argparse
-    from .config import enhanced_species_list, padded_primer_product_path, unpadded_primer_product_path, \
+    from config import enhanced_species_list, padded_primer_product_path, unpadded_primer_product_path, \
         orthoCds_path, primer3_path, json_path
 
     parser = argparse.ArgumentParser(description='This script creates primer3 input files')

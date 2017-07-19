@@ -8,16 +8,16 @@ mkdir -p "../data/intermediate${N}/json/"
 cp "../data/intermediate/json/"*".json" "../data/intermediate${N}/json/"
 
 echo 7
-"./step7_create_P3_input_with_ambiguity_codes.py" \
+"./step07_create_P3_input_with_ambiguity_codes.py" \
 -n ${N} \
 --primer3_path "../data/intermediate${N}/primer_design/"
 
 echo 8
-"./step8_primer_design_with_P3" \
+"./step08_primer_design_with_P3" \
 "../data/intermediate${N}/primer_design/"
 
 echo 9
-"./step9_pad_to_full_sp_count_and_trim_to_primer_product.py" \
+"./step09_pad_to_full_sp_count_and_trim_to_primer_product.py" \
 --primer3_path "../data/intermediate${N}/primer_design/" \
 --padded_primer_product_path "../data/intermediate${N}/phylo_informativeness/fasta/" \
 --unpadded_primer_product_path "../data/output${N}/primerProducts/" \

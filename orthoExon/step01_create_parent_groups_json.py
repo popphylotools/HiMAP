@@ -65,6 +65,6 @@ def create_parent_groups_json(groups_fn, db_path, json_path, template_species_li
 
 
 if __name__ == '__main__':
-    from .config import groups_fn, db_path, json_path, template_species_list
+    from config import groups_fn, db_path, json_path, template_species_list
 
     create_parent_groups_json(groups_fn, db_path, json_path, template_species_list)

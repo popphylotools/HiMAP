@@ -10,7 +10,7 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from pyfaidx import Fasta
 
-from .config import n_count
+from config import n_count
 
 
 def create_template_synthetic_cds(template_species_list, fasta_path, template_species_alignment_path, db_path,
@@ -52,7 +52,7 @@ def create_template_synthetic_cds(template_species_list, fasta_path, template_sp
 
 
 if __name__ == "__main__":
-    from .config import template_species_list, fasta_path, template_species_alignment_path, db_path, json_path
+    from config import template_species_list, fasta_path, template_species_alignment_path, db_path, json_path
 
     create_template_synthetic_cds(template_species_list, fasta_path, template_species_alignment_path, db_path,
                                   json_path)

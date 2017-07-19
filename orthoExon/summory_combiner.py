@@ -5,7 +5,7 @@ from collections import Counter
 from functools import reduce
 from operator import mul
 
-from .config import expand_iupac
+from config import expand_iupac
 
 possibilities = {key: len(value) for key, value in expand_iupac.items()}
 
