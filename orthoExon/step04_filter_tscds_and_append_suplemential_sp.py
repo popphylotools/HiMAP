@@ -10,9 +10,8 @@ from Bio import SeqIO
 from Bio.Alphabet import IUPAC
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
-from pyfaidx import Fasta
-
 from config import n_count
+from pyfaidx import Fasta
 
 
 # define functions to parse coordinates of cds's from concatinated aligned fasta w/ n's and -'s
@@ -221,16 +220,9 @@ def filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path,
 
 
 if __name__ == '__main__':
-    from config import fasta_path, enhanced_alignment_path, template_species_alignment_path, db_path, json_path, \
-        template_species_list, transvestigated_species_set
+    import config
 
-    # gap filter parameters
-    max_gap_percent = 0
-    max_gap_length = 0
-    # cds length filter parameters
-    min_cds_length = 100
-    # max_cds_length = 600
-
-    filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path, template_species_alignment_path,
-                                            db_path, json_path, template_species_list, transvestigated_species_set,
-                                            max_gap_percent, max_gap_length, min_cds_length)
+    filter_tscds_and_append_suplemential_sp(config.fasta_path, config.enhanced_alignment_path,
+                                            config.template_species_alignment_path, config.db_path, config.json_path,
+                                            config.template_species_list, config.transvestigated_species_set,
+                                            config.max_gap_percent, config.max_gap_length, config.min_cds_length)

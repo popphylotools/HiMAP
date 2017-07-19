@@ -29,6 +29,9 @@ n_count = 50
 # path to the groups file
 groups_fn = "../data/input/groups_filtered_6181genes.txt"
 
+# path to gff folder
+gff_path = "../data/input/gff/"
+
 # path to fasta folder
 fasta_path = "../data/input/fasta/"
 

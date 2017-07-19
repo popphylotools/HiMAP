@@ -182,14 +182,7 @@ def filter_aligned_escds(enhanced_alignment_path, orthoCds_path, template_specie
 
 
 if __name__ == '__main__':
-    from config import template_species_list, orthoCds_path, enhanced_alignment_path
+    import config
 
-    # gap filter parameters
-    max_gap_percent = 0
-    max_gap_length = 0
-    # cds length filter parameters
-    min_cds_length = 100
-    # max_cds_length = 600
-
-    filter_aligned_escds(enhanced_alignment_path, orthoCds_path, template_species_list, min_cds_length, max_gap_length,
-                         max_gap_percent)
+    filter_aligned_escds(config.enhanced_alignment_path, config.orthoCds_path, config.template_species_list,
+                         config.min_cds_length, config.max_gap_length, config.max_gap_percent)

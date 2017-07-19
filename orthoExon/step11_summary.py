@@ -4,12 +4,11 @@ import json
 import os
 import sqlite3
 
+import config
 import gffutils
 import pandas as pd
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
-
-from config import sp_order
 
 
 def summary(json_path, db_path, primer3_path, unpadded_primer_product_path, pi_score_path, summary_fn):
@@ -79,7 +78,7 @@ def summary(json_path, db_path, primer3_path, unpadded_primer_product_path, pi_s
             score = name_score[ortho_plus]
             data.append((ortho_plus, str(score), sp, product, *(primer[ortho][variation])))
 
-    data = sorted(data, key=lambda x: (x[0], sp_order[x[2]]))
+    data = sorted(data, key=lambda x: (x[0], config.sp_order[x[2]]))
 
     header = ['Exon_Name',
               'PI_Score',
@@ -102,24 +101,18 @@ def summary(json_path, db_path, primer3_path, unpadded_primer_product_path, pi_s
 
 if __name__ == '__main__':
     import argparse
-    from config import summary_fn, primer3_path, unpadded_primer_product_path, db_path, json_path, pi_score_path
 
     parser = argparse.ArgumentParser(description='This script creates primer3 input files')
-    parser.add_argument('--summary_fn', help='summary_fn', default=summary_fn)
-    parser.add_argument('--primer3_path', help='primer3_path', default=primer3_path)
+
+    parser.add_argument('--summary_fn', help='summary_fn', default=config.summary_fn)
+    parser.add_argument('--primer3_path', help='primer3_path', default=config.primer3_path)
     parser.add_argument('--unpadded_primer_product_path', help='unpadded_primer_product_path',
-                        default=unpadded_primer_product_path)
-    parser.add_argument('--db_path', help='db_path', default=db_path)
-    parser.add_argument('--json_path', help='json_path', default=json_path)
-    parser.add_argument('--pi_score_path', help='pi_score_path', default=pi_score_path)
+                        default=config.unpadded_primer_product_path)
+    parser.add_argument('--db_path', help='db_path', default=config.db_path)
+    parser.add_argument('--json_path', help='json_path', default=config.json_path)
+    parser.add_argument('--pi_score_path', help='pi_score_path', default=config.pi_score_path)
 
     args = parser.parse_args()
 
-    summary_fn = args.summary_fn
-    primer3_path = args.primer3_path
-    unpadded_primer_product_path = args.unpadded_primer_product_path
-    db_path = args.db_path
-    json_path = args.json_path
-    pi_score_path = args.pi_score_path
-
-    summary(json_path, db_path, primer3_path, unpadded_primer_product_path, pi_score_path, summary_fn)
+    summary(args.json_path, args.db_path, args.primer3_path, args.unpadded_primer_product_path, args.pi_score_path,
+            args.summary_fn)

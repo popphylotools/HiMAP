@@ -4,11 +4,10 @@ import json
 import os
 import shutil
 
+import config
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
 from Bio.SeqRecord import SeqRecord
-
-from config import sp_order
 
 
 def pad_to_full_sp_count_and_trim_to_primer_product(json_path, padded_primer_product_path, unpadded_primer_product_path,
@@ -85,7 +84,7 @@ def pad_to_full_sp_count_and_trim_to_primer_product(json_path, padded_primer_pro
         for variation in range(len(trimmed_fasta[ortho])):
             filename = unpadded_primer_product_path + ortho + "_V" + str(variation) + ".13spp.fasta"
             with open(filename, "w") as f:
-                for seqReq in sorted(trimmed_fasta[ortho][variation].values(), key=lambda x: sp_order[x.id]):
+                for seqReq in sorted(trimmed_fasta[ortho][variation].values(), key=lambda x: config.sp_order[x.id]):
                     f.write(seqReq.format("fasta"))
 
     shutil.rmtree(padded_primer_product_path, ignore_errors=True)
@@ -94,31 +93,25 @@ def pad_to_full_sp_count_and_trim_to_primer_product(json_path, padded_primer_pro
         for variation in range(len(padded_fasta[ortho])):
             filename = padded_primer_product_path + ortho + "_V" + str(variation) + ".13spp.fasta"
             with open(filename, "w") as f:
-                for seqReq in sorted(padded_fasta[ortho][variation].values(), key=lambda x: sp_order[x.id]):
+                for seqReq in sorted(padded_fasta[ortho][variation].values(), key=lambda x: config.sp_order[x.id]):
                     f.write(seqReq.format("fasta"))
 
 
 if __name__ == '__main__':
     import argparse
-    from config import enhanced_species_list, padded_primer_product_path, unpadded_primer_product_path, \
-        orthoCds_path, primer3_path, json_path
 
     parser = argparse.ArgumentParser(description='This script creates primer3 input files')
-    parser.add_argument('--orthoCds_path', help='orthoCds_path', default=orthoCds_path)
-    parser.add_argument('--primer3_path', help='primer3_path', default=primer3_path)
+
+    parser.add_argument('--orthoCds_path', help='orthoCds_path', default=config.orthoCds_path)
+    parser.add_argument('--primer3_path', help='primer3_path', default=config.primer3_path)
     parser.add_argument('--padded_primer_product_path', help='padded_primer_product_path',
-                        default=padded_primer_product_path)
+                        default=config.padded_primer_product_path)
     parser.add_argument('--unpadded_primer_product_path', help='unpadded_primer_product_path',
-                        default=unpadded_primer_product_path)
-    parser.add_argument('--json_path', help='json_path', default=json_path)
+                        default=config.unpadded_primer_product_path)
+    parser.add_argument('--json_path', help='json_path', default=config.json_path)
 
     args = parser.parse_args()
 
-    orthoCds_path = args.orthoCds_path
-    primer3_path = args.primer3_path
-    padded_primer_product_path = args.padded_primer_product_path
-    unpadded_primer_product_path = args.unpadded_primer_product_path
-    json_path = args.json_path
-
-    pad_to_full_sp_count_and_trim_to_primer_product(json_path, padded_primer_product_path, unpadded_primer_product_path,
-                                                    primer3_path, orthoCds_path, enhanced_species_list)
+    pad_to_full_sp_count_and_trim_to_primer_product(args.json_path, args.padded_primer_product_path,
+                                                    args.unpadded_primer_product_path, args.primer3_path,
+                                                    args.orthoCds_path, config.enhanced_species_list)

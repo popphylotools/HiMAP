@@ -5,8 +5,7 @@ import shutil
 
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
-
-from config import collapse_iupac, expand_iupac
+import config
 
 
 def Consensus(aligned_seq_list):
@@ -15,11 +14,11 @@ def Consensus(aligned_seq_list):
     for seq in aligned_seq_list:
         assert len(seq) == length
     for loc in range(length):
-        base_set = set.union(*[expand_iupac[seq[loc].upper()] for seq in aligned_seq_list])
+        base_set = set.union(*[config.expand_iupac[seq[loc].upper()] for seq in aligned_seq_list])
         if '-' in base_set:
             consensus += '-'
         else:
-            consensus += collapse_iupac[tuple(sorted(base_set))]
+            consensus += config.collapse_iupac[tuple(sorted(base_set))]
     return consensus
 
 
@@ -73,16 +72,12 @@ def create_P3_input_with_ambiguity_codes(primer3_path, orthoCds_path, primer_max
 
 if __name__ == '__main__':
     import argparse
-    from config import primer3_path, orthoCds_path
 
     parser = argparse.ArgumentParser(description='This script creates primer3 input files')
-    parser.add_argument('--orthoCds_path', help='orthoCds_path', default=orthoCds_path)
-    parser.add_argument('--primer3_path', help='primer3_path', default=primer3_path)
-    parser.add_argument('-n', '--ns_allowed', help="the number of n's allowed in primers", default='0')
+    parser.add_argument('--orthoCds_path', help='orthoCds_path', default=config.orthoCds_path)
+    parser.add_argument('--primer3_path', help='primer3_path', default=config.primer3_path)
+    parser.add_argument('-n', '--ns_allowed', help="the number of n's allowed in primers", default=config.n_count)
 
     args = parser.parse_args()
-    primer_max_ns_accepted = args.ns_allowed
-    orthoCds_path = args.orthoCds_path
-    primer3_path = args.primer3_path
 
-    create_P3_input_with_ambiguity_codes(primer3_path, orthoCds_path, primer_max_ns_accepted)
+    create_P3_input_with_ambiguity_codes(args.primer3_path, args.orthoCds_path, args.ns_allowed)

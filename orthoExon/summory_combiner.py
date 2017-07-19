@@ -5,9 +5,9 @@ from collections import Counter
 from functools import reduce
 from operator import mul
 
-from config import expand_iupac
+import config
 
-possibilities = {key: len(value) for key, value in expand_iupac.items()}
+possibilities = {key: len(value) for key, value in config.expand_iupac.items()}
 
 
 def amb_count(seq):
