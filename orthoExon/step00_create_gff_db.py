@@ -10,8 +10,9 @@ import gffutils
 
 def create_db(db_path, gff_path, species):
     created = False
-    gff_name = os.path.join(os.path.abspath(os.path.curdir), gff_path + species + ".gff")
-    db_name = os.path.join(os.path.abspath(os.path.curdir), db_path + species + ".gff.db")
+    os.makedirs(db_path, exist_ok=True)
+    gff_name = gff_path + species + ".gff"
+    db_name = db_path + species + ".gff.db"
     if not os.path.isfile(db_name):
         gffutils.create_db(gff_name,
                            dbfn=db_name,
@@ -24,9 +25,9 @@ def create_db(db_path, gff_path, species):
 
 def connect_db(db_path, species):
     gff_name = species + ".gff"
-    if os.path.isfile(os.path.join(os.path.abspath(os.path.curdir), db_path + gff_name + ".db")):
+    if os.path.isfile(db_path + gff_name + ".db"):
         db = gffutils.FeatureDB(
-            os.path.join(os.path.abspath(os.path.curdir), db_path + gff_name + ".db"))
+            db_path + gff_name + ".db")
         return species, db
     else:
         return False

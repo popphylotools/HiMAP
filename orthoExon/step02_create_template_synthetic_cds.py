@@ -4,11 +4,11 @@ import json
 import os
 import shutil
 
+import config
 import gffutils
 from Bio.Alphabet import IUPAC
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
-from config import n_count
 from pyfaidx import Fasta
 
 
@@ -28,7 +28,7 @@ def create_template_synthetic_cds(template_species_list, fasta_path, template_sp
         parent_groups = json.load(f)
 
     # concatinate cds's for each species,ortho and output a fasta for each ortho
-    nnn = Seq("".join([n for n in range(n_count)]), IUPAC.ambiguous_dna)
+    nnn = Seq("".join([n for n in range(config.n_count)]), IUPAC.ambiguous_dna)
     shutil.rmtree(template_species_alignment_path, ignore_errors=True)
     os.makedirs(template_species_alignment_path, exist_ok=True)
     for ortho in parent_groups:
@@ -51,7 +51,5 @@ def create_template_synthetic_cds(template_species_list, fasta_path, template_sp
 
 
 if __name__ == "__main__":
-    import config
-
     create_template_synthetic_cds(config.template_species_list, config.fasta_path,
                                   config.template_species_alignment_path, config.db_path, config.json_path)

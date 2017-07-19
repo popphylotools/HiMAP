@@ -5,12 +5,12 @@ import os
 import re
 import shutil
 
+import config
 import gffutils
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
-from config import n_count
 from pyfaidx import Fasta
 
 
@@ -25,7 +25,7 @@ def findBreakpoints(seq):
         match = regex.search(seq, loc)
         if not match:
             break
-        if len(match.group().replace('-', '')) >= n_count:
+        if len(match.group().replace('-', '')) >= config.n_count:
             breakpoints.append(match.span())
         loc = match.end()
     return breakpoints
@@ -178,7 +178,7 @@ def filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path,
                 cds = cds_list[sp][index]
                 fasta_prep[ortho][coord][sp] = cds
 
-    nnn = Seq("".join([n for n in range(n_count)]), IUPAC.ambiguous_dna)
+    nnn = Seq("".join([n for n in range(config.n_count)]), IUPAC.ambiguous_dna)
     shutil.rmtree(enhanced_alignment_path, ignore_errors=True)
     os.makedirs(enhanced_alignment_path, exist_ok=True)
     for ortho in fasta_prep:
@@ -220,8 +220,6 @@ def filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path,
 
 
 if __name__ == '__main__':
-    import config
-
     filter_tscds_and_append_suplemential_sp(config.fasta_path, config.enhanced_alignment_path,
                                             config.template_species_alignment_path, config.db_path, config.json_path,
                                             config.template_species_list, config.transvestigated_species_set,
