@@ -13,7 +13,7 @@ from pyfaidx import Fasta
 from .config import n_count
 
 
-def orthoFasta_4spp(species_list, fasta_path, subset_alignment_path, db_path, json_path):
+def orthoFasta_4spp(template_species_list, fasta_path, template_species_alignment_path, db_path, json_path):
     # create handles for all .db files in intermediate directory
     gff = {name.split('.gff.db')[0]: name for name in os.listdir(db_path) if ".gff.db" in name}
     gff = {key: gffutils.FeatureDB(db_path + value) for key, value in gff.items()}
@@ -29,12 +29,12 @@ def orthoFasta_4spp(species_list, fasta_path, subset_alignment_path, db_path, js
 
     # concatinate cds's for each species,ortho and output a fasta for each ortho
     nnn = Seq("".join([n for n in range(n_count)]), IUPAC.ambiguous_dna)
-    shutil.rmtree(subset_alignment_path, ignore_errors=True)
-    os.makedirs(subset_alignment_path, exist_ok=True)
+    shutil.rmtree(template_species_alignment_path, ignore_errors=True)
+    os.makedirs(template_species_alignment_path, exist_ok=True)
     for ortho in parent_groups:
-        filename = subset_alignment_path + ortho + ".fasta"
+        filename = template_species_alignment_path + ortho + ".fasta"
         with open(filename, "w") as f:
-            for sp in species_list:
+            for sp in template_species_list:
                 parent = gff[sp][parent_groups[ortho][sp]]
                 strand = parent.strand
                 cds_list = gff[sp].children(parent, featuretype="CDS", order_by="start")
@@ -51,6 +51,6 @@ def orthoFasta_4spp(species_list, fasta_path, subset_alignment_path, db_path, js
 
 
 if __name__ == "__main__":
-    from .config import template_species_list, fasta_path, subset_alignment_path, db_path, json_path
+    from .config import template_species_list, fasta_path, template_species_alignment_path, db_path, json_path
 
-    orthoFasta_4spp(template_species_list, fasta_path, subset_alignment_path, db_path, json_path)
+    orthoFasta_4spp(template_species_list, fasta_path, template_species_alignment_path, db_path, json_path)

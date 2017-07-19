@@ -100,7 +100,7 @@ def pad_to_13spp_and_trim_to_primer_product(full_species_list, padded_primer_pro
 
 if __name__ == '__main__':
     import argparse
-    from .config import full_species_list, padded_primer_product_path, unpadded_primer_product_path, orthoCds_path, \
+    from .config import enhanced_species_list, padded_primer_product_path, unpadded_primer_product_path, orthoCds_path, \
         primer3_path, json_path
 
     parser = argparse.ArgumentParser(description='This script creates primer3 input files')
@@ -120,5 +120,5 @@ if __name__ == '__main__':
     unpadded_primer_product_path = args.unpadded_primer_product_path
     json_path = args.json_path
 
-    pad_to_13spp_and_trim_to_primer_product(full_species_list, padded_primer_product_path,
+    pad_to_13spp_and_trim_to_primer_product(enhanced_species_list, padded_primer_product_path,
                                             unpadded_primer_product_path, orthoCds_path, primer3_path, json_path)

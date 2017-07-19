@@ -2,17 +2,34 @@
 
 N=${1:-"0"}
 
-mkdir ../output${N}
-mkdir -p ../intermediate${N}/json/
-cp ../intermediate/json/*.json ../intermediate${N}/json/
+mkdir "../data/output${N}"
+mkdir -p "../data/intermediate${N}/json/"
+cp "../data/intermediate/json/"*".json" "../data/intermediate${N}/json/"
 
 echo 7
-./7\)_P3_input-custom_ambiguities.py -n ${N} --primer3_path ../intermediate${N}/primer_design/
+"./step7_create_P3_input_with_ambiguity_codes.py" \
+-n ${N} \
+--primer3_path "../data/intermediate${N}/primer_design/"
+
 echo 8
-./8\)_primer-design ../intermediate${N}/primer_design/
+"./step8_primer_design_with_P3" \
+"../data/intermediate${N}/primer_design/"
+
 echo 9
-./9\)_pad_to_13spp_and_trim_to_primer_product.py --primer3_path ../intermediate${N}/primer_design/ --padded_primer_product_path ../intermediate${N}/phylo_informativeness/fasta/ --unpadded_primer_product_path ../output${N}/primerProducts/ --json_path ../intermediate${N}/json/
+"./step9_pad_to_full_sp_count_and_trim_to_primer_product.py" \
+--primer3_path "../data/intermediate${N}/primer_design/" \
+--padded_primer_product_path "../data/intermediate${N}/phylo_informativeness/fasta/" \
+--unpadded_primer_product_path "../data/output${N}/primerProducts/" \
+--json_path "../data/intermediate${N}/json/"
+
 echo 10
-./10\)_PI-stub ../intermediate${N}/phylo_informativeness
+"./step10_PI_with_tapir" \
+"../data/intermediate${N}/phylo_informativeness"
+
 echo 11
-./11\)_summary.py --summary_fn ../output${N}/summory.csv --primer3_path ../intermediate${N}/primer_design/ --unpadded_primer_product_path ../output${N}/primerProducts/ --json_path ../intermediate${N}/json/ --pi_score_path ../intermediate${N}/phylo_informativeness/sql/
+"./step11_summary.py" \
+--summary_fn "../data/output${N}/summory.csv" \
+--primer3_path "../data/intermediate${N}/primer_design/" \
+--unpadded_primer_product_path "../data/output${N}/primerProducts/" \
+--json_path "../data/intermediate${N}/json/" \
+--pi_score_path "../data/intermediate${N}/phylo_informativeness/sql/"

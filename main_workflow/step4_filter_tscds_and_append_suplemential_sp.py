@@ -75,6 +75,9 @@ def longestGap(seq):
 def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alignment_path, db_path, json_path,
                                  template_species_list, transvestigated_species_set, max_gap_percent, max_gap_length,
                                  min_cds_length):
+    """filter template synthetic cds and create full scds with suplemential species
+    """
+
     # create handles for all .db files in intermediate directory
     gff_fn = {name.split('.gff.db')[0]: db_path + name for name in os.listdir(db_path) if
               ".gff.db" in name}
@@ -218,7 +221,7 @@ def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alig
 
 
 if __name__ == '__main__':
-    from .config import fasta_path, fullset_alignment_path, subset_alignment_path, db_path, json_path, \
+    from .config import fasta_path, fullset_alignment_path, template_species_alignment_path, db_path, json_path, \
         template_species_list, transvestigated_species_set
 
     # gap filter parameters
@@ -228,6 +231,6 @@ if __name__ == '__main__':
     min_cds_length = 100
     # max_cds_length = 600
 
-    alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alignment_path, db_path, json_path,
+    alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, template_species_alignment_path, db_path, json_path,
                                  template_species_list, transvestigated_species_set, max_gap_percent, max_gap_length,
                                  min_cds_length)

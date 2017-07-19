@@ -1,5 +1,0 @@
-#!/bin/bash
-
-N=${1:-"0"}
-
-./11\)_summary.py --summary_fn ../output${N}/summory.csv --primer3_path ../intermediate${N}/primer_design/ --unpadded_primer_product_path ../output${N}/primerProducts/ --json_path ../intermediate${N}/json/ --pi_score_path ../intermediate${N}/phylo_informativeness/sql/
