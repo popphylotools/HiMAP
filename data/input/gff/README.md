@@ -1,1 +1,1 @@
-# gff input files go here
+gff input files go here

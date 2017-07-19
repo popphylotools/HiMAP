@@ -1,1 +1,1 @@
-# fasta input files go here
+fasta input files go here
