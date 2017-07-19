@@ -116,3 +116,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# example files
+!/data/input/959genes.phy.contree_AgeRooted_wholeNumbs.tre
+!/data/input/groups_filtered_6181genes.txt
