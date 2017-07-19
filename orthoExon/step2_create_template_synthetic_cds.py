@@ -13,7 +13,8 @@ from pyfaidx import Fasta
 from .config import n_count
 
 
-def orthoFasta_4spp(template_species_list, fasta_path, template_species_alignment_path, db_path, json_path):
+def create_template_synthetic_cds(template_species_list, fasta_path, template_species_alignment_path, db_path,
+                                  json_path):
     # create handles for all .db files in intermediate directory
     gff = {name.split('.gff.db')[0]: name for name in os.listdir(db_path) if ".gff.db" in name}
     gff = {key: gffutils.FeatureDB(db_path + value) for key, value in gff.items()}
@@ -53,4 +54,5 @@ def orthoFasta_4spp(template_species_list, fasta_path, template_species_alignmen
 if __name__ == "__main__":
     from .config import template_species_list, fasta_path, template_species_alignment_path, db_path, json_path
 
-    orthoFasta_4spp(template_species_list, fasta_path, template_species_alignment_path, db_path, json_path)
+    create_template_synthetic_cds(template_species_list, fasta_path, template_species_alignment_path, db_path,
+                                  json_path)

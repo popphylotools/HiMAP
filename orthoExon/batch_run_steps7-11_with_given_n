@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# the number of n's allowed in primers
 N=${1:-"0"}
 
 mkdir "../data/output${N}"

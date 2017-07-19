@@ -67,11 +67,11 @@ def longestGap(seq):
         return 0
 
 
-def alignedFilter13spp(template_species_list, orthoCds_path, fullset_alignment_path, max_gap_percent, max_gap_length,
-                       min_cds_length):
+def filter_aligned_escds(enhanced_alignment_path, orthoCds_path, template_species_list, min_cds_length, max_gap_length,
+                         max_gap_percent):
     # create handles for all .fasta files in aligned_13spp_fasta directory
-    aligned_fasta_fn = {name.split('.13spp')[0]: fullset_alignment_path + name for name in
-                        os.listdir(fullset_alignment_path) if
+    aligned_fasta_fn = {name.split('.13spp')[0]: enhanced_alignment_path + name for name in
+                        os.listdir(enhanced_alignment_path) if
                         ((".fasta.aln" in name) and (".fasta.aln.fai" not in name))}
 
     # read and parse fasta files for each species
@@ -182,7 +182,7 @@ def alignedFilter13spp(template_species_list, orthoCds_path, fullset_alignment_p
 
 
 if __name__ == '__main__':
-    from .config import template_species_list, orthoCds_path, fullset_alignment_path
+    from .config import template_species_list, orthoCds_path, enhanced_alignment_path
 
     # gap filter parameters
     max_gap_percent = 0
@@ -191,5 +191,5 @@ if __name__ == '__main__':
     min_cds_length = 100
     # max_cds_length = 600
 
-    alignedFilter13spp(template_species_list, orthoCds_path, fullset_alignment_path, max_gap_percent, max_gap_length,
-                       min_cds_length)
+    filter_aligned_escds(enhanced_alignment_path, orthoCds_path, template_species_list, min_cds_length, max_gap_length,
+                         max_gap_percent)

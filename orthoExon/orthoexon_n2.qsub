@@ -12,9 +12,9 @@
 
 module load orthoExon
 
-./7-11_with_given_n 2
+./"batch_run_steps7-11_with_given_n" 2
 
 
-# submitted with: qsub orthoexon.qsub
-# or qsub -l hostname=compute-3-5 orthoexon.qsub
+# submitted with: qsub orthoexon_n2.qsub
+# or qsub -l hostname=compute-3-5 orthoexon_n2.qsub
 

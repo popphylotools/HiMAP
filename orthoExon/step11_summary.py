@@ -12,7 +12,7 @@ from Bio.Alphabet import IUPAC
 from .config import sp_order
 
 
-def summary(summary_fn, primer3_path, unpadded_primer_product_path, db_path, json_path, pi_score_path):
+def summary(json_path, db_path, primer3_path, unpadded_primer_product_path, pi_score_path, summary_fn):
     # create handles for all .fasta files in fasta directory
     fasta_fn = {name.split('.13spp.fasta')[0]: unpadded_primer_product_path + name for name in
                 os.listdir(unpadded_primer_product_path) if
@@ -122,4 +122,4 @@ if __name__ == '__main__':
     json_path = args.json_path
     pi_score_path = args.pi_score_path
 
-    summary(summary_fn, primer3_path, unpadded_primer_product_path, db_path, json_path, pi_score_path)
+    summary(json_path, db_path, primer3_path, unpadded_primer_product_path, pi_score_path, summary_fn)

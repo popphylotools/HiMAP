@@ -72,10 +72,10 @@ def longestGap(seq):
         return 0
 
 
-def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alignment_path, db_path, json_path,
-                                 template_species_list, transvestigated_species_set, max_gap_percent, max_gap_length,
-                                 min_cds_length):
-    """filter template synthetic cds and create full scds with suplemential species
+def filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path, template_species_alignment_path,
+                                            db_path, json_path, template_species_list, transvestigated_species_set,
+                                            max_gap_percent, max_gap_length, min_cds_length):
+    """filter template synthetic cds and create enhanced (full species set) scds with suplemential species
     """
 
     # create handles for all .db files in intermediate directory
@@ -99,8 +99,8 @@ def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alig
         parent_groups = json.load(f)
 
     # create handles for all .fasta files in aligned_4spp_fasta directory
-    aligned_fasta_fn = {name.split('.fasta')[0]: subset_alignment_path + name for name in
-                        os.listdir(subset_alignment_path) if
+    aligned_fasta_fn = {name.split('.fasta')[0]: template_species_alignment_path + name for name in
+                        os.listdir(template_species_alignment_path) if
                         ((".fasta.aln" in name) and (".fasta.aln.fai" not in name))}
 
     # read and parse fasta files for each species
@@ -180,11 +180,11 @@ def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alig
                 fasta_prep[ortho][coord][sp] = cds
 
     nnn = Seq("".join([n for n in range(n_count)]), IUPAC.ambiguous_dna)
-    shutil.rmtree(fullset_alignment_path, ignore_errors=True)
-    os.makedirs(fullset_alignment_path, exist_ok=True)
+    shutil.rmtree(enhanced_alignment_path, ignore_errors=True)
+    os.makedirs(enhanced_alignment_path, exist_ok=True)
     for ortho in fasta_prep:
         for coord in fasta_prep[ortho]:
-            filename = fullset_alignment_path + ortho + "_" + str(coord[0]) + "-" + str(coord[1]) + ".13spp.fasta"
+            filename = enhanced_alignment_path + ortho + "_" + str(coord[0]) + "-" + str(coord[1]) + ".13spp.fasta"
             with open(filename, "w") as f:
                 for sp in template_species_list:
                     cds = fasta_prep[ortho][coord][sp]
@@ -221,7 +221,7 @@ def alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, subset_alig
 
 
 if __name__ == '__main__':
-    from .config import fasta_path, fullset_alignment_path, template_species_alignment_path, db_path, json_path, \
+    from .config import fasta_path, enhanced_alignment_path, template_species_alignment_path, db_path, json_path, \
         template_species_list, transvestigated_species_set
 
     # gap filter parameters
@@ -231,6 +231,6 @@ if __name__ == '__main__':
     min_cds_length = 100
     # max_cds_length = 600
 
-    alignedFilter4spp_Fasta13spp(fasta_path, fullset_alignment_path, template_species_alignment_path, db_path, json_path,
-                                 template_species_list, transvestigated_species_set, max_gap_percent, max_gap_length,
-                                 min_cds_length)
+    filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path, template_species_alignment_path,
+                                            db_path, json_path, template_species_list, transvestigated_species_set,
+                                            max_gap_percent, max_gap_length, min_cds_length)

@@ -23,7 +23,7 @@ def Consensus(aligned_seq_list):
     return consensus
 
 
-def P3_input_custom_ambiguities(primer3_path, orthoCds_path, primer_max_ns_accepted):
+def create_P3_input_with_ambiguity_codes(primer3_path, orthoCds_path, primer_max_ns_accepted):
     # create handles for all .fasta files in fasta directory
     fasta_fn = {name.split('.13spp.fasta')[0]: orthoCds_path + name for name in
                 os.listdir(orthoCds_path) if
@@ -85,4 +85,4 @@ if __name__ == '__main__':
     orthoCds_path = args.orthoCds_path
     primer3_path = args.primer3_path
 
-    P3_input_custom_ambiguities(primer3_path, orthoCds_path, primer_max_ns_accepted)
+    create_P3_input_with_ambiguity_codes(primer3_path, orthoCds_path, primer_max_ns_accepted)

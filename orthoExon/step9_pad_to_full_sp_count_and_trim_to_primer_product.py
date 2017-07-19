@@ -11,8 +11,8 @@ from Bio.SeqRecord import SeqRecord
 from .config import sp_order
 
 
-def pad_to_13spp_and_trim_to_primer_product(full_species_list, padded_primer_product_path, unpadded_primer_product_path,
-                                            orthoCds_path, primer3_path, json_path):
+def pad_to_full_sp_count_and_trim_to_primer_product(json_path, padded_primer_product_path, unpadded_primer_product_path,
+                                                    primer3_path, orthoCds_path, enhanced_species_list):
     with open(json_path + "alternate_sp.json", 'r') as f:
         alternate_sp = json.load(f)
 
@@ -56,7 +56,7 @@ def pad_to_13spp_and_trim_to_primer_product(full_species_list, padded_primer_pro
         for variation in range(len(primer[ortho])):
             start, end = primer[ortho][variation]
             padding = {}
-            for sp in full_species_list:
+            for sp in enhanced_species_list:
                 if sp not in fasta[ortho].keys():
                     for alt_sp in alternate_sp[sp]:
                         if alt_sp in fasta[ortho].keys():
@@ -100,8 +100,8 @@ def pad_to_13spp_and_trim_to_primer_product(full_species_list, padded_primer_pro
 
 if __name__ == '__main__':
     import argparse
-    from .config import enhanced_species_list, padded_primer_product_path, unpadded_primer_product_path, orthoCds_path, \
-        primer3_path, json_path
+    from .config import enhanced_species_list, padded_primer_product_path, unpadded_primer_product_path, \
+        orthoCds_path, primer3_path, json_path
 
     parser = argparse.ArgumentParser(description='This script creates primer3 input files')
     parser.add_argument('--orthoCds_path', help='orthoCds_path', default=orthoCds_path)
@@ -120,5 +120,5 @@ if __name__ == '__main__':
     unpadded_primer_product_path = args.unpadded_primer_product_path
     json_path = args.json_path
 
-    pad_to_13spp_and_trim_to_primer_product(enhanced_species_list, padded_primer_product_path,
-                                            unpadded_primer_product_path, orthoCds_path, primer3_path, json_path)
+    pad_to_full_sp_count_and_trim_to_primer_product(json_path, padded_primer_product_path, unpadded_primer_product_path,
+                                                    primer3_path, orthoCds_path, enhanced_species_list)
