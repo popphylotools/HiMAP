@@ -17,7 +17,7 @@ echo 8
 "../data/intermediate${N}/primer_design/"
 
 echo 9
-"./step09_pad_to_full_sp_count_and_trim_to_primer_product.py" \
+"./step09_create_tapir_input_from_primer_products.py" \
 --primer3_path "../data/intermediate${N}/primer_design/" \
 --padded_primer_product_path "../data/intermediate${N}/phylo_informativeness/fasta/" \
 --unpadded_primer_product_path "../data/output${N}/primerProducts/" \
