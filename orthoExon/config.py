@@ -26,6 +26,12 @@ transvestigated_species_set = {'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', '
 # number of n's used to create alignment boarders
 n_count = 50
 
+# cds gap filter parameters
+max_gap_percent = 0
+max_gap_length = 0
+# cds length filter parameters
+min_cds_length = 100
+
 # path to the groups file
 groups_fn = "../data/input/groups_filtered_6181genes.txt"
 
