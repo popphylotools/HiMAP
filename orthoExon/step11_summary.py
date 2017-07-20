@@ -4,7 +4,7 @@ import json
 import os
 import sqlite3
 
-import config
+import orthoExon.config as config
 import gffutils
 import pandas as pd
 from Bio import SeqIO

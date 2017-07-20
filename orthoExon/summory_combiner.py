@@ -5,7 +5,7 @@ from collections import Counter
 from functools import reduce
 from operator import mul
 
-import config
+import orthoExon.config as config
 
 possibilities = {key: len(value) for key, value in config.expand_iupac.items()}
 
