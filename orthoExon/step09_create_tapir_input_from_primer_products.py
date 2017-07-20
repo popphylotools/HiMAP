@@ -4,7 +4,7 @@ import json
 import os
 import shutil
 
-import orthoExon.config as config
+import config
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
 from Bio.SeqRecord import SeqRecord

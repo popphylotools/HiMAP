@@ -65,6 +65,6 @@ def create_parent_groups_json(groups_fn, db_path, json_path, template_species_li
 
 
 if __name__ == '__main__':
-    import orthoExon.config as config
+    import config
 
     create_parent_groups_json(config.groups_fn, config.db_path, config.json_path, config.template_species_list)

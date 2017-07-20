@@ -4,7 +4,7 @@ import json
 import os
 import shutil
 
-import orthoExon.config as config
+import config
 import gffutils
 from Bio.Alphabet import IUPAC
 from Bio.Seq import Seq

@@ -61,6 +61,6 @@ def create_and_populate_dbs(gff_path, db_path, template_species_list):
 
 
 if __name__ == '__main__':
-    import orthoExon.config as config
+    import config
 
     create_and_populate_dbs(config.gff_path, config.db_path, config.template_species_list)

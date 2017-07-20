@@ -5,7 +5,7 @@ import os
 import re
 import shutil
 
-import orthoExon.config as config
+import config
 import gffutils
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC

@@ -5,7 +5,7 @@ import shutil
 
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
-import orthoExon.config as config
+import config
 
 
 def Consensus(aligned_seq_list):
