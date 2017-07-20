@@ -14,7 +14,7 @@ def create_db(db_path, gff_path, species):
     gff_name = gff_path + species + ".gff"
     db_name = db_path + species + ".gff.db"
     if not os.path.isfile(db_name):
-        gffutils.create_db(gff_name,
+        gffutils.create_db(data=gff_name,
                            dbfn=db_name,
                            force=True,
                            merge_strategy='merge',
@@ -26,8 +26,7 @@ def create_db(db_path, gff_path, species):
 def connect_db(db_path, species):
     gff_name = species + ".gff"
     if os.path.isfile(db_path + gff_name + ".db"):
-        db = gffutils.FeatureDB(
-            db_path + gff_name + ".db")
+        db = gffutils.FeatureDB(db_path + gff_name + ".db")
         return species, db
     else:
         return False
@@ -38,22 +37,7 @@ def get_exons(db_path, species):
     return species, [exon for exon in db.features_of_type('exon')]
 
 
-def get_ortho_groups(ortho_group_path):
-    # import ortholog groups
-    with open(ortho_group_path, 'r') as f:
-        groups_raw = f.readlines()
-        groups_raw = [line.strip() for line in groups_raw]
-    groups = dict()
-    for line in groups_raw:
-        ortho, data = line.split(':')
-        ortho = ortho.strip()
-        data = data.strip().split()
-        data = {elem.split("|")[0]: elem.split("|")[1] for elem in data}
-        groups[ortho] = data
-    return groups
-
-
-def create_and_populate_dbs(groups_fn, gff_path, db_path, template_species_list):
+def create_and_populate_dbs(gff_path, db_path, template_species_list):
     start = time.clock()
     print("created?\n" +
           "--------")
@@ -75,10 +59,8 @@ def create_and_populate_dbs(groups_fn, gff_path, db_path, template_species_list)
     end = time.clock()
     print("time: {}".format(end - start))
 
-    print(get_ortho_groups(groups_fn))
-
 
 if __name__ == '__main__':
-    import config
+    import orthoExon.config as config
 
-    create_and_populate_dbs(config.groups_fn, config.gff_path, config.db_path, config.template_species_list)
+    create_and_populate_dbs(config.gff_path, config.db_path, config.template_species_list)
