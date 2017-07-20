@@ -182,7 +182,7 @@ def filter_aligned_escds(enhanced_alignment_path, orthoCds_path, template_specie
 
 
 if __name__ == '__main__':
-    import config
+    import orthoExon.config as config
 
     filter_aligned_escds(config.enhanced_alignment_path, config.orthoCds_path, config.template_species_list,
                          config.min_cds_length, config.max_gap_length, config.max_gap_percent)

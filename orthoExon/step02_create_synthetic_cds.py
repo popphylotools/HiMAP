@@ -4,7 +4,7 @@ import json
 import os
 import shutil
 
-import config
+import orthoExon.config as config
 import gffutils
 from Bio.Alphabet import IUPAC
 from Bio.Seq import Seq
@@ -28,7 +28,7 @@ def create_template_synthetic_cds(template_species_list, fasta_path, template_sp
         parent_groups = json.load(f)
 
     # concatinate cds's for each species,ortho and output a fasta for each ortho
-    nnn = Seq("".join([n for n in range(config.n_count)]), IUPAC.ambiguous_dna)
+    nnn = Seq('n' * config.n_count, IUPAC.ambiguous_dna)
     shutil.rmtree(template_species_alignment_path, ignore_errors=True)
     os.makedirs(template_species_alignment_path, exist_ok=True)
     for ortho in parent_groups:

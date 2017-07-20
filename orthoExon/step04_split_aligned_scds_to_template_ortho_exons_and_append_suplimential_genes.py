@@ -5,7 +5,7 @@ import os
 import re
 import shutil
 
-import config
+import orthoExon.config as config
 import gffutils
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
@@ -178,7 +178,7 @@ def filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path,
                 cds = cds_list[sp][index]
                 fasta_prep[ortho][coord][sp] = cds
 
-    nnn = Seq("".join([n for n in range(config.n_count)]), IUPAC.ambiguous_dna)
+    nnn = Seq('n' * config.n_count, IUPAC.ambiguous_dna)
     shutil.rmtree(enhanced_alignment_path, ignore_errors=True)
     os.makedirs(enhanced_alignment_path, exist_ok=True)
     for ortho in fasta_prep:
