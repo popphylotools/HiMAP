@@ -24,6 +24,10 @@
 *.tre
 *.html
 
+# example files
+!/data/input/959genes.phy.contree_AgeRooted_wholeNumbs.tre
+!/data/input/groups_filtered_6181genes.txt
+
 # mac
 *.DS_Store
 
@@ -116,11 +120,3 @@ ENV/
 
 # Rope project settings
 .ropeproject
-
-# example files
-!/data/input/959genes.phy.contree_AgeRooted_wholeNumbs.tre
-!/data/input/groups_filtered_6181genes.txt
-!/data/input/gff/Ccap.gff
-!/data/input/gff/Bcur.gff
-!/data/input/gff/Bdor.gff
-!/data/input/gff/Bole.gff

@@ -1,4 +1,4 @@
-#!/bin/sh
+#tch_run_steps07-11_with_given_n!/bin/sh
 #$-N orthoexonN0
 #$-S /bin/sh
 #$-o orthoexonN0_$JOB_ID.out
@@ -12,7 +12,7 @@
 
 module load orthoExon
 
-./"batch_run_steps7-11_with_given_n" 0
+./"batch_run_steps07-11_with_given_n" 0
 
 
 # submitted with: qsub orthoexon_n0.qsub

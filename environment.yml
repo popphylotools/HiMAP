@@ -1,0 +1,9 @@
+name: orthoExon
+channels:
+  - bioconda
+dependencies:
+  - gffutils
+  - pybedtools
+  - bedtools
+  - biopython
+  - jupyter

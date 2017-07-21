@@ -12,7 +12,7 @@
 
 module load orthoExon
 
-./"batch_run_steps7-11_with_given_n" 2
+./"batch_run_steps07-11_with_given_n" 2
 
 
 # submitted with: qsub orthoexon_n2.qsub
