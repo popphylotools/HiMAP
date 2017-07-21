@@ -37,23 +37,23 @@ def get_exons(db_path, species):
     return species, [exon for exon in db.features_of_type('exon')]
 
 
-def create_and_populate_dbs(gff_path, db_path, template_species_list):
+def create_and_populate_dbs(gff_path, db_path, enhanced_species_list):
     start = time.clock()
     print("created?\n" +
           "--------")
-    with Pool(len(template_species_list)) as p:
+    with Pool(len(enhanced_species_list)) as p:
         results = {sp: db for sp, db in p.starmap(create_db, zip(itertools.repeat(db_path),
                                                                  itertools.repeat(gff_path),
-                                                                 template_species_list))}
+                                                                 enhanced_species_list))}
     for sp, status in results.items():
         print("{}: {}".format(sp, status))
     end = time.clock()
     print("time: {}".format(end - start))
 
     start = time.clock()
-    gff_dbs = {sp: db for sp, db in [connect_db(db_path, sp) for sp in template_species_list]}
+    gff_dbs = {sp: db for sp, db in [connect_db(db_path, sp) for sp in enhanced_species_list]}
     exons = {}
-    for sp in template_species_list:
+    for sp in enhanced_species_list:
         exons[sp] = gff_dbs[sp].count_features_of_type('exon')
         print("{} exons: {}".format(sp, exons[sp]))
     end = time.clock()
@@ -63,4 +63,4 @@ def create_and_populate_dbs(gff_path, db_path, template_species_list):
 if __name__ == '__main__':
     import config
 
-    create_and_populate_dbs(config.gff_path, config.db_path, config.template_species_list)
+    create_and_populate_dbs(config.gff_path, config.db_path, config.enhanced_species_list)
