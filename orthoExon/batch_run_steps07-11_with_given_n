@@ -3,7 +3,7 @@
 # the number of n's allowed in primers
 N=${1:-"0"}
 
-mkdir "../data/output${N}"
+mkdir -p "../data/output${N}"
 mkdir -p "../data/intermediate${N}/json/"
 cp "../data/intermediate/json/"*".json" "../data/intermediate${N}/json/"
 
