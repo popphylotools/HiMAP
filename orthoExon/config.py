@@ -35,6 +35,9 @@ min_cds_length = 100
 # path to the groups file
 groups_fn = "../data/input/groups_filtered_6181genes.txt"
 
+# path to file with alternate species for padding
+alternate_sp_fn = "../data/input/alternate_sp.json"
+
 # path to gff folder
 gff_path = "../data/input/gff/"
 
