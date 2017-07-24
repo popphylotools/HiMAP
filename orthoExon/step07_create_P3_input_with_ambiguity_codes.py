@@ -3,9 +3,9 @@
 import os
 import shutil
 
+import config
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
-import config
 
 
 def Consensus(aligned_seq_list):
@@ -22,7 +22,8 @@ def Consensus(aligned_seq_list):
     return consensus
 
 
-def create_P3_input_with_ambiguity_codes(primer3_path, orthoCds_path, primer_max_ns_accepted):
+def create_P3_input_with_ambiguity_codes(primer3_path, orthoCds_path, primer_max_ns_accepted, primer_product_size_range,
+                                         primer_thermodynamic_parameters_path):
     # create handles for all .fasta files in fasta directory
     fasta_fn = {name.split('.13spp.fasta')[0]: orthoCds_path + name for name in
                 os.listdir(orthoCds_path) if
@@ -41,8 +42,6 @@ def create_P3_input_with_ambiguity_codes(primer3_path, orthoCds_path, primer_max
         fasta_degenerate[ortho] = seq
 
     # output
-    primer_product_size_range = '200-10000'
-    primer_thermodynamic_parameters_path = '/data0/opt/Primer3/primer3-2.3.6/src/primer3_config/'
     primer_liberal_base = '1'
     shutil.rmtree(primer3_path, ignore_errors=True)
     os.makedirs(primer3_path, exist_ok=True)
@@ -77,7 +76,13 @@ if __name__ == '__main__':
     parser.add_argument('--orthoCds_path', help='orthoCds_path', default=config.orthoCds_path)
     parser.add_argument('--primer3_path', help='primer3_path', default=config.primer3_path)
     parser.add_argument('-n', '--ns_allowed', help="the number of n's allowed in primers", default=config.n_count)
+    parser.add_argument('--primer_product_size_range', help="primer product size range",
+                        default=config.primer_product_size_range)
+    parser.add_argument('--primer_thermodynamic_parameters_path',
+                        help="path to file detailing primer thermodynamic parameters",
+                        default=config.primer_thermodynamic_parameters_path)
 
     args = parser.parse_args()
 
-    create_P3_input_with_ambiguity_codes(args.primer3_path, args.orthoCds_path, args.ns_allowed)
+    create_P3_input_with_ambiguity_codes(args.primer3_path, args.orthoCds_path, args.ns_allowed,
+                                         args.primer_product_size_range, args.primer_thermodynamic_parameters_path)

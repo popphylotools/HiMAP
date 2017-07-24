@@ -74,6 +74,9 @@ orthoCds_path = "../data/output/orthoCds/"
 #
 summary_fn = "../data/output/summory.csv"
 
+primer_product_size_range = '200-10000'
+primer_thermodynamic_parameters_path = '/data0/opt/Primer3/primer3-2.3.6/src/primer3_config/'
+
 #
 collapse_iupac = {
     ('-',): '-',

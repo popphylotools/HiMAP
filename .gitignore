@@ -120,3 +120,4 @@ ENV/
 
 # Rope project settings
 .ropeproject
+!/data/input/alternate_sp.json
