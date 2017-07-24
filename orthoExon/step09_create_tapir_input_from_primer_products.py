@@ -10,8 +10,8 @@ from Bio.Alphabet import IUPAC
 from Bio.SeqRecord import SeqRecord
 
 
-def pad_to_full_sp_count_and_trim_to_primer_product(alternate_sp_fn, padded_primer_product_path, unpadded_primer_product_path,
-                                                    primer3_path, orthoCds_path, enhanced_species_list):
+def pad_to_full_sp_count_and_trim_to_primer_product(json_path, padded_primer_product_path, unpadded_primer_product_path,
+                                                    primer3_path, orthoCds_path, enhanced_species_list, alternate_sp_fn):
     with open(alternate_sp_fn, 'r') as f:
         alternate_sp = json.load(f)
 
@@ -108,10 +108,11 @@ if __name__ == '__main__':
                         default=config.padded_primer_product_path)
     parser.add_argument('--unpadded_primer_product_path', help='unpadded_primer_product_path',
                         default=config.unpadded_primer_product_path)
+    parser.add_argument('--json_path', help='json path', default=config.json_path)
     parser.add_argument('--alternate_sp_fn', help='alternate_sp.json path', default=config.alternate_sp_fn)
 
     args = parser.parse_args()
 
-    pad_to_full_sp_count_and_trim_to_primer_product(args.alternate_sp_fn, args.padded_primer_product_path,
+    pad_to_full_sp_count_and_trim_to_primer_product(args.json_path, args.padded_primer_product_path,
                                                     args.unpadded_primer_product_path, args.primer3_path,
-                                                    args.orthoCds_path, config.enhanced_species_list)
+                                                    args.orthoCds_path, config.enhanced_species_list, args.alternate_sp_fn)
