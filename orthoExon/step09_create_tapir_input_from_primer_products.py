@@ -11,7 +11,8 @@ from Bio.SeqRecord import SeqRecord
 
 
 def pad_to_full_sp_count_and_trim_to_primer_product(json_path, padded_primer_product_path, unpadded_primer_product_path,
-                                                    primer3_path, orthoCds_path, enhanced_species_list, alternate_sp_fn):
+                                                    primer3_path, orthoCds_path, enhanced_species_list,
+                                                    alternate_sp_fn):
     with open(alternate_sp_fn, 'r') as f:
         alternate_sp = json.load(f)
 
@@ -115,4 +116,5 @@ if __name__ == '__main__':
 
     pad_to_full_sp_count_and_trim_to_primer_product(args.json_path, args.padded_primer_product_path,
                                                     args.unpadded_primer_product_path, args.primer3_path,
-                                                    args.orthoCds_path, config.enhanced_species_list, args.alternate_sp_fn)
+                                                    args.orthoCds_path, config.enhanced_species_list,
+                                                    args.alternate_sp_fn)
