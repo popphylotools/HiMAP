@@ -74,8 +74,9 @@ def pad_to_full_sp_count_and_trim_to_primer_product(json_path, padded_primer_pro
                 padded_fasta[ortho][variation][sp].description = ""
 
     # output fasta to pre_padding_species.json
-    os.makedirs(json_path, exist_ok=True)
     filename = json_path + "pre_padding_species.json"
+    os.makedirs(json_path, exist_ok=True)
+    shutil.rmtree(filename, ignore_errors=True)
     with open(filename, 'w') as f:
         json.dump({ortho: [sp for sp in trimmed_fasta[ortho][0]] for ortho in trimmed_fasta}, f)
 
