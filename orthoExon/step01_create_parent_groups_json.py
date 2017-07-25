@@ -2,6 +2,7 @@
 
 import json
 import os
+import shutil
 
 import gffutils
 
@@ -60,6 +61,7 @@ def create_parent_groups_json(groups_fn, db_path, json_path, template_species_li
     # output parent_groups to groups.json
     filename = json_path + "groups.json"
     os.makedirs(json_path, exist_ok=True)
+    shutil.rmtree(filename, ignore_errors=True)
     with open(filename, 'w') as f:
         json.dump(parent_groups, f)
 

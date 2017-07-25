@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import csv
+import shutil
 from collections import Counter
 from functools import reduce
 from operator import mul
@@ -45,6 +46,7 @@ def summory_combiner(filename_list):
 
     data = sorted(data, key=lambda x: x[0])
 
+    shutil.rmtree('combined_summory.csv', ignore_errors=True)
     with open('combined_summory.csv', "w") as f:
         writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
         header = ('CDS_Ortholog',
