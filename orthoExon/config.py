@@ -29,14 +29,12 @@ n_count = 50
 # cds gap filter parameters
 max_gap_percent = 0
 max_gap_length = 0
+
 # cds length filter parameters
 min_cds_length = 100
 
 # path to the groups file
 groups_fn = "../data/input/groups_filtered_6181genes.txt"
-
-# path to file with alternate species for padding
-alternate_sp_fn = "../data/input/alternate_sp.json"
 
 # path to gff folder
 gff_path = "../data/input/gff/"
@@ -51,31 +49,16 @@ db_path = "../data/intermediate/gff_databases/"
 json_path = "../data/intermediate/json/"
 
 # path where alignment with template species is created
-template_species_alignment_path = "../data/intermediate/template_scds_alignment/"
+template_alignment_path = "../data/intermediate/template_alignment/"
 
 # path where alignment with all species is created
-enhanced_alignment_path = "../data/intermediate/enhanced_scds_alignment/"
+enhanced_alignment_path = "../data/intermediate/supplemental_alignment/"
 
 #
-primer3_path = "../data/intermediate/primer_design/"
-
-#
-unpadded_primer_product_path = "../data/output/primerProducts/"
-
-#
-padded_primer_product_path = "../data/intermediate/phylo_informativeness/fasta/"
-
-#
-pi_score_path = "../data/intermediate/phylo_informativeness/tapir_out/phylogenetic-informativeness.sqlite"
-
-#
-orthoCds_path = "../data/output/orthoCds/"
+fasta_output_path = "../data/output/fasta/"
 
 #
 summary_fn = "../data/output/summory.csv"
-
-primer_product_size_range = '200-10000'
-primer_thermodynamic_parameters_path = '/data0/opt/Primer3/primer3-2.3.6/src/primer3_config/'
 
 #
 collapse_iupac = {

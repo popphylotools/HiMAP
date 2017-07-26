@@ -12,7 +12,7 @@ from Bio.SeqRecord import SeqRecord
 from pyfaidx import Fasta
 
 
-def create_template_synthetic_cds(template_species_list, fasta_path, template_species_alignment_path, db_path,
+def create_template_synthetic_cds(template_species_list, fasta_path, template_alignment_path, db_path,
                                   json_path):
     # create handles for all .db files in intermediate directory
     gff = {name.split('.gff.db')[0]: name for name in os.listdir(db_path) if ".gff.db" in name}
@@ -29,10 +29,10 @@ def create_template_synthetic_cds(template_species_list, fasta_path, template_sp
 
     # concatinate cds's for each species,ortho and output a fasta for each ortho
     nnn = Seq('n' * config.n_count, IUPAC.ambiguous_dna)
-    shutil.rmtree(template_species_alignment_path, ignore_errors=True)
-    os.makedirs(template_species_alignment_path, exist_ok=True)
+    shutil.rmtree(template_alignment_path, ignore_errors=True)
+    os.makedirs(template_alignment_path, exist_ok=True)
     for ortho in parent_groups:
-        filename = template_species_alignment_path + ortho + ".fasta"
+        filename = template_alignment_path + ortho + ".fasta"
         with open(filename, "w") as f:
             for sp in template_species_list:
                 parent = gff[sp][parent_groups[ortho][sp]]
@@ -52,4 +52,4 @@ def create_template_synthetic_cds(template_species_list, fasta_path, template_sp
 
 if __name__ == "__main__":
     create_template_synthetic_cds(config.template_species_list, config.fasta_path,
-                                  config.template_species_alignment_path, config.db_path, config.json_path)
+                                  config.template_alignment_path, config.db_path, config.json_path)

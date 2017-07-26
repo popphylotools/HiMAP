@@ -67,7 +67,7 @@ def longestGap(seq):
         return 0
 
 
-def filter_aligned_escds(enhanced_alignment_path, orthoCds_path, template_species_list, min_cds_length, max_gap_length,
+def filter_aligned_escds(enhanced_alignment_path, fasta_output_path, template_species_list, min_cds_length, max_gap_length,
                          max_gap_percent):
     # create handles for all .fasta files in aligned_13spp_fasta directory
     aligned_fasta_fn = {name.split('.13spp')[0]: enhanced_alignment_path + name for name in
@@ -172,10 +172,10 @@ def filter_aligned_escds(enhanced_alignment_path, orthoCds_path, template_specie
     fasta_prep = {ortho: seq_list for ortho, seq_list in fasta_prep.items() if len(seq_list) >= 8}
 
     # fasta output
-    shutil.rmtree(orthoCds_path, ignore_errors=True)
-    os.makedirs(orthoCds_path, exist_ok=True)
+    shutil.rmtree(fasta_output_path, ignore_errors=True)
+    os.makedirs(fasta_output_path, exist_ok=True)
     for ortho in fasta_prep:
-        filename = orthoCds_path + ortho + ".13spp.fasta"
+        filename = fasta_output_path + ortho + ".13spp.fasta"
         with open(filename, "w") as f:
             for seqReq in fasta_prep[ortho]:
                 f.write(seqReq.format("fasta"))
@@ -184,5 +184,5 @@ def filter_aligned_escds(enhanced_alignment_path, orthoCds_path, template_specie
 if __name__ == '__main__':
     import config
 
-    filter_aligned_escds(config.enhanced_alignment_path, config.orthoCds_path, config.template_species_list,
+    filter_aligned_escds(config.enhanced_alignment_path, config.fasta_output_path, config.template_species_list,
                          config.min_cds_length, config.max_gap_length, config.max_gap_percent)

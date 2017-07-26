@@ -71,7 +71,7 @@ def longestGap(seq):
         return 0
 
 
-def filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path, template_species_alignment_path,
+def filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path, template_alignment_path,
                                             db_path, json_path, template_species_list, transvestigated_species_set,
                                             max_gap_percent, max_gap_length, min_cds_length):
     """filter template synthetic cds and create enhanced (full species set) scds with suplemential species
@@ -98,8 +98,8 @@ def filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path,
         parent_groups = json.load(f)
 
     # create handles for all .fasta files in aligned_4spp_fasta directory
-    aligned_fasta_fn = {name.split('.fasta')[0]: template_species_alignment_path + name for name in
-                        os.listdir(template_species_alignment_path) if
+    aligned_fasta_fn = {name.split('.fasta')[0]: template_alignment_path + name for name in
+                        os.listdir(template_alignment_path) if
                         ((".fasta.aln" in name) and (".fasta.aln.fai" not in name))}
 
     # read and parse fasta files for each species
@@ -221,6 +221,6 @@ def filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path,
 
 if __name__ == '__main__':
     filter_tscds_and_append_suplemential_sp(config.fasta_path, config.enhanced_alignment_path,
-                                            config.template_species_alignment_path, config.db_path, config.json_path,
+                                            config.template_alignment_path, config.db_path, config.json_path,
                                             config.template_species_list, config.transvestigated_species_set,
                                             config.max_gap_percent, config.max_gap_length, config.min_cds_length)
