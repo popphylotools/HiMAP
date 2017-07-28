@@ -34,31 +34,31 @@ max_gap_length = 0
 min_cds_length = 100
 
 # path to the groups file
-groups_fn = "../data/input/groups_filtered_6181genes.txt"
+groups_fn = "./data/input/groups_filtered_6181genes.txt"
 
 # path to gff folder
-gff_path = "../data/input/gff/"
+gff_path = "./data/input/gff/"
 
 # path to fasta folder
-fasta_path = "../data/input/fasta/"
+fasta_path = "./data/input/fasta/"
 
 # path where databases are created
-db_path = "../data/intermediate/gff_databases/"
+db_path = "./data/intermediate/gff_databases/"
 
 # path where json files are created
-json_path = "../data/intermediate/json/"
+json_path = "./data/intermediate/json/"
 
 # path where alignment with template species is created
-template_alignment_path = "../data/intermediate/template_alignment/"
+template_alignment_path = "./data/intermediate/template_alignment/"
 
 # path where alignment with all species is created
-enhanced_alignment_path = "../data/intermediate/supplemental_alignment/"
+enhanced_alignment_path = "./data/intermediate/supplemental_alignment/"
 
 #
-fasta_output_path = "../data/output/fasta/"
+fasta_output_path = "./data/output/fasta/"
 
 #
-summary_fn = "../data/output/summory.csv"
+summary_fn = "./data/output/summory.csv"
 
 #
 collapse_iupac = {

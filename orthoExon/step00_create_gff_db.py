@@ -3,7 +3,7 @@
 import itertools
 import os
 import time
-from multiprocessing import Pool
+import multiprocessing as mp
 
 import gffutils
 
@@ -41,7 +41,7 @@ def create_and_populate_dbs(gff_path, db_path, enhanced_species_list):
     start = time.clock()
     print("created?\n" +
           "--------")
-    with Pool(len(enhanced_species_list)) as p:
+    with mp.Pool(min(len(enhanced_species_list), mp.cpu_count())) as p:
         results = {sp: db for sp, db in p.starmap(create_db, zip(itertools.repeat(db_path),
                                                                  itertools.repeat(gff_path),
                                                                  enhanced_species_list))}

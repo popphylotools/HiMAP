@@ -1,0 +1,9 @@
+{"Bcor":["Bzon","Bdor"],
+"Bzon":["Bcor","Bdor"],
+"Blat":["Bdor"],
+"Bjar":["Btry","Blat","Bdor"],
+"Btry":["Bjar","Blat","Bdor"],
+"Bmin":["Bole"],
+"Aobl":["Afra","Asus","Ccap"],
+"Afra":["Asus","Aobl","Ccap"],
+"Asus":["Afra","Aobl","Ccap"]}

@@ -14,7 +14,7 @@ from Bio.SeqRecord import SeqRecord
 from pyfaidx import Fasta
 
 
-# define functions to parse coordinates of cds's from concatinated aligned fasta w/ n's and -'s
+# define functions to parse coordinates of cds's from concatenated aligned fasta w/ n's and -'s
 
 def findBreakpoints(seq):
     breakpoints = []
@@ -74,8 +74,6 @@ def longestGap(seq):
 def filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path, template_alignment_path,
                                             db_path, json_path, template_species_list, transvestigated_species_set,
                                             max_gap_percent, max_gap_length, min_cds_length):
-    """filter template synthetic cds and create enhanced (full species set) scds with suplemential species
-    """
 
     # create handles for all .db files in intermediate directory
     gff_fn = {name.split('.gff.db')[0]: db_path + name for name in os.listdir(db_path) if
@@ -86,12 +84,6 @@ def filter_tscds_and_append_suplemential_sp(fasta_path, enhanced_alignment_path,
     fasta_fn = {name.split('.nt.fasta')[0]: fasta_path + name for name in os.listdir(fasta_path) if
                 ((".nt.fasta" in name) and (".nt.fasta.fai" not in name))}
     fasta = {key: Fasta(value) for key, value in fasta_fn.items()}
-    '''fasta = {}
-    for sp,path in fasta_fn.items():
-        if sp in transvestigated_species_set:
-            fasta[sp] = Fasta(path, key_function = lambda x: x.split('|m.')[0])
-        else:
-            fasta[sp] = Fasta(path)'''
 
     # import ortholog groups
     with open(json_path + "groups.json", 'r') as f:
