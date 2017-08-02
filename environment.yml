@@ -2,8 +2,12 @@ name: orthoExon
 channels:
   - bioconda
 dependencies:
+  - python=3.4
+  - pandas
   - gffutils
-  - pybedtools
-  - bedtools
   - biopython
-  - jupyter
+  - mafft
+  - parallel
+  - bokeh
+  - pip:
+    - pytoml==0.1.13

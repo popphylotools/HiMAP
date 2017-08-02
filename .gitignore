@@ -1,12 +1,12 @@
 # pycharm files
 .idea
 
-# data files
-/orthoExon/data/intermediate/
-!/orthoExon/data/intermediate/gff_databases/*
-/orthoExon/data/output/
+data/*/intermediate
+data/*/output
+*.gff
 *.fasta
 *.fasta.fai
+
 
 # mac
 *.DS_Store
