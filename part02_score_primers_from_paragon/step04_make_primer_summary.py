@@ -177,7 +177,7 @@ def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out
         group = str(i % cpu_count)
         padded_primer_product_fn = padded_primer_product_path + file
         nex_fn = nex_path + group + "/" + file + ".nex"
-        input.append((padded_primer_product_fn, nex_fn))
+        convertfasta2nex_input.append((padded_primer_product_fn, nex_fn))
         i += 1
 
     pool = ThreadPool(cpu_count)
@@ -190,7 +190,7 @@ def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out
     for i in range(cpu_count):
         nex_sub_path = nex_path + str(i) + "/"
         tapir_out_sub_path = tapir_out_path + str(i) + "/"
-        input.append((nex_sub_path, tapir_out_sub_path, ref_tree_fn))
+        tapir_driver_input.append((nex_sub_path, tapir_out_sub_path, ref_tree_fn))
 
     pool = ThreadPool(cpu_count)
     pool.starmap(tapir_driver, tapir_driver_input)
