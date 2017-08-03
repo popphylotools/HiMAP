@@ -108,6 +108,8 @@ def create_padded_primer_products(orthoExon_path, padded_primer_product_path, un
     df.columns = map(str.lower, df.columns)
 
     # output unpadded primer products
+    shutil.rmtree(unpadded_primer_product_path, ignore_errors=True)
+    os.makedirs(unpadded_primer_product_path, exist_ok=True)
     for ortho in df.loci_id:
         with open(unpadded_primer_product_path + ortho + ".fasta", 'w') as f:
             start = df.loc[ortho]["ampinsert_start"]
@@ -118,6 +120,8 @@ def create_padded_primer_products(orthoExon_path, padded_primer_product_path, un
                     f.write(seqReq.format("fasta"))
 
     # output padded primer products
+    shutil.rmtree(padded_primer_product_path, ignore_errors=True)
+    os.makedirs(padded_primer_product_path, exist_ok=True)
     for ortho in df.loci_id:
         with open(padded_primer_product_path + ortho + ".padded.fasta", 'w') as f:
             start = df.loc[ortho]["ampinsert_start"]
@@ -155,7 +159,7 @@ def tapir_driver(nex_sub_path, tapir_out_sub_path, ref_tree_fn):
 def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out_path, pi_score_path, ref_tree_fn):
     cpu_count = mp.cpu_count()
 
-    # remove and recreate nex andtapir ouput directories
+    # remove and recreate nex and tapir ouput directories
     shutil.rmtree(nex_path, ignore_errors=True)
     shutil.rmtree(tapir_out_path, ignore_errors=True)
     shutil.rmtree(pi_score_path, ignore_errors=True)
