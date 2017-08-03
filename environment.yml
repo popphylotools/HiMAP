@@ -6,7 +6,6 @@ dependencies:
   - pandas
   - biopython
   - mafft
-  - bokeh
   - pip:
     - gffutils
     - pytoml==0.1.13
