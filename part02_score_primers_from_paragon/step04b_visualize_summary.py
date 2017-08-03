@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import pandas as pd
 from bokeh.charts import Scatter, Histogram, output_file, save
 from bokeh.layouts import column
