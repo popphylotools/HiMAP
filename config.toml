@@ -27,7 +27,7 @@ min_exon_length = 100
 ################
 
 # input
-groups_fn =                         "../data/part01/input/groups_filtered_6181genes.txt"
+groups_fn =                         "../data/part01/input/filtered_orthomcl_output_6181genes.txt"
 gff_path =                          "../data/part01/input/gff/"
 fasta_path =                        "../data/part01/input/fasta/"
 
@@ -45,12 +45,12 @@ fasta_output_path =                 "../data/part01/output/fasta/"
 ################
 
 # from privious part
-orthoExon_path =                    "../data/part01/output/fasta/"
+orthoExon_path =                    "../data/part02/input/orthoExons/"
 
 # input
-paragon_fn =                      "../data/part02/input/PGC106.selectedAmp.tab"
-ref_tree_fn =                          "../data/part02/input/959genes.phy.contree_AgeRooted_wholeNumbs.tre"
-alternate_sp_fn =                      "../data/part02/input/alternate_sp.json"
+paragon_fn =                        "../data/part02/input/PGC106.selectedAmp.tab"
+ref_tree_fn =                       "../data/part02/input/tapir_ref_959genes.tre"
+alternate_sp_fn =                   "../data/part02/input/alternate_sp.json"
 
 # intermediate
 pi_path =                           "../data/part02/intermediate/"
