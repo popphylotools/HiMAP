@@ -4,10 +4,9 @@ channels:
 dependencies:
   - python=3.4
   - pandas
-  - gffutils
   - biopython
   - mafft
-  - parallel
   - bokeh
   - pip:
+    - gffutils
     - pytoml==0.1.13
