@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
+source activate orthoExon
 
-DIRECTORY=${1}
+IN_FILE=${1}
+OUT_FILE=${2}
 
-rm ${DIRECTORY}*".fasta.aln"
-
-"/bin/ls" ${DIRECTORY}*".fasta" | parallel "mafft --localpair --maxiterate 1000 {} > {}.aln"
+mafft --localpair --maxiterate 1000 ${IN_FILE} > ${OUT_FILE}

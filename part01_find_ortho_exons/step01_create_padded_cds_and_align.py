@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
 import json
+import multiprocessing as mp
 import os
 import shutil
+from multiprocessing.pool import ThreadPool
 
 import gffutils
 from Bio.Alphabet import IUPAC
@@ -48,6 +50,26 @@ def create_padded_cds(template_species_list, fasta_path, template_alignment_path
                 f.write(seqReq.format("fasta"))
 
 
+def mafft_driver_file(file):
+    p = subprocess.Popen(["./mafft_driver.sh", file, file + ".aln"],
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    out, err = p.communicate()
+    return out, err
+
+
+def mafft_driver_path(path):
+    # remove old alignments
+    rm_files = [path + file for file in os.listdir(path) if ".aln" in file]
+    for file in rm_files:
+        os.remove(file)
+
+    # call maft on each fasta
+    pool = ThreadPool(mp.cpu_count())
+    files = [path + file for file in os.listdir(path) if ".fasta" in file]
+    pool.map(mafft_driver_file, files)
+    pool.close()
+    pool.join()
+
 if __name__ == "__main__":
     import subprocess
     import argparse
@@ -61,7 +83,7 @@ if __name__ == "__main__":
     with open(args.configPath) as toml_data:
         config = pytoml.load(toml_data)
 
-    create_padded_cds(config['template_species_list'], config['fasta_path'], config['template_alignment_path'], config['db_path'],
-                      config['json_path'], config['n_count'])
+    create_padded_cds(config['template_species_list'], config['fasta_path'], config['template_alignment_path'],
+                      config['db_path'], config['json_path'], config['n_count'])
 
-    subprocess.call(["./mafft_driver.sh", config['template_alignment_path']])
+    mafft_driver_path(config['template_alignment_path'])

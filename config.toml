@@ -39,8 +39,6 @@ enhanced_alignment_path =           "../data/part01/intermediate/supplemental_al
 
 # output
 fasta_output_path =                 "../data/part01/output/fasta/"
-summary_fn =                        "../data/part01/output/summary.csv"
-
 
 ################
 # Part02 Paths #
@@ -59,7 +57,7 @@ pi_path =                           "../data/part02/intermediate/"
 padded_primer_product_path =        "../data/part02/intermediate/fasta/"
 nex_path =                          "../data/part02/intermediate/nex/"
 tapir_out_path =                    "../data/part02/intermediate/tapir_out/"
-pi_score_path =                     "../data/part02/intermediate/sql/
+pi_score_path =                     "../data/part02/intermediate/sql/"
 
 # output
 unpadded_primer_product_path =      "../data/part02/output/primerProducts/"
