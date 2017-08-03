@@ -62,7 +62,7 @@ pi_score_path =                     "../data/part02/intermediate/sql/"
 # output
 unpadded_primer_product_path =      "../data/part02/output/primerProducts/"
 summary_fn =                        "../data/part02/output/summary.csv"
-
+graph_path =                        "../data/part02/output/summary.html"
 
 ################
 # Part03 Paths #

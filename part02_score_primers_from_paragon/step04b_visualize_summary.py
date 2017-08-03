@@ -4,10 +4,10 @@ import pandas as pd
 from bokeh.charts import Scatter, Histogram, output_file, save
 from bokeh.layouts import column
 
-def visualize_summary():
-    output_file("summary.html")
+def visualize_summary(summary_fn, graph_path):
+    output_file(graph_path)
 
-    df = pd.read_csv("summary.csv")
+    df = pd.read_csv(summary_fn)
 
     p = Scatter(df, x='insert_length', y='score', color="max_ambiguities(l|r)",
                 title="Score vs Insert_Length Colored by Max_Ambiguities(L|R)")
@@ -31,3 +31,5 @@ if __name__ == '__main__':
     # load config file
     with open(args.configPath) as toml_data:
         config = pytoml.load(toml_data)
+
+    visualize_summary(config['summary_fn'], config['graph_path'])
