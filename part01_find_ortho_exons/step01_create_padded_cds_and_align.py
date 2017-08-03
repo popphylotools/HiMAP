@@ -64,8 +64,8 @@ def mafft_driver_path(path):
         os.remove(file)
 
     # call maft on each fasta
-    pool = ThreadPool(mp.cpu_count())
     files = [path + file for file in os.listdir(path) if ".fasta" in file]
+    pool = ThreadPool(mp.cpu_count())
     pool.map(mafft_driver_file, files)
     pool.close()
     pool.join()

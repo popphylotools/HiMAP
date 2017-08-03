@@ -166,22 +166,28 @@ def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out
 
     # for each fasta file, make a nex (split into cpu_count subdirectories)
     i = 0
-    pool = ThreadPool(cpu_count)
+    convertfasta2nex_input = []
     for file in os.listdir(padded_primer_product_path):
         group = str(i % cpu_count)
         padded_primer_product_fn = padded_primer_product_path + file
         nex_fn = nex_path + group + "/" + file + ".nex"
-        pool.apply_async(convertfasta2nex(padded_primer_product_fn, nex_fn))
+        input.append((padded_primer_product_fn, nex_fn))
         i += 1
+
+    pool = ThreadPool(cpu_count)
+    pool.starmap(convertfasta2nex, convertfasta2nex_input)
     pool.close()
     pool.join()
 
     # for each core, process a subdirectory
-    pool = ThreadPool(cpu_count)
+    tapir_driver_input = []
     for i in range(cpu_count):
         nex_sub_path = nex_path + str(i) + "/"
         tapir_out_sub_path = tapir_out_path + str(i) + "/"
-        pool.apply_async(tapir_driver(nex_sub_path, tapir_out_sub_path, ref_tree_fn))
+        input.append((nex_sub_path, tapir_out_sub_path, ref_tree_fn))
+
+    pool = ThreadPool(cpu_count)
+    pool.starmap(tapir_driver, tapir_driver_input)
     pool.close()
     pool.join()
 
