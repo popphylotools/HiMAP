@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
 import json
+import multiprocessing as mp
 import os
 import re
 import shutil
+from multiprocessing.pool import ThreadPool
 
 import gffutils
 from Bio import SeqIO
@@ -211,6 +213,27 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
                     f.write(seqReq.format("fasta"))
 
 
+def mafft_driver_file(file):
+    p = subprocess.Popen(["./mafft_driver.sh", file, file + ".aln"],
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    out, err = p.communicate()
+    return out, err
+
+
+def mafft_driver_path(path):
+    # remove old alignments
+    rm_files = [path + file for file in os.listdir(path) if ".aln" in file]
+    for file in rm_files:
+        os.remove(file)
+
+    # call maft on each fasta
+    files = [path + file for file in os.listdir(path) if ".fasta" in file]
+    pool = ThreadPool(mp.cpu_count())
+    pool.map(mafft_driver_file, files)
+    pool.close()
+    pool.join()
+
+
 if __name__ == '__main__':
     import subprocess
     import argparse
@@ -224,8 +247,9 @@ if __name__ == '__main__':
     with open(args.configPath) as toml_data:
         config = pytoml.load(toml_data)
 
-    create_raw_exons(config['fasta_path'], config['enhanced_alignment_path'], config['template_alignment_path'], config['db_path'],
+    create_raw_exons(config['fasta_path'], config['enhanced_alignment_path'], config['template_alignment_path'],
+                     config['db_path'],
                      config['json_path'], config['template_species_list'], config['transvestigated_species_list'],
                      config['max_gap_percent'], config['max_gap_length'], config['min_exon_length'], config['n_count'])
 
-    subprocess.call(["./mafft_driver.sh", config['enhanced_alignment_path']])
+    mafft_driver_path(config['enhanced_alignment_path'])

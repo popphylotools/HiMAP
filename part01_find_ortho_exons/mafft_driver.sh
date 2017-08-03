@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source activate orthoExon
+source activate mafft
 
 IN_FILE=${1}
 OUT_FILE=${2}
