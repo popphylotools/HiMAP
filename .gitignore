@@ -1,28 +1,13 @@
 # pycharm files
 .idea
 
-# data files
-*.err
-*.out
+data/*/intermediate
+data/*/output
 *.gff
 *.fasta
 *.fasta.fai
-*.db
-*.txt
-*.json
-*.p3.out
-*.completeConsensus
-*.fasta.aln
-*.fasta.aln.fai
-*.nex
-*.p3
-*.rates
-*.sqlite
-*.csv
-*maft_log
-*.newick
-*.tre
-*.html
+*mafft_log
+
 
 # mac
 *.DS_Store

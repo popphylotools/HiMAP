@@ -1,0 +1,5 @@
+name: mafft
+channels:
+  - biocore
+dependencies:
+  - mafft

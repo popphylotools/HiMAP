@@ -1,0 +1,77 @@
+#####################
+# Part01 Parameters #
+#####################
+
+# species with good annotations
+template_species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
+
+# full species list
+full_species_list = ['Bcur', 'Bdor', 'Bole', 'Ccap', 'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl', 'Asus', 'Btry']
+
+# list of species who's part01 came from transvestigator (needs to be parsed slightly different)
+transvestigated_species_list = ['Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl']
+
+# number of n's used to create alignment boarders
+n_count = 50
+
+# cds gap filter parameters
+max_gap_percent = 0
+max_gap_length = 0
+
+# exon length filter parameters
+min_exon_length = 100
+
+
+################
+# Part01 Paths #
+################
+
+# input
+groups_fn =                         "../data/part01/input/filtered_orthomcl_output_6181genes.txt"
+gff_path =                          "../data/part01/input/gff/"
+fasta_path =                        "../data/part01/input/fasta/"
+
+# intermediate
+db_path =                           "../data/part01/intermediate/gff_databases/"
+json_path =                         "../data/part01/intermediate/json/"
+template_alignment_path =           "../data/part01/intermediate/template_alignment/"
+enhanced_alignment_path =           "../data/part01/intermediate/supplemental_alignment/"
+
+# output
+fasta_output_path =                 "../data/part01/output/fasta/"
+
+################
+# Part02 Paths #
+################
+
+# from privious part
+orthoExon_path =                    "../data/part02/input/orthoExons/"
+
+# input
+paragon_fn =                        "../data/part02/input/PGC106.selectedAmp.tab"
+ref_tree_fn =                       "../data/part02/input/tapir_ref_959genes.tre"
+alternate_sp_fn =                   "../data/part02/input/alternate_sp.json"
+
+# intermediate
+pi_path =                           "../data/part02/intermediate/"
+padded_primer_product_path =        "../data/part02/intermediate/fasta/"
+nex_path =                          "../data/part02/intermediate/nex/"
+tapir_out_path =                    "../data/part02/intermediate/tapir_out/"
+pi_score_path =                     "../data/part02/intermediate/sql/"
+
+# output
+unpadded_primer_product_path =      "../data/part02/output/primerProducts/"
+summary_fn =                        "../data/part02/output/summary.csv"
+
+################
+# Part03 Paths #
+################
+
+# input
+sequences_path =                    "../data/part03/input/"
+
+# intermediate
+called_sequences_path =             "../data/part03/intermediate/"
+
+# output
+filtered_summary_sequences_path =   "../data/part03/output/"
