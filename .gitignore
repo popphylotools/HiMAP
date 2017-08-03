@@ -6,6 +6,7 @@ data/*/output
 *.gff
 *.fasta
 *.fasta.fai
+*mafft_log
 
 
 # mac
