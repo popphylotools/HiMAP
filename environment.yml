@@ -2,7 +2,7 @@ name: orthoExon
 channels:
   - bioconda
 dependencies:
-  - python=3.4
+  - python=3.6
   - pandas
   - biopython
   - pip:
