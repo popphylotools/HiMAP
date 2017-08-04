@@ -12,23 +12,6 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from pyfaidx import Fasta
 
-def write_unaligned_template_fasta(template_alignment_path, ortho, template_species_list, gff, parent_groups, nnn, fasta):
-    filename = template_alignment_path + ortho + "template.fasta"
-    with open(filename, "w") as f:
-        for sp in template_species_list:
-            parent = gff[sp][parent_groups[ortho][sp]]
-            strand = parent.strand
-            cds_list = gff[sp].children(parent, featuretype="CDS", order_by="start")
-            cat_seq = Seq("", IUPAC.ambiguous_dna)
-            for i, cds in enumerate(cds_list):
-                if i > 0:
-                    cat_seq += nnn
-                cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)),
-                               IUPAC.ambiguous_dna)
-            if strand == '-':
-                cat_seq = cat_seq.reverse_complement()
-            seqReq = SeqRecord(cat_seq, id=sp, description=parent.id)
-            f.write(seqReq.format("fasta"))
 
 def create_padded_cds(template_species_list, fasta_path, template_alignment_path, db_path, json_path, n_count):
     # create handles for all .db files in intermediate directory
@@ -48,15 +31,23 @@ def create_padded_cds(template_species_list, fasta_path, template_alignment_path
     nnn = Seq('n' * n_count, IUPAC.ambiguous_dna)
     shutil.rmtree(template_alignment_path, ignore_errors=True)
     os.makedirs(template_alignment_path, exist_ok=True)
-
-    fasta_writer_input = []
-    for ortho in parent_groups.keys():
-        fasta_writer_input.append((template_alignment_path, ortho, template_species_list, gff, parent_groups, nnn, fasta))
-
-    pool = mp.Pool(mp.cpu_count())
-    pool.starmap(write_unaligned_template_fasta, fasta_writer_input)
-    pool.close()
-    pool.join()
+    for ortho in parent_groups:
+        filename = template_alignment_path + ortho + "template.fasta"
+        with open(filename, "w") as f:
+            for sp in template_species_list:
+                parent = gff[sp][parent_groups[ortho][sp]]
+                strand = parent.strand
+                cds_list = gff[sp].children(parent, featuretype="CDS", order_by="start")
+                cat_seq = Seq("", IUPAC.ambiguous_dna)
+                for i, cds in enumerate(cds_list):
+                    if i > 0:
+                        cat_seq += nnn
+                    cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)),
+                                   IUPAC.ambiguous_dna)
+                if strand == '-':
+                    cat_seq = cat_seq.reverse_complement()
+                seqReq = SeqRecord(cat_seq, id=sp, description=parent.id)
+                f.write(seqReq.format("fasta"))
 
 
 def mafft_driver_file(file):

@@ -35,7 +35,7 @@ fasta_path =                        "../data/part01/input/fasta/"
 db_path =                           "../data/part01/intermediate/gff_databases/"
 json_path =                         "../data/part01/intermediate/json/"
 template_alignment_path =           "../data/part01/intermediate/template_alignment/"
-enhanced_alignment_path =           "../data/part01/intermediate/full_alignment/"
+enhanced_alignment_path =           "../data/part01/intermediate/supplemental_alignment/"
 
 # output
 fasta_output_path =                 "../data/part01/output/fasta/"
