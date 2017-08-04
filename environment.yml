@@ -5,7 +5,6 @@ dependencies:
   - python=3.4
   - pandas
   - biopython
-  - mafft
   - pip:
     - gffutils
     - pytoml==0.1.13

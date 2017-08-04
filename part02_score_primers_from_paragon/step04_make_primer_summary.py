@@ -69,9 +69,9 @@ def create_padded_primer_products(orthoExon_path, padded_primer_product_path, un
                                   alternate_sp_fn,
                                   paragon_fn):
     # create handles for all .fasta files in fasta directory
-    fasta_fn = {name.split('.13spp.fasta')[0]: orthoExon_path + name for name in
+    fasta_fn = {name.split('.full.fasta')[0]: orthoExon_path + name for name in
                 os.listdir(orthoExon_path) if
-                ((".13spp.fasta" in name) and (".13spp.fasta.fai" not in name))}
+                ((".full.fasta" in name) and (".full.fasta.fai" not in name))}
 
     # read and parse fasta files for each species
     fasta = {}

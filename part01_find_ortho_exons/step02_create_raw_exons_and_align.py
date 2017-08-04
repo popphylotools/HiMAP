@@ -91,8 +91,8 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
     with open(json_path + "groups.json", 'r') as f:
         parent_groups = json.load(f)
 
-    # create handles for all .fasta files in aligned_4spp_fasta directory
-    aligned_fasta_fn = {name.split('.fasta')[0]: template_alignment_path + name for name in
+    # create handles for all .fasta files in aligned template fasta directory
+    aligned_fasta_fn = {name.split('template.fasta')[0]: template_alignment_path + name for name in
                         os.listdir(template_alignment_path) if
                         ((".fasta.aln" in name) and (".fasta.aln.fai" not in name))}
 
@@ -177,7 +177,7 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
     os.makedirs(enhanced_alignment_path, exist_ok=True)
     for ortho in fasta_prep:
         for coord in fasta_prep[ortho]:
-            filename = enhanced_alignment_path + ortho + "_" + str(coord[0]) + "-" + str(coord[1]) + ".13spp.fasta"
+            filename = enhanced_alignment_path + ortho + "_" + str(coord[0]) + "-" + str(coord[1]) + ".full.fasta"
             with open(filename, "w") as f:
                 for sp in template_species_list:
                     cds = fasta_prep[ortho][coord][sp]

@@ -69,8 +69,8 @@ def longestGap(seq):
 
 def create_filtered_exons(enhanced_alignment_path, fasta_output_path, template_species_list, min_exon_length,
                           max_gap_length, max_gap_percent):
-    # create handles for all .fasta files in aligned_13spp_fasta directory
-    aligned_fasta_fn = {name.split('.13spp')[0]: enhanced_alignment_path + name for name in
+    # create handles for all .fasta files in aligned_full_fasta directory
+    aligned_fasta_fn = {name.split('.full')[0]: enhanced_alignment_path + name for name in
                         os.listdir(enhanced_alignment_path) if
                         ((".fasta.aln" in name) and (".fasta.aln.fai" not in name))}
 
@@ -175,7 +175,7 @@ def create_filtered_exons(enhanced_alignment_path, fasta_output_path, template_s
     shutil.rmtree(fasta_output_path, ignore_errors=True)
     os.makedirs(fasta_output_path, exist_ok=True)
     for ortho in fasta_prep:
-        filename = fasta_output_path + ortho + ".13spp.fasta"
+        filename = fasta_output_path + ortho + ".full.fasta"
         with open(filename, "w") as f:
             for seqReq in fasta_prep[ortho]:
                 f.write(seqReq.format("fasta"))
