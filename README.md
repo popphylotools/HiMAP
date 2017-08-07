@@ -16,18 +16,18 @@ installation
 ------------
 
  - install Anaconda
- - create environment with:
-  - conda env create -f env.yml
+ - create Anaconda environments with:
+  - `conda env create -f create_anaconda_environments.sh`
  - activate env with:
   - linux/osx:
-   - source activate orthoExon
+   - `source activate orthoExon`
  - deactivate env with
   - linux/osx:
-   - source deactivate orthoExon
+   - `source deactivate orthoExon`
  - if needed, remove with:
-  - conda env remove --name orthoExon
+  - `conda env remove --name orthoExon`
 
 data
 ----
 imput and intermediate data avalible at:
-http://moana.dnsalias.org/~woods26/
+http://67.52.95.73/~woods26/
