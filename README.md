@@ -17,15 +17,15 @@ installation
 
  - install Anaconda
  - create Anaconda environments with:
-  - `conda env create -f create_anaconda_environments.sh`
+   - `conda env create -f create_anaconda_environments.sh`
  - activate env with:
-  - linux/osx:
-   - `source activate orthoExon`
+   - linux/osx:
+     - `source activate orthoExon`
  - deactivate env with
-  - linux/osx:
-   - `source deactivate orthoExon`
+   - linux/osx:
+     - `source deactivate orthoExon`
  - if needed, remove with:
-  - `conda env remove --name orthoExon`
+   - `conda env remove --name orthoExon`
 
 data
 ----
