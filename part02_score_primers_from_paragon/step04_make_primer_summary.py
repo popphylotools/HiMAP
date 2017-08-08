@@ -143,7 +143,7 @@ def create_padded_primer_products(orthoExon_path, padded_primer_product_path, un
 
 
 def convertfasta2nex(padded_primer_product_fn, nex_fn):
-    p = subprocess.Popen(["perl", "./convertfasta2nex.pl", padded_primer_product_fn, ">", nex_fn],
+    p = subprocess.Popen(["./convertfasta2nex_driver.sh", padded_primer_product_fn, nex_fn],
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p.communicate()
     return out, err
@@ -153,6 +153,10 @@ def tapir_driver(nex_sub_path, tapir_out_sub_path, ref_tree_fn):
     p = subprocess.Popen(["./tapir_driver.sh", nex_sub_path, tapir_out_sub_path, ref_tree_fn],
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p.communicate()
+    with open(tapir_out_sub_path + "tapir.out", 'wb') as f:
+        f.write(out)
+    with open(tapir_out_sub_path + "tapir.err", 'wb') as f:
+        f.write(err)
     return out, err
 
 
