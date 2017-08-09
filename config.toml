@@ -38,14 +38,14 @@ template_alignment_path =           "../data/part01/intermediate/template_alignm
 enhanced_alignment_path =           "../data/part01/intermediate/full_alignment/"
 
 # output
-fasta_output_path =                 "../data/part01/output/fasta/"
+fasta_output_path =                 "../data/part01/output/orthoExon_fasta/"
 
 ################
 # Part02 Paths #
 ################
 
 # from privious part
-orthoExon_path =                    "../data/part02/input/orthoExons/"
+orthoExon_path =                    "../data/part02/input/orthoExon_fasta/"
 
 # input
 paragon_fn =                        "../data/part02/input/PGC106.selectedAmp.tab"
