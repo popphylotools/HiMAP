@@ -171,14 +171,14 @@ def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out
 
     # create tapir input and output directories for each core
     for i in range(cpu_count):
-        os.makedirs(nex_path + str(i), exist_ok=True)
-        os.makedirs(tapir_out_path + str(i), exist_ok=True)
+        os.makedirs(nex_path + '{num:02d}'.format(num=i), exist_ok=True)
+        os.makedirs(tapir_out_path + '{num:02d}'.format(num=i), exist_ok=True)
 
     # for each fasta file, make a nex (split into cpu_count subdirectories)
     i = 0
     convertfasta2nex_input = []
     for file in os.listdir(padded_primer_product_path):
-        group = str(i % cpu_count)
+        group = '{num:02d}'.format(num=i % cpu_count)
         padded_primer_product_fn = padded_primer_product_path + file
         nex_fn = nex_path + group + "/" + file + ".nex"
         convertfasta2nex_input.append((padded_primer_product_fn, nex_fn))
@@ -192,8 +192,8 @@ def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out
     # for each core, process a subdirectory
     tapir_driver_input = []
     for i in range(cpu_count):
-        nex_sub_path = nex_path + str(i) + "/"
-        tapir_out_sub_path = tapir_out_path + str(i) + "/"
+        nex_sub_path = nex_path + '{num:02d}/'.format(num=i)
+        tapir_out_sub_path = tapir_out_path + '{num:02d}/'.format(num=i)
         tapir_driver_input.append((nex_sub_path, tapir_out_sub_path, ref_tree_fn))
 
     pool = ThreadPool(cpu_count)
@@ -204,7 +204,7 @@ def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out
     # collect sql to a directory
     sql_list = []
     for i in range(cpu_count):
-        tapir_out_sub_path = tapir_out_path + str(i) + "/"
+        tapir_out_sub_path = tapir_out_path + '{num:02d}/'.format(num=i)
         sql_list.extend([(tapir_out_sub_path + fn, pi_score_path + '{num:02d}'.format(num=i) + '_' + fn) for fn in
                          os.listdir(tapir_out_sub_path) if ".sqlite" in fn])
     for old_fn, new_fn in sql_list:
