@@ -205,10 +205,10 @@ def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out
     sql_list = []
     for i in range(cpu_count):
         tapir_out_sub_path = tapir_out_path + str(i) + "/"
-        sql_list.extend([(tapir_out_sub_path + fn, pi_score_path + str(i) + fn )for fn in os.listdir(tapir_out_sub_path) if ".sqlite" in fn])
+        sql_list.extend([(tapir_out_sub_path + fn, pi_score_path + str(i) + '_' + fn )for fn in os.listdir(tapir_out_sub_path) if ".sqlite" in fn])
     for old_fn, new_fn in sql_list:
         shutil.move(old_fn, new_fn)
- 
+
 
 def summarize(df, fasta, pi_score_path, summary_fn):
     # grab pi scores from sql database
