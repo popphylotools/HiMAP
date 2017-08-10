@@ -1,5 +1,6 @@
-orthoExon
-=========
+# orthoExon
+
+## Description
 
 Here you will find the bioinformatic locus selection and data processing pipelines used in Dupuis et al. 2017(link to paper eventually) for generating phylogenomic datasets using highly multiplexed amplicon sequencing. The code is divided into three main sections: 
 
@@ -12,22 +13,66 @@ Part03 is for post-sequencing data processing. This takes as input demultiplexed
 For a detailed tutuorial in re-creating the results of Dupuis et al. 2017, see here(still working on this).
 
 
-installation 
-------------
+## Installation
 
- - install Anaconda
- - create Anaconda environments with:
-   - `conda env create -f create_anaconda_environments.sh`
- - activate env with:
-   - linux/osx:
-     - `source activate orthoExon`
- - deactivate env with
-   - linux/osx:
-     - `source deactivate orthoExon`
- - if needed, remove with:
-   - `conda env remove --name orthoExon`
+#### Install Anaconda distribution of python
 
-data
-----
-imput and intermediate data avalible at:
+[Anaconda download page](https://www.continuum.io/downloads)
+
+#### Create Anaconda environments
+
+osx:
+```
+./osx_create_anaconda_environments.sh
+```
+
+linux:
+```
+./linux_create_anaconda_environments.sh
+```
+
+#### Download Data
+
+Input, intermediate, and output data for each subsection (part) avalible at:
 http://67.52.95.73/~woods26/
+
+orthoExon_data.zip can be unziped and used to replace the data directory from this git repo.
+
+## Uninstall
+
+If needed, remove Anaconda environments
+```
+conda env remove --name orthoExon
+conda env remove --name mafft
+conda env remove --name tapir
+```
+
+## Usage
+Configure data paths by editing `config.toml`.
+As configured, it will run with the example data linked above.
+
+Old output of each step is deleted before new output files are written, therefore all `intermediate` and `output` directories are optional when starting from the begining of any subsection (part).
+
+Activate main orthoExon env with:
+```
+source activate orthoExon
+```
+
+Enter the appropriate directory for the desired subsection:
+```
+cd part01_find_ortho_exons
+```
+
+Run the desired script:
+```
+./step01_create_padded_cds_and_align.py
+```
+
+
+## Credits
+
+Include a section for credits in order to highlight and link to the authors of your project.
+
+## License
+
+Finally, include a section for the license of your project. For more information on choosing a license, check out GitHub’s licensing guide!
