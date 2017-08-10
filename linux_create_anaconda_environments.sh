@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# before running python scripts, run `source activate orthoExon`
-
+# create main python environment as well as environments for 3rd party tools
 conda env create -f environment.yml
 conda env create -f mafft_env.yml
 conda env create -f tapir_env.yml
