@@ -14,6 +14,4 @@ gunzip hyphy2.*.gz
 chmod 0700 hyphy2.*
 mv hyphy2.* $(dirname $(which python))/hyphy2
 
-rm hyphy2*
-
 source deactivate
