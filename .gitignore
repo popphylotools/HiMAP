@@ -1,12 +1,8 @@
 # pycharm files
 .idea
 
-data/part01/intermediate
-data/part01/output
-data/part02/intermediate
-data/part02/output
-data/part03/intermediate
-data/part03/output
+data/*/intermediate
+data/*/output
 *.gff
 *.fasta
 *.fasta.fai
