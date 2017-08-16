@@ -2,7 +2,7 @@
 # Part01 Parameters #
 #####################
 
-# species with good annotations
+# species with "high quality" annotations
 template_species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
 
 # full species list
@@ -44,7 +44,7 @@ fasta_output_path =                 "../data/part01/output/orthoExon_fasta/"
 # Part02 Paths #
 ################
 
-# from privious part
+# from previous part
 orthoExon_path =                    "../data/part02/input/orthoExon_fasta/"
 
 # input
