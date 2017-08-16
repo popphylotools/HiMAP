@@ -32,18 +32,22 @@ linux:
 ```
 
 #### Download this git repo
+```
 curl "https://codeload.github.com/popphylotools/orthoExon/zip/master" -o "orthoExon-master.zip"
 unzip orthoExon-master.zip
 cd orthoExon-master
+```
 
 
 #### Download Data
 
 Input, intermediate, and output data for each subsection (part) avalible at:
-
+```
 curl "http://67.52.95.73/~woods26/orthoExon_data.zip" -o "orthoExon_data.zip"
 unzip orthoExon_data.zip
-mv 
+mv data data.bak
+mv orthoExon_data data
+```
 
 orthoExon_data.zip can be unziped and used to replace the data directory from this git repo.
 
@@ -104,13 +108,14 @@ conda env remove --name tapir
 
 ## Credits
 just making a list here for now:
-Python3.6
-SciPy
-NnumPy
-gffutils
-MAFFT
-TAPIR
-GNU parallel
+
+ - Python3.6
+ - SciPy
+ - NnumPy
+ - gffutils
+ - MAFFT
+ - TAPIR
+ - GNU parallel
 
 
 
