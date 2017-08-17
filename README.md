@@ -107,18 +107,8 @@ conda env remove --name tapir
 ```
 
 ## Credits
-just making a list here for now:
 
- - Python3.6
- - SciPy
- - NnumPy
- - gffutils
- - MAFFT
- - TAPIR
- - GNU parallel
-
-
-
-## License
-
-Finally, include a section for the license of your project. For more information on choosing a license, check out GitHub’s licensing guide!
+ * [Forest Bremer](https://github.com/Woods26):</br>
+   primary programmer and github maintainer
+ * [Julian Dupuis](https://github.com/jrdupuis):</br>
+   primary author of companion paper and github documentation contributer
