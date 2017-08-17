@@ -1,4 +1,4 @@
-name: orthoExon
+name: HiMAP
 channels:
   - bioconda
 dependencies:
