@@ -64,7 +64,7 @@ source activate orthoExon
 
 Enter the appropriate directory for the desired subsection:
 ```
-cd part01
+cd part01_find_ortho_exons
 ```
 
 Run the desired script:
