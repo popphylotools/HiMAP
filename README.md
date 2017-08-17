@@ -1,4 +1,4 @@
-# orthoExon
+# HiMAP
 
 ## Description
 
@@ -33,9 +33,9 @@ linux:
 
 #### Download this git repo
 ```
-curl "https://codeload.github.com/popphylotools/orthoExon/zip/master" -o "orthoExon-master.zip"
-unzip orthoExon-master.zip
-cd orthoExon-master
+curl "https://codeload.github.com/popphylotools/HiMAP/zip/master" -o "HiMAP-master.zip"
+unzip HiMAP-master.zip
+cd HiMAP-master
 ```
 
 
@@ -43,13 +43,13 @@ cd orthoExon-master
 
 Input, intermediate, and output data for each subsection (part) avalible at:
 ```
-curl "http://67.52.95.73/~woods26/orthoExon_data.zip" -o "orthoExon_data.zip"
-unzip orthoExon_data.zip
+curl "http://67.52.95.73/~woods26/HiMAP_data.zip" -o "HiMAP_data.zip"
+unzip HiMAP_data.zip
 mv data data.bak
-mv orthoExon_data data
+mv HiMAP_data data
 ```
 
-orthoExon_data.zip can be unziped and used to replace the data directory from this git repo.
+HiMAP_data.zip can be unziped and used to replace the data directory from this git repo.
 
 ## Usage: Quick and Dirty
 Configure data paths by editing `config.toml`.
@@ -57,9 +57,9 @@ As configured, it will run with the example data linked above.
 
 Old output of each step is deleted before new output files are written, therefore all `intermediate` and `output` directories are optional when starting from the begining of any subsection (part).
 
-Activate main orthoExon env with:
+Activate main HiMAP env with:
 ```
-source activate orthoExon
+source activate HiMAP
 ```
 
 Enter the appropriate directory for the desired subsection:
@@ -101,7 +101,7 @@ Part01 takes as input predicted single copy orthologs (and their corresponding g
 
 If needed, remove Anaconda environments
 ```
-conda env remove --name orthoExon
+conda env remove --name HiMAP
 conda env remove --name mafft
 conda env remove --name tapir
 ```
