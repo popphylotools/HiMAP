@@ -7,6 +7,7 @@ data/*/output
 *.fasta
 *.fasta.fai
 *mafft_log
+*.ipynb
 
 
 # mac
