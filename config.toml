@@ -21,6 +21,11 @@ max_gap_length = 0
 # exon length filter parameters
 min_exon_length = 100
 
+################################################### Paths #############################################################
+
+# As a rule, variables with "path" in the name are relitive paths to a directory and end in a '/'.
+# Variables with "fn" for "file name" are the relitive path to a file and end with the file's name.
+
 
 ################
 # Part01 Paths #
