@@ -194,6 +194,7 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
                                 gff[sp].children(parent, featuretype="CDS", order_by="start")]
                     cat_seq = Seq("", IUPAC.ambiguous_dna)
                     for cds in cds_list:
+                        print(str(cds))
                         cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)), IUPAC.ambiguous_dna)
                     if strand == '-':
                         cat_seq = cat_seq.reverse_complement()
