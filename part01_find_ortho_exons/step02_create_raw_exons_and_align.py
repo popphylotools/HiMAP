@@ -73,9 +73,8 @@ def longestGap(seq):
 
 
 def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_path, db_path, json_path,
-                     template_species_list, transvestigated_species_list, max_gap_percent, max_gap_length,
+                     template_species_list, max_gap_percent, max_gap_length,
                      min_exon_length, n_count):
-    transvestigated_species_set = set(transvestigated_species_list)
 
     # create handles for all .db files in intermediate directory
     gff_fn = {name.split('.gff.db')[0]: db_path + name for name in os.listdir(db_path) if
@@ -195,22 +194,11 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
                                 gff[sp].children(parent, featuretype="CDS", order_by="start")]
                     cat_seq = Seq("", IUPAC.ambiguous_dna)
                     for cds in cds_list:
-                        if sp in transvestigated_species_set:
-                            seq = Seq(str(fasta[sp][parent_groups[ortho][sp]]), IUPAC.ambiguous_dna)
-                            cds_len = cds.end - cds.start
-                            if cds_len + 1 == len(seq):
-                                cat_seq += seq
-                            else:
-                                print("{} {} {} {} {}".format(ortho, sp, coord, cds_len, len(seq)))
-                        else:
-                            cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)),
-                                           IUPAC.ambiguous_dna)
-
-                            # cat_seq += Seq(fasta[sp][cds.chrom][cds.start:cds.end].seq, IUPAC.ambiguous_dna)
+                        cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)), IUPAC.ambiguous_dna)
                     if strand == '-':
                         cat_seq = cat_seq.reverse_complement()
-                    seqReq = SeqRecord(cat_seq, id=sp, description=parent.id)
-                    f.write(seqReq.format("fasta"))
+                    seqRec = SeqRecord(cat_seq, id=sp, description=parent.id)
+                    f.write(seqRec.format("fasta"))
 
 
 def mafft_driver_file(file):
@@ -249,7 +237,7 @@ if __name__ == '__main__':
 
     create_raw_exons(config['fasta_path'], config['enhanced_alignment_path'], config['template_alignment_path'],
                      config['db_path'],
-                     config['json_path'], config['template_species_list'], config['transvestigated_species_list'],
+                     config['json_path'], config['template_species_list'],
                      config['max_gap_percent'], config['max_gap_length'], config['min_exon_length'], config['n_count'])
 
     mafft_driver_path(config['enhanced_alignment_path'])

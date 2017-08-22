@@ -8,9 +8,6 @@ template_species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
 # full species list
 full_species_list = ['Bcur', 'Bdor', 'Bole', 'Ccap', 'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl', 'Asus', 'Btry']
 
-# list of species who's part01 came from transvestigator (needs to be parsed slightly different)
-transvestigated_species_list = ['Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl']
-
 # number of n's used to create alignment boarders
 n_count = 50
 
