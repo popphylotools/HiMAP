@@ -91,7 +91,7 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
         parent_groups = json.load(f)
 
     # create handles for all .fasta files in aligned template fasta directory
-    aligned_fasta_fn = {name.split('.fasta')[0]: template_alignment_path + name for name in
+    aligned_fasta_fn = {name.split('.template.fasta')[0]: template_alignment_path + name for name in
                         os.listdir(template_alignment_path) if
                         ((".fasta.aln" in name) and (".fasta.aln.fai" not in name))}
 
