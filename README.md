@@ -109,6 +109,13 @@ In this example, each ortholog is on a row, followed by the species ("Afra", "Ao
 ```
 Details of the individual scripts can be found in the part01 [README](https://github.com/popphylotools/HiMAP/tree/master/part01_find_ortho_exons).
 
+Note, FASTA headers need to match the Sequence ID of their respecitve GFF files (first column of GFF).
+
+
+
+#### Part02
+Part02 ingests putative primer information, calculates phylogenetic informativeness and other amplicon summary information
+
 
 
 
