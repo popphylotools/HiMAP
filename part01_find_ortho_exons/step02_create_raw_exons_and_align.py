@@ -194,7 +194,7 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
                     cds_list = [cds for cds in gff[sp].children(parent, featuretype="CDS", order_by="start")]
                     cat_seq = Seq("", IUPAC.ambiguous_dna)
 
-                    for cds in sorted(cds_list, key=lambda x: x.seqid):
+                    for cds in cds_list:
                         try:
                             cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)), IUPAC.ambiguous_dna)
                         except ValueError as e:
