@@ -99,7 +99,7 @@ orth2334: Afra|m.10105 Aobl|m.12162 Asus|M.10104_R0 Bcor|m.20328 Bcur|XP_0111893
 orth2335: Afra|m.10131 Aobl|m.7135 Asus|M.10131_R0 Bcor|m.509 Bcur|XP_011191044.1 Bdor|XP_011202275.1 Bjar|m.10381 Blat|m.18775 Bmin|m.8724 Bole|XP_014102377.1 Btry|M.18775_R0 Bzon|m.34590 Ccap|XP_004518888.1
 ...
 ```
-In this example, each ortholog is on a row, followed by the species ("Afra", "Aobl", "Asus", "Bcor", etc.) and their ortholog accession (after the |). FASTA (in peptide and nucleotide space) and GFF files for the original data sources are also required in additional directories, FASTA headers need to match the Sequence ID of their respecitve GFF files (first column of GFF). Note that Dupuis et al. (2017) conducted 
+In this example, each ortholog is on a row, followed by the species ("Afra", "Aobl", "Asus", "Bcor", etc.) and their ortholog accession (after the |). FASTA (in peptide and nucleotide space) and GFF files for the original data sources are also required in additional directories, and FASTA headers need to match the Sequence ID of their respecitve GFF files (first column of GFF). 
 
 Part01 is run through 5 scripts, that can be run in direct succession:
 ```
@@ -109,11 +109,7 @@ Part01 is run through 5 scripts, that can be run in direct succession:
 ./step02_create_raw_exons_and_align.py
 ./step03_create_filtered_exons.py
 ```
-Details of the individual scripts can be found in the part01 [README](https://github.com/popphylotools/HiMAP/tree/master/part01_find_ortho_exons). The output of part01 is multi-FASTA formatted conserved exons, and these files are named with the ortholog ID followed by position coordinates for that exon: `orth4955_1027-1296`. These coordinates refer to the positions in the [WHICH IS THIS?].
-
-
-
-
+Details of the individual scripts can be found in the part01 [README](https://github.com/popphylotools/HiMAP/tree/master/part01_find_ortho_exons). The output of part01 is multi-FASTA formatted conserved exons, and these files are named with the ortholog ID followed by position coordinates for that exon: `orth4955_1027-1296`. These coordinates refer to the positions in the "padded exons" (before orthologs are split up into multiple exons).
 
 #### Part02
 Part02 ingests putative primer information, calculates phylogenetic informativeness and other amplicon summary information, and outputs a summary.csv file containing all summary information. The goal of this process is to generate a file that can then be manually viewed and sorted either on the command line or in Excel or another spreadsheet editing platform. Dupuis et al. (2017) uses Paragon Genomics CleanPlex custom amplicon design service, and thus follow the output format used therein:
