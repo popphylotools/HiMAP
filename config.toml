@@ -18,6 +18,9 @@ max_gap_length = 0
 # exon length filter parameters
 min_exon_length = 100
 
+# tapir options string
+tapir_opts_string = "--intervals=2-3,3-5,5-8,8-10,10-18 --times=2,3,5,8,10,17 --tree-format=newick"
+
 ################################################### Paths #############################################################
 
 # As a rule, variables with "path" in the name are relitive paths to a directory and end in a '/'.

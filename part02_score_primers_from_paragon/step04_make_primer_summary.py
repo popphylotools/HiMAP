@@ -149,8 +149,8 @@ def convertfasta2nex(padded_primer_product_fn, nex_fn):
     return out, err
 
 
-def tapir_driver(nex_sub_path, tapir_out_sub_path, ref_tree_fn):
-    p = subprocess.Popen(["./tapir_driver.sh", nex_sub_path, tapir_out_sub_path, ref_tree_fn],
+def tapir_driver(nex_sub_path, tapir_out_sub_path, ref_tree_fn, tapir_opts_string):
+    p = subprocess.Popen(["./tapir_driver.sh", nex_sub_path, tapir_out_sub_path, ref_tree_fn, tapir_opts_string],
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p.communicate()
     with open(tapir_out_sub_path + "tapir.out", 'wb') as f:
@@ -160,7 +160,8 @@ def tapir_driver(nex_sub_path, tapir_out_sub_path, ref_tree_fn):
     return out, err
 
 
-def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out_path, pi_score_path, ref_tree_fn):
+def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out_path, pi_score_path, ref_tree_fn,
+                                 tapir_opts_string):
     cpu_count = mp.cpu_count()
 
     # remove and recreate nex and tapir ouput directories
@@ -194,7 +195,7 @@ def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out
     for i in range(cpu_count):
         nex_sub_path = nex_path + '{num:02d}/'.format(num=i)
         tapir_out_sub_path = tapir_out_path + '{num:02d}/'.format(num=i)
-        tapir_driver_input.append((nex_sub_path, tapir_out_sub_path, ref_tree_fn))
+        tapir_driver_input.append((nex_sub_path, tapir_out_sub_path, ref_tree_fn, tapir_opts_string))
 
     pool = ThreadPool(cpu_count)
     pool.starmap(tapir_driver, tapir_driver_input)
@@ -298,6 +299,6 @@ if __name__ == '__main__':
                                                               config['alternate_sp_fn'], config['paragon_fn'])
 
     phylogenetic_informativeness(config['padded_primer_product_path'], config['nex_path'], config['tapir_out_path'],
-                                 config['pi_score_path'], config['ref_tree_fn'])
+                                 config['pi_score_path'], config['ref_tree_fn'], config['tapir_opts_string'])
 
     summarize(working_df, working_fasta, config['pi_score_path'], config['summary_fn'])
