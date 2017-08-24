@@ -66,7 +66,7 @@ Enter the appropriate directory for the desired subsection:
 cd part01_find_ortho_exons
 ```
 
-Run the desired script:
+Run the desired script, e.g.:
 ```
 ./step01_create_padded_cds_and_align.py
 ```
@@ -109,7 +109,7 @@ Part01 is run through 5 scripts, that can be run in direct succession:
 ./step02_create_raw_exons_and_align.py
 ./step03_create_filtered_exons.py
 ```
-Details of the individual scripts can be found in the part01 [README](https://github.com/popphylotools/HiMAP/tree/master/part01_find_ortho_exons). The output of part01 is multi-FASTA formatted conserved exons, and these files are named with the ortholog ID followed by position coordinates for that exon: `orth4955_1027-1296`. These coordinates refer to the positions in the "padded exons" (before orthologs are split up into multiple exons).
+Details of the individual scripts can be found in the part01 [README](https://github.com/popphylotools/HiMAP/tree/master/part01_find_ortho_exons). The output of part01 is multi-FASTA formatted conserved exons, and these files are named with the ortholog ID followed by position coordinates for that exon: `orth4955_1027-1296`. These coordinates refer to the positions in the "padded exons" (before orthologs are split up into multiple exons). Note, that part03 (which calls the final consensus sequences, post-sequencing) requires that amplicon names begin with "orth", so this part of the name should be preserved.
 
 #### Part02
 Part02 ingests putative primer information, calculates phylogenetic informativeness and other amplicon summary information, and outputs a summary.csv file containing all summary information. The goal of this process is to generate a file that can then be manually viewed and sorted either on the command line or in Excel or another spreadsheet editing platform. Dupuis et al. (2017) uses Paragon Genomics CleanPlex custom amplicon design service, and thus follow the output format used therein:
@@ -145,22 +145,56 @@ orth10375_1062-1241,SET202_5619,0.14771179397003442,2,1,1,1,4,2,2,4,2,2,86,59,14
 ...
 ```
 
-Many of the columns in `summary.csv` match those in the putative primer information input (e.g. `loci_id`, `amplicon_id`). `score` refers to PI score, and [INCLUDE MORE INFO ABOUT PRIMER COLUMNS].
+Many of the columns in `summary.csv` match those in the putative primer information input (e.g. `loci_id`, `amplicon_id`, `amp_len`, `insert_length`). `score` refers to PI score, and columns dealing with `ambiguities`, `primer_versions`, and `combinations` are various statistics of the ambiguities present in given primers, and how many individual primer sequences are required given those ambiguities (e.g. a `R` in a primer would lead to 2 "versions" or sequences for that primer, and two potential combinations with a non-degerate partner primer).
 
 Following the general HiMAP approach, this output is then used to select final amplicons based on primer characteristics (e.g. number of degenerate bases), phylogenetic informativeness, etc. See Dupuis et al. (2017) for an example of this filtering process.
 
 
 #### Part03
-Part03 handles the post-sequencing data processing, and calling consensus sequences....[UNDER CONSTRUCTION]
+Part03 handles the post-sequencing data processing, and calling consensus sequences. The input for this script is adapter-trimmed and demultiplexed (by individual) FASTQ files. We suggest using [cutadapt](http://cutadapt.readthedocs.io/en/stable/index.html) and [FLASh](https://ccb.jhu.edu/software/FLASH/) for these steps, and provide details of the filtering done for Dupuis et al. (2017) below:
 
+First, reads need to be demultiplexed by individual. If sequencing is done on an Illumina MiSeq or HiSeq connected to BaseSpace, this demultiplexing may be done on BaseSpace. Alternatively, cutadapt can be used to demultiplex based on individual-specific barcodes.
 
+Next, cutadapt can be used to remove any additional Illumina adapters. We will assume that the raw FASTQ files are in `./RawData/`, and cutadapt can be run like:
+```
+for x in `cat individuals`; do echo "$x" |  cutadapt -a agatcggaagagcacacgtctgaa -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT -o AdapterTrimmed/"$x"_R1_adaptertrimmed.fastq -p AdapterTrimmed/"$x"_R2_adaptertrimmed.fastq  RawData/"$x"_R1_combined.fastq.gz RawData/"$x"_R2_combined.fastq.gz > CutAdapt_logs/log."$x".log ; done
+```
 
-MAKE SURE TO INCLUDE name splitting by orth, so sample names coming out of cutadapt (second time) needs to be [ind]orth[orth#]. Code splits by "orth", and 
+Then, FLASh can be used to join the paired reads for all data:
+```
+for x in `cat individuals` ; do flash AdapterTrimmed/"$x"_R1_adaptertrimmed.fastq AdapterTrimmed/"$x"_R2_adaptertrimmed.fastq -o Flash/"$x"_flash.fastq | tee Flash/"$x".log ; done
+```
 
+Finally, cutadapt can be used again, but this time to demultiplex each individual, FLASh-joined FASTQ file by amplicon. Dupuis et al. (2017) pooled 384 individuals and 878 amplicons into single sequencing lanes, so we used a job array on a cluster to speed this process up. The job file looked something like this:
+```
+#!/bin/sh
+#$-S /bin/sh
+#$-o Demultiplexed_CutAdapt_Logs/$JOB_ID.out 
+#$-e Demultiplexed_CutAdapt_Logs/$JOB_ID.err
+#$-q all.q
+#$-pe orte 1
+#$-cwd
+#$-V
+#$-t 1-384
+INFILE=`awk "NR==$SGE_TASK_ID" individuals`
+echo "$INFILE"
+module load cutadapt
+cutadapt -O 10 -a orth10028_611-1041=TGCCCATCGCCTCCGAy...GAGGTGTACTTGGTGGGCG \
+-a orth10034_825-2024=GGCACCACATTCTCACAm...TGTATCAACTGCAGGCGAG \
+-a orth10118_500-1241=TGTGGCTACTCGTGTCGw...CCACATGAATGTAAAGTATGTGGACG \
+... .... ...
+-a orth9938_2137-2366=AGCsAAGGTGCAACAAGTCT...GGCGATCGTCGGGATCA \
+-a orth9941_1692-2530=AAGAGAGCAACCCACCTr...AGCCATGGAACTCGCCAA \
+-o Demultiplexed_CutAdapt/"$INFILE"/"$INFILE".{name}.fastq Flash/"$INFILE"_flash.fastq.extendedFrags.fastq | tee Demultiplexed_CutAdapt_Logs/"$INFILE".log
+```
+Here, the `-a` options specify the amplicon primer pairs, so this job file would contain 878 `-a` options. We also split the output into multiple directories, one per individual, which is required for the part03 script that calls consensus sequences. Splitting the files into multiple directories is also a good idea, as 384 individuals x 878 amplicons = 337,152 files at the end of this step (which could stall bash commands or general command line manipulation). This process could also be run through a for loop, with modified variables in the input/output paths of the cutadapt command.
 
+Following these steps, the sequencing data is now demultiplexed by individual and amplicon, and the data structure should be one main directory (`Demultiplexed_CutAdapt`) containing a single directory for each individual; each individual directory contains one FASTQ file per amplicon. Part03 expects this data structure, and expects individual FASTQ file names to be structured as, e.g. `Btau_Nepal_2983_1.orth9941_1692-2530.fastq` where `Btau_Nepal_2983_1` is the individual identifier, and `orth9941_1692-2530` is the amplicon identifier. With this data structure and naming scheme, part03 can be ran through a single script:
+```
+./step05_make_consensus.py 
+```
 
-
-
+This script finds the most prevalent read length for each individual per amplicon and calls a degenerate consensus sequence based on all reads of that length, using the rules of [Cavener 1987 Nucleic Acids Research 15:1353–1361](https://academic.oup.com/nar/article-lookup/doi/10.1093/nar/15.4.1353) (via [Bio.motifs](http://biopython.org/DIST/docs/tutorial/Tutorial.html) in BioPython). By default, a minimum of five reads per consensus is required, any consensus reads <65 bp are removed, and if an individuals' consensus sequence length deviates >20 bp from the mean consensus sequence length for that amplicon, it is removed. These defaults can be edited in the config.toml and in `step05_make_consensus.py `. The output of part03 includes individual FASTA files for each consensus sequence, and a single multi-FASTA per amplicon containing all individuals' consensus sequences. This latter format is easily used directly to generate gene-trees, or concatenated using something like [catfasta2phyml.pl](https://github.com/nylander/catfasta2phyml) for concatenated phylogenetic analyses.
 
 
 
