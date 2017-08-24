@@ -32,7 +32,7 @@ def create_padded_cds(template_species_list, fasta_path, template_alignment_path
     shutil.rmtree(template_alignment_path, ignore_errors=True)
     os.makedirs(template_alignment_path, exist_ok=True)
     for ortho in parent_groups:
-        filename = template_alignment_path + ortho + "template.fasta"
+        filename = template_alignment_path + ortho + ".template.fasta"
         with open(filename, "w") as f:
             for sp in template_species_list:
                 parent = gff[sp][parent_groups[ortho][sp]]

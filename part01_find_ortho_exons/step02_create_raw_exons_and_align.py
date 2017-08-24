@@ -75,7 +75,6 @@ def longestGap(seq):
 def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_path, db_path, json_path,
                      template_species_list, max_gap_percent, max_gap_length,
                      min_exon_length, n_count):
-
     # create handles for all .db files in intermediate directory
     gff_fn = {name.split('.gff.db')[0]: db_path + name for name in os.listdir(db_path) if
               ".gff.db" in name}
@@ -91,7 +90,7 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
         parent_groups = json.load(f)
 
     # create handles for all .fasta files in aligned template fasta directory
-    aligned_fasta_fn = {name.split('.fasta')[0]: template_alignment_path + name for name in
+    aligned_fasta_fn = {name.split('.template.fasta')[0]: template_alignment_path + name for name in
                         os.listdir(template_alignment_path) if
                         ((".fasta.aln" in name) and (".fasta.aln.fai" not in name))}
 
@@ -186,15 +185,24 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
                     f.write(seqReq.format("fasta"))
 
                 for sp in sorted(parent_groups[ortho]):
+
                     if sp in template_species_list:
                         continue
+
                     parent = gff[sp][parent_groups[ortho][sp]]
                     strand = parent.strand
-                    cds_list = [cds for cds in
-                                gff[sp].children(parent, featuretype="CDS", order_by="start")]
+                    cds_list = [cds for cds in gff[sp].children(parent, featuretype="CDS", order_by="start")]
                     cat_seq = Seq("", IUPAC.ambiguous_dna)
+
                     for cds in cds_list:
-                        cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)), IUPAC.ambiguous_dna)
+                        try:
+                            cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)), IUPAC.ambiguous_dna)
+                        except ValueError as e:
+                            if "imply a diffent length than sequence" in str(e):
+                                cat_seq += Seq(str(fasta[sp][cds.chrom]), IUPAC.ambiguous_dna)
+                            else:
+                                raise
+
                     if strand == '-':
                         cat_seq = cat_seq.reverse_complement()
                     seqRec = SeqRecord(cat_seq, id=sp, description=parent.id)
@@ -202,8 +210,7 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
 
 
 def mafft_driver_file(file):
-    p = subprocess.Popen(["./mafft_driver.sh", file, file + ".aln"],
-                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p = subprocess.Popen(["./mafft_driver.sh", file, file + ".aln"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p.communicate()
     return out, err
 

@@ -62,7 +62,7 @@ def process_sample(sample_dir, called_sequences_path):
         called_sequences_path + sample_nm + ".csv", index=False)
 
 
-def summerize(sample_dirs, called_sequences_path, filtered_summary_sequences_path):
+def summerize(sample_dirs, called_sequences_path, filtered_summary_sequences_path, min_length, max_len_dev):
     frames = [pd.DataFrame.from_csv(called_sequences_path + sample_nm + ".csv") for sample_nm in sample_dirs.keys()]
     df = pd.concat(frames)
     df["sample_ortho"] = df.index
@@ -72,19 +72,20 @@ def summerize(sample_dirs, called_sequences_path, filtered_summary_sequences_pat
     df.drop("sample_ortho", axis=1, inplace=True)
 
     # split("N * 40")[0]
+    # if contains string of 40 N's, split there and take first half only
     df = df.loc[df["seq_str"].notnull()]
     df.loc[df["seq_str"].str.contains("N" * 40), "seq_str"] = df.loc[
         df["seq_str"].str.contains("N" * 40), "seq_str"].apply(
         lambda x: x.split("N" * 40)[0])
 
-    # cut len < 65
+    # exclude if len < min_len
     df["seq_len"] = df["seq_str"].apply(len)
-    df = df.loc[df["seq_len"] >= 65]
+    df = df.loc[df["seq_len"] >= min_length]
 
-    # cut len_dev > 20
+    # exclude if len_dev > max_len_dev
     avg_len_df = df[["ortho", "seq_len"]].groupby("ortho").mean()
     df["len_deviation_pre_cut"] = df.apply(lambda x: abs(x["seq_len"] - avg_len_df.ix[x["ortho"]]), axis=1)
-    df = df.loc[df["len_deviation_pre_cut"] <= 20]
+    df = df.loc[df["len_deviation_pre_cut"] <= max_len_dev]
 
     avg_len_df = df[["ortho", "seq_len"]].groupby("ortho").mean()
     df["len_deviation_post_cut"] = df.apply(lambda x: abs(x["seq_len"] - avg_len_df.ix[x["ortho"]]), axis=1)
@@ -130,4 +131,5 @@ if __name__ == '__main__':
     with mp.Pool(min(len(sample_dirs), mp.cpu_count())) as p:
         p.starmap(process_sample, zip(sample_dirs.values(), itertools.repeat(config['called_sequences_path'])))
 
-    summerize(sample_dirs, config['called_sequences_path'], config['filtered_summary_sequences_path'])
+    summerize(sample_dirs, config['called_sequences_path'], config['filtered_summary_sequences_path'],
+              config['min_length'], config['max_len_dev'])

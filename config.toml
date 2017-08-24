@@ -18,8 +18,23 @@ max_gap_length = 0
 # exon length filter parameters
 min_exon_length = 100
 
+#####################
+# Part02 Parameters #
+#####################
+
 # tapir options string
 tapir_opts_string = "--intervals=2-3,3-5,5-8,8-10,10-18 --times=2,3,5,8,10,17 --tree-format=newick"
+
+#####################
+# Part03 Parameters #
+#####################
+
+## summary ##
+
+# exclude if len < min_length
+min_length = 65
+# exclude if length deviates from the mean by more then max_len_dev
+max_len_dev = 20
 
 ################################################### Paths #############################################################
 
