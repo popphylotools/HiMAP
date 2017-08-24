@@ -49,8 +49,8 @@ linux:
 #### Download Data
 (currently on our server, to be replaced with Dryad accession)
 
-Input data:<\br>
-HiMAP_inputData.zip can be unzipped and used to replace the data directory from this git repo.<\br>
+Input data:</br>
+HiMAP_inputData.zip can be unzipped and used to replace the data directory from this git repo.</br>
 from within your local HiMAP directory:
 ```
 curl "http://67.52.95.73/~woods26/HiMAP_inputData.zip" -o "HiMAP_inputData.zip"
@@ -59,8 +59,8 @@ mv data data.bak
 mv HiMAP_inputData data
 ```
 
-gff databases:<\br>
-This will save you time as rebuilding the databases from the gff files takes a while.<\br>
+gff databases:</br>
+This will save you time as rebuilding the databases from the gff files takes a while.<//br>
 from within your local HiMAP directory:
 ```
 cd data/part01
