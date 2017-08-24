@@ -60,7 +60,7 @@ mv HiMAP_inputData data
 ```
 
 ##### gff databases:</br>
-This will save you time as rebuilding the databases from the gff files takes a while.</br>
+This will save you time as rebuilding the databases from the gff files takes a while (lets you skip step00a).</br>
 from within your local HiMAP directory:
 ```
 cd data/part01
