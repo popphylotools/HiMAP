@@ -20,10 +20,18 @@ For a detailed tutuorial in re-creating the results of Dupuis et al. 2017, see *
 [Anaconda download page](https://www.continuum.io/downloads)
 
 #### Download this git repo
+eaither use git:
+```
+git https://github.com/popphylotools/HiMAP.git
+cd HiMAP
+```
+
+or curl:
 ```
 curl "https://codeload.github.com/popphylotools/HiMAP/zip/master" -o "HiMAP-master.zip"
 unzip HiMAP-master.zip
-cd HiMAP-master
+mv HiMAP-master HiMAP
+cd HiMAP
 ```
 
 #### Create Anaconda environments
@@ -39,8 +47,11 @@ linux:
 ```
 
 #### Download Data
+(currently on our server, to be replaced with Dryad accession)
 
-Input, intermediate, and output data for each subsection (part) avalible at: (to be replaced with Dryad accession)
+Input data:<\br>
+HiMAP_inputData.zip can be unzipped and used to replace the data directory from this git repo.<\br>
+from within your local HiMAP directory:
 ```
 curl "http://67.52.95.73/~woods26/HiMAP_inputData.zip" -o "HiMAP_inputData.zip"
 unzip HiMAP_inputData.zip
@@ -48,7 +59,18 @@ mv data data.bak
 mv HiMAP_inputData data
 ```
 
-HiMAP_inputData.zip can be unzipped and used to replace the data directory from this git repo.
+gff databases:<\br>
+This will save you time as rebuilding the databases from the gff files takes a while.<\br>
+from within your local HiMAP directory:
+```
+cd data/part01
+mkdir intermediate
+cd intermediate
+curl "http://67.52.95.73/~woods26/HiMAP_gff_databases.zip" -o "HiMAP_gff_databases.zip"
+unzip HiMAP_gff_databases.zip
+mv HiMAP_gff_databases gff_databases
+```
+
 
 ## Usage: Quick and Dirty
 Configure data paths by editing `config.toml`.
