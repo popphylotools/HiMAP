@@ -42,13 +42,13 @@ linux:
 
 Input, intermediate, and output data for each subsection (part) avalible at: (to be replaced with Dryad accession)
 ```
-curl "http://67.52.95.73/~woods26/HiMAP_data.zip" -o "HiMAP_data.zip"
-unzip HiMAP_data.zip
+curl "http://67.52.95.73/~woods26/HiMAP_inputData.zip" -o "HiMAP_inputData.zip"
+unzip HiMAP_inputData.zip
 mv data data.bak
-mv HiMAP_data data
+mv HiMAP_inputData data
 ```
 
-HiMAP_data.zip can be unzipped and used to replace the data directory from this git repo.
+HiMAP_inputData.zip can be unzipped and used to replace the data directory from this git repo.
 
 ## Usage: Quick and Dirty
 Configure data paths by editing `config.toml`.
