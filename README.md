@@ -1,8 +1,8 @@
-# HiMAP: Highly Multiplexed Amplicon-based Phylogenomics
+ # HiMAP: Highly Multiplexed Amplicon-based Phylogenomics
 
 ## Description
 
-Here you will find the bioinformatic locus selection and data processing pipelines used in Dupuis et al. 2017(link to paper eventually) for generating phylogenomic datasets using the HiMAP approach. The code is divided into three main sections: 
+Here you will find the bioinformatic locus selection and data processing pipelines used in Dupuis et al. 2017 (submitted) for generating phylogenomic datasets using the HiMAP approach. The code is divided into three main sections: 
 
 **Part01** is the main locus selection pipeline, which takes as input ortholog prediction from a variety of genomic and transcriptomic resources (some of which with relatively trustworthy structural annotations: "high quality annotations"). Exon/intron boundaries from the "high quality annotations" are used to predict exon/intron boundaries across all data, and several filtering steps identify conserved exons across data inputs. Dupuis et al. 2017 uses [OrthoMCL](http://orthomcl.org/orthomcl/) for ortholog prediction, and this code is built to ingest OrthoMCL input format, however other ortholog prediction approaches can also be used.
 
@@ -187,7 +187,7 @@ Then, FLASh can be used to join the paired reads for all data:
 for x in `cat individuals` ; do flash AdapterTrimmed/"$x"_R1_adaptertrimmed.fastq AdapterTrimmed/"$x"_R2_adaptertrimmed.fastq -o Flash/"$x"_flash.fastq | tee Flash/"$x".log ; done
 ```
 
-Finally, cutadapt can be used again, but this time to demultiplex each individual, FLASh-joined FASTQ file by amplicon. Dupuis et al. (2017) pooled 384 individuals and 878 amplicons into single sequencing lanes, so we used a job array on a cluster to speed this process up. The job file looked something like this:
+Finally, cutadapt can be used again, but this time to demultiplex each individual, FLASh-joined FASTQ file by amplicon. Dupuis et al. (2017) pooled 384 individuals and 878 amplicons into single sequencing lanes, so we used a job array on a cluster to speed this process up. The job file (using SGE) looked something like this, and would need to be modified for other job schedulers:
 ```
 #!/bin/sh
 #$-S /bin/sh
