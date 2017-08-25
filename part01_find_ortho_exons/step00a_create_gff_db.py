@@ -54,8 +54,8 @@ def create_gff_db(gff_path, db_path, full_species_list):
     gff_dbs = {sp: db for sp, db in [connect_db(db_path, sp) for sp in full_species_list]}
     exons = {}
     for sp in full_species_list:
-        exons[sp] = gff_dbs[sp].count_features_of_type('exon')
-        print("{} exons: {}".format(sp, exons[sp]))
+        exons[sp] = gff_dbs[sp].count_features_of_type('CDS')
+        print("{} CDS's: {}".format(sp, exons[sp]))
     end = time.clock()
     print("time: {}".format(end - start))
 
