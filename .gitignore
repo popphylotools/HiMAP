@@ -3,12 +3,8 @@
 
 data/*/intermediate
 data/*/output
-*.gff
-*.fasta
 *.fasta.fai
 *mafft_log
-*.ipynb
-
 
 # mac
 *.DS_Store
