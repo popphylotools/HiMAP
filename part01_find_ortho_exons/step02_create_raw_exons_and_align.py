@@ -81,8 +81,8 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
     gff = {key: gffutils.FeatureDB(value) for key, value in gff_fn.items()}
 
     # create handles for all .fasta files in fasta directory
-    fasta_fn = {name.split('.nt.fasta')[0]: fasta_path + name for name in os.listdir(fasta_path) if
-                ((".nt.fasta" in name) and (".nt.fasta.fai" not in name))}
+    fasta_fn = {name.split('.')[0]: fasta_path + name for name in os.listdir(fasta_path) if
+                ((".fasta" in name) and (".fai" not in name))}
     fasta = {key: Fasta(value) for key, value in fasta_fn.items()}
 
     # import ortholog groups

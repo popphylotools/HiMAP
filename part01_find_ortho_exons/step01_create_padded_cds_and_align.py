@@ -19,8 +19,8 @@ def create_padded_cds(template_species_list, fasta_path, template_alignment_path
     gff = {key: gffutils.FeatureDB(db_path + value) for key, value in gff.items()}
 
     # create handles for all .fasta files in fasta directory
-    fasta = {name.split('.nt.fasta')[0]: name for name in os.listdir(fasta_path) if
-             ((".nt.fasta" in name) and (".nt.fasta.fai" not in name))}
+    fasta = {name.split('.')[0]: name for name in os.listdir(fasta_path) if
+             ((".fasta" in name) and (".fai" not in name))}
     fasta = {key: Fasta(fasta_path + value) for key, value in fasta.items()}
 
     # import ortholog groups
