@@ -52,8 +52,7 @@ def create_parent_groups_json(groups_fn, db_path, json_path, template_species_li
                 ortho = acc_ortho_dict[sp][acc]
                 if ortho not in parent_groups:
                     parent_groups[ortho] = {}
-                parents = [parent for parent in gff[sp].parents(cds) if
-                           parent.featuretype in ["mRNA", "prediction"]]
+                parents = [p for p in gff[sp].parents(cds, level=1)]
                 if len(parents) is not 1:
                     print("error in cds: {}\nparents: {}".format(cds, parents))
                 parent_groups[ortho][sp] = parents[0].id
