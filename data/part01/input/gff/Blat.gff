@@ -1,0 +1,52 @@
+TR53522|c5_g1_i1	transdecoder	mRNA	1	2044	.	+	0	Dbxref=GO:0004252|GO:0016021,InterPro:IPR017213,InterPro:IPR022764,PFAM:PF01694;ID=TR53522|c5_g1_i1|m.44901;Name=ORF TR53522|c5_g1_i1|g.44901 TR53522|c5_g1_i1|m.44901 type:5prime_partial len:327 (+);Parent=TR53522|c5_g1_i1|g.44901;product=Protein rhomboid
+TR53522|c5_g1_i1	transdecoder	exon	1	2044	.	+	0	ID=TR53522|c5_g1_i1|m.44901.exon1;Parent=TR53522|c5_g1_i1|m.44901
+TR53522|c5_g1_i1	transdecoder	three_prime_UTR	983	2044	.	+	0	ID=TR53522|c5_g1_i1|m.44901.utr3p1;Parent=TR53522|c5_g1_i1|m.44901
+TR53522|c5_g1_i1	transdecoder	stop_codon	980	2	.	+	0	ID=TR53522|c5_g1_i1|m.44901:stop;Parent=TR53522|c5_g1_i1|m.44901
+TR53522|c5_g1_i1	transdecoder	CDS	1	982	.	+	1	ID=cds.TR53522|c5_g1_i1|m.44901;Parent=TR53522|c5_g1_i1|m.44901
+TR27534|c0_g1_i11	transdecoder	mRNA	1	3791	.	+	0	Dbxref=InterPro:IPR002791,PFAM:PF01937;ID=TR27534|c0_g1_i11|m.23497;Name=ORF TR27534|c0_g1_i11|g.23497 TR27534|c0_g1_i11|m.23497 type:complete len:477 (+);Parent=TR27534|c0_g1_i11|g.23497;product=UPF0364 protein C6orf211 homolog
+TR27534|c0_g1_i11	transdecoder	exon	1	3791	.	+	0	ID=TR27534|c0_g1_i11|m.23497.exon1;Parent=TR27534|c0_g1_i11|m.23497
+TR27534|c0_g1_i11	transdecoder	three_prime_UTR	3421	3791	.	+	0	ID=TR27534|c0_g1_i11|m.23497.utr3p1;Parent=TR27534|c0_g1_i11|m.23497
+TR27534|c0_g1_i11	transdecoder	five_prime_UTR	1	1989	.	+	0	ID=TR27534|c0_g1_i11|m.23497.utr5p1;Parent=TR27534|c0_g1_i11|m.23497
+TR27534|c0_g1_i11	transdecoder	start_codon	1990	1992	.	+	0	ID=TR27534|c0_g1_i11|m.23497:start;Parent=TR27534|c0_g1_i11|m.23497
+TR27534|c0_g1_i11	transdecoder	stop_codon	3418	1990	.	+	0	ID=TR27534|c0_g1_i11|m.23497:stop;Parent=TR27534|c0_g1_i11|m.23497
+TR27534|c0_g1_i11	transdecoder	CDS	1990	3420	.	+	0	ID=cds.TR27534|c0_g1_i11|m.23497;Parent=TR27534|c0_g1_i11|m.23497
+TR57125|c0_g1_i1	transdecoder	mRNA	1	1184	.	+	0	Dbxref=GO:0000166,GO:0003676,InterPro:IPR000504,InterPro:IPR012677;ID=TR57125|c0_g1_i1|m.47847;Name=ORF TR57125|c0_g1_i1|g.47847 TR57125|c0_g1_i1|m.47847 type:complete len:272 (+);Parent=TR57125|c0_g1_i1|g.47847
+TR57125|c0_g1_i1	transdecoder	exon	1	1184	.	+	0	ID=TR57125|c0_g1_i1|m.47847.exon1;Parent=TR57125|c0_g1_i1|m.47847
+TR57125|c0_g1_i1	transdecoder	three_prime_UTR	963	1184	.	+	0	ID=TR57125|c0_g1_i1|m.47847.utr3p1;Parent=TR57125|c0_g1_i1|m.47847
+TR57125|c0_g1_i1	transdecoder	five_prime_UTR	1	146	.	+	0	ID=TR57125|c0_g1_i1|m.47847.utr5p1;Parent=TR57125|c0_g1_i1|m.47847
+TR57125|c0_g1_i1	transdecoder	start_codon	147	149	.	+	0	ID=TR57125|c0_g1_i1|m.47847:start;Parent=TR57125|c0_g1_i1|m.47847
+TR57125|c0_g1_i1	transdecoder	stop_codon	960	147	.	+	0	ID=TR57125|c0_g1_i1|m.47847:stop;Parent=TR57125|c0_g1_i1|m.47847
+TR57125|c0_g1_i1	transdecoder	CDS	147	962	.	+	0	ID=cds.TR57125|c0_g1_i1|m.47847;Parent=TR57125|c0_g1_i1|m.47847
+TR10667|c0_g1_i2	transdecoder	mRNA	1	3078	.	+	0	Dbxref=GO:0004842,GO:0005515,InterPro:IPR000008,InterPro:IPR000569,InterPro:IPR001202,InterPro:IPR024928,PFAM:PF00168,PFAM:PF00397,PFAM:PF00632;ID=TR10667|c0_g1_i2|m.6916;Name=ORF TR10667|c0_g1_i2|g.6916 TR10667|c0_g1_i2|m.6916 type:complete len:750 (+);Parent=TR10667|c0_g1_i2|g.6916;product=E3 ubiquitin-protein ligase Nedd-4
+TR10667|c0_g1_i2	transdecoder	exon	1	3078	.	+	0	ID=TR10667|c0_g1_i2|m.6916.exon1;Parent=TR10667|c0_g1_i2|m.6916
+TR10667|c0_g1_i2	transdecoder	three_prime_UTR	2844	3078	.	+	0	ID=TR10667|c0_g1_i2|m.6916.utr3p1;Parent=TR10667|c0_g1_i2|m.6916
+TR10667|c0_g1_i2	transdecoder	five_prime_UTR	1	593	.	+	0	ID=TR10667|c0_g1_i2|m.6916.utr5p1;Parent=TR10667|c0_g1_i2|m.6916
+TR10667|c0_g1_i2	transdecoder	start_codon	594	596	.	+	0	ID=TR10667|c0_g1_i2|m.6916:start;Parent=TR10667|c0_g1_i2|m.6916
+TR10667|c0_g1_i2	transdecoder	stop_codon	2841	594	.	+	0	ID=TR10667|c0_g1_i2|m.6916:stop;Parent=TR10667|c0_g1_i2|m.6916
+TR10667|c0_g1_i2	transdecoder	CDS	594	2843	.	+	0	ID=cds.TR10667|c0_g1_i2|m.6916;Parent=TR10667|c0_g1_i2|m.6916
+TR28813|c0_g2_i3	transdecoder	mRNA	1	4610	.	+	0	Dbxref=InterPro:IPR005178,PFAM:PF03619;ID=TR28813|c0_g2_i3|m.24668;Name=ORF TR28813|c0_g2_i3|g.24668 TR28813|c0_g2_i3|m.24668 type:complete len:560 (+);Parent=TR28813|c0_g2_i3|g.24668;product=Transmembrane protein 184C
+TR28813|c0_g2_i3	transdecoder	exon	1	4610	.	+	0	ID=TR28813|c0_g2_i3|m.24668.exon1;Parent=TR28813|c0_g2_i3|m.24668
+TR28813|c0_g2_i3	transdecoder	three_prime_UTR	2063	4610	.	+	0	ID=TR28813|c0_g2_i3|m.24668.utr3p1;Parent=TR28813|c0_g2_i3|m.24668
+TR28813|c0_g2_i3	transdecoder	five_prime_UTR	1	382	.	+	0	ID=TR28813|c0_g2_i3|m.24668.utr5p1;Parent=TR28813|c0_g2_i3|m.24668
+TR28813|c0_g2_i3	transdecoder	start_codon	383	385	.	+	0	ID=TR28813|c0_g2_i3|m.24668:start;Parent=TR28813|c0_g2_i3|m.24668
+TR28813|c0_g2_i3	transdecoder	stop_codon	2060	383	.	+	0	ID=TR28813|c0_g2_i3|m.24668:stop;Parent=TR28813|c0_g2_i3|m.24668
+TR28813|c0_g2_i3	transdecoder	CDS	383	2062	.	+	0	ID=cds.TR28813|c0_g2_i3|m.24668;Parent=TR28813|c0_g2_i3|m.24668
+TR15845|c0_g1_i1	transdecoder	mRNA	1	2899	.	+	0	ID=TR15845|c0_g1_i1|m.11353;Name=ORF TR15845|c0_g1_i1|g.11353 TR15845|c0_g1_i1|m.11353 type:complete len:586 (+);Parent=TR15845|c0_g1_i1|g.11353;product=Protein FAM122A
+TR15845|c0_g1_i1	transdecoder	exon	1	2899	.	+	0	ID=TR15845|c0_g1_i1|m.11353.exon1;Parent=TR15845|c0_g1_i1|m.11353
+TR15845|c0_g1_i1	transdecoder	three_prime_UTR	2002	2899	.	+	0	ID=TR15845|c0_g1_i1|m.11353.utr3p1;Parent=TR15845|c0_g1_i1|m.11353
+TR15845|c0_g1_i1	transdecoder	five_prime_UTR	1	243	.	+	0	ID=TR15845|c0_g1_i1|m.11353.utr5p1;Parent=TR15845|c0_g1_i1|m.11353
+TR15845|c0_g1_i1	transdecoder	start_codon	244	246	.	+	0	ID=TR15845|c0_g1_i1|m.11353:start;Parent=TR15845|c0_g1_i1|m.11353
+TR15845|c0_g1_i1	transdecoder	stop_codon	1999	244	.	+	0	ID=TR15845|c0_g1_i1|m.11353:stop;Parent=TR15845|c0_g1_i1|m.11353
+TR15845|c0_g1_i1	transdecoder	CDS	244	2001	.	+	0	ID=cds.TR15845|c0_g1_i1|m.11353;Parent=TR15845|c0_g1_i1|m.11353
+TR19542|c1_g2_i2	transdecoder	mRNA	1	4322	.	+	0	Dbxref=GO:0005515,InterPro:IPR011047,InterPro:IPR015943;ID=TR19542|c1_g2_i2|m.14136;Name=ORF TR19542|c1_g2_i2|g.14136 TR19542|c1_g2_i2|m.14136 type:complete len:1345 (+);Parent=TR19542|c1_g2_i2|g.14136;product=WD repeat-containing protein 96
+TR19542|c1_g2_i2	transdecoder	exon	1	4322	.	+	0	ID=TR19542|c1_g2_i2|m.14136.exon1;Parent=TR19542|c1_g2_i2|m.14136
+TR19542|c1_g2_i2	transdecoder	three_prime_UTR	4164	4322	.	+	0	ID=TR19542|c1_g2_i2|m.14136.utr3p1;Parent=TR19542|c1_g2_i2|m.14136
+TR19542|c1_g2_i2	transdecoder	five_prime_UTR	1	128	.	+	0	ID=TR19542|c1_g2_i2|m.14136.utr5p1;Parent=TR19542|c1_g2_i2|m.14136
+TR19542|c1_g2_i2	transdecoder	start_codon	129	131	.	+	0	ID=TR19542|c1_g2_i2|m.14136:start;Parent=TR19542|c1_g2_i2|m.14136
+TR19542|c1_g2_i2	transdecoder	stop_codon	4161	129	.	+	0	ID=TR19542|c1_g2_i2|m.14136:stop;Parent=TR19542|c1_g2_i2|m.14136
+TR19542|c1_g2_i2	transdecoder	CDS	129	4163	.	+	0	ID=cds.TR19542|c1_g2_i2|m.14136;Parent=TR19542|c1_g2_i2|m.14136
+TR7080|c0_g1_i1	transdecoder	mRNA	1	783	.	+	0	Dbxref=InterPro:IPR019398,PFAM:PF10273;ID=TR7080|c0_g1_i1|m.2806;Name=ORF TR7080|c0_g1_i1|g.2806 TR7080|c0_g1_i1|m.2806 type:5prime_partial len:229 (+);Parent=TR7080|c0_g1_i1|g.2806;product=Pre-rRNA-processing protein TSR2 homolog
+TR7080|c0_g1_i1	transdecoder	exon	1	783	.	+	0	ID=TR7080|c0_g1_i1|m.2806.exon1;Parent=TR7080|c0_g1_i1|m.2806
+TR7080|c0_g1_i1	transdecoder	three_prime_UTR	689	783	.	+	0	ID=TR7080|c0_g1_i1|m.2806.utr3p1;Parent=TR7080|c0_g1_i1|m.2806
+TR7080|c0_g1_i1	transdecoder	stop_codon	686	2	.	+	0	ID=TR7080|c0_g1_i1|m.2806:stop;Parent=TR7080|c0_g1_i1|m.2806
+TR7080|c0_g1_i1	transdecoder	CDS	1	688	.	+	1	ID=cds.TR7080|c0_g1_i1|m.2806;Parent=TR7080|c0_g1_i1|m.2806

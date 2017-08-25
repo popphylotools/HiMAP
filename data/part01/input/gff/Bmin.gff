@@ -1,0 +1,19 @@
+TR18112|c1_g1_i2	transdecoder	mRNA	1	1971	.	+	0	ID=TR18112|c1_g1_i2|m.7341;Name=ORF TR18112|c1_g1_i2|g.7341 TR18112|c1_g1_i2|m.7341 type:5prime_partial len:350 (+);Parent=TR18112|c1_g1_i2|g.7341;product=Transmembrane protein 184C
+TR18112|c1_g1_i2	transdecoder	exon	1	1971	.	+	0	ID=TR18112|c1_g1_i2|m.7341.exon1;Parent=TR18112|c1_g1_i2|m.7341
+TR18112|c1_g1_i2	transdecoder	three_prime_UTR	1051	1971	.	+	0	ID=TR18112|c1_g1_i2|m.7341.utr3p1;Parent=TR18112|c1_g1_i2|m.7341
+TR18112|c1_g1_i2	transdecoder	stop_codon	1048	1	.	+	0	ID=TR18112|c1_g1_i2|m.7341:stop;Parent=TR18112|c1_g1_i2|m.7341
+TR18112|c1_g1_i2	transdecoder	CDS	1	1050	.	+	0	ID=cds.TR18112|c1_g1_i2|m.7341;Parent=TR18112|c1_g1_i2|m.7341
+TR21584|c0_g1_i2	transdecoder	mRNA	1	2598	.	+	0	ID=TR21584|c0_g1_i2|m.11132;Name=ORF TR21584|c0_g1_i2|g.11132 TR21584|c0_g1_i2|m.11132 type:complete len:751 (+);Parent=TR21584|c0_g1_i2|g.11132;product=E3 ubiquitin-protein ligase Nedd-4
+TR21584|c0_g1_i2	transdecoder	exon	1	2598	.	+	0	ID=TR21584|c0_g1_i2|m.11132.exon1;Parent=TR21584|c0_g1_i2|m.11132
+TR21584|c0_g1_i2	transdecoder	three_prime_UTR	2386	2598	.	+	0	ID=TR21584|c0_g1_i2|m.11132.utr3p1;Parent=TR21584|c0_g1_i2|m.11132
+TR21584|c0_g1_i2	transdecoder	five_prime_UTR	1	132	.	+	0	ID=TR21584|c0_g1_i2|m.11132.utr5p1;Parent=TR21584|c0_g1_i2|m.11132
+TR21584|c0_g1_i2	transdecoder	start_codon	133	135	.	+	0	ID=TR21584|c0_g1_i2|m.11132:start;Parent=TR21584|c0_g1_i2|m.11132
+TR21584|c0_g1_i2	transdecoder	stop_codon	2383	133	.	+	0	ID=TR21584|c0_g1_i2|m.11132:stop;Parent=TR21584|c0_g1_i2|m.11132
+TR21584|c0_g1_i2	transdecoder	CDS	133	2385	.	+	0	ID=cds.TR21584|c0_g1_i2|m.11132;Parent=TR21584|c0_g1_i2|m.11132
+TR18769|c0_g1_i1	transdecoder	mRNA	1	2098	.	+	0	ID=TR18769|c0_g1_i1|m.7847;Name=ORF TR18769|c0_g1_i1|g.7847 TR18769|c0_g1_i1|m.7847 type:complete len:575 (+);Parent=TR18769|c0_g1_i1|g.7847;product=Protein FAM122A
+TR18769|c0_g1_i1	transdecoder	exon	1	2098	.	+	0	ID=TR18769|c0_g1_i1|m.7847.exon1;Parent=TR18769|c0_g1_i1|m.7847
+TR18769|c0_g1_i1	transdecoder	three_prime_UTR	2081	2098	.	+	0	ID=TR18769|c0_g1_i1|m.7847.utr3p1;Parent=TR18769|c0_g1_i1|m.7847
+TR18769|c0_g1_i1	transdecoder	five_prime_UTR	1	355	.	+	0	ID=TR18769|c0_g1_i1|m.7847.utr5p1;Parent=TR18769|c0_g1_i1|m.7847
+TR18769|c0_g1_i1	transdecoder	start_codon	356	358	.	+	0	ID=TR18769|c0_g1_i1|m.7847:start;Parent=TR18769|c0_g1_i1|m.7847
+TR18769|c0_g1_i1	transdecoder	stop_codon	2078	356	.	+	0	ID=TR18769|c0_g1_i1|m.7847:stop;Parent=TR18769|c0_g1_i1|m.7847
+TR18769|c0_g1_i1	transdecoder	CDS	356	2080	.	+	0	ID=cds.TR18769|c0_g1_i1|m.7847;Parent=TR18769|c0_g1_i1|m.7847
