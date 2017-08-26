@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
+import gffutils
 import json
+import logging
 import os
 import shutil
-
-import gffutils
 
 
 def create_parent_groups_json(groups_fn, db_path, json_path, template_species_list):
@@ -41,7 +41,7 @@ def create_parent_groups_json(groups_fn, db_path, json_path, template_species_li
     # find all cds of interest for each ortho and species
     parent_groups = {}
     for sp in gff:
-        print(sp)
+        logging.info("processing {}".format(sp))
         for cds in gff[sp].features_of_type(featuretype='CDS', order_by='start'):
             if sp in template_species_list:
                 acc = cds.attributes['Name'][0]
@@ -54,7 +54,8 @@ def create_parent_groups_json(groups_fn, db_path, json_path, template_species_li
                     parent_groups[ortho] = {}
                 parents = [p for p in gff[sp].parents(cds, level=1)]
                 if len(parents) is not 1:
-                    print("error in cds: {}\nparents: {}".format(cds, parents))
+                    logging.error(
+                        "problem finding parents of cds. sp: {} cds: {}\tparents: {}".format(sp, cds, parents))
                 parent_groups[ortho][sp] = parents[0].id
 
     # output parent_groups to groups.json
@@ -77,4 +78,5 @@ if __name__ == '__main__':
     with open(args.configPath) as toml_data:
         config = pytoml.load(toml_data)
 
-    create_parent_groups_json(config['groups_fn'], config['db_path'], config['json_path'], config['template_species_list'])
+    create_parent_groups_json(config['groups_fn'], config['db_path'], config['json_path'],
+                              config['template_species_list'])
