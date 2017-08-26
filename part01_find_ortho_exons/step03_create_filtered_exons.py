@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
+import logging
 import os
 import re
 import shutil
-
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
 from Bio.SeqRecord import SeqRecord
@@ -103,8 +103,10 @@ def create_filtered_exons(enhanced_alignment_path, fasta_output_path, template_s
     for ortho in coords:
         for sp in coords[ortho]:
             if type(coords[ortho][sp]) is list:
-                print("error, multiple non-gap template cds's for {},{}: {}".format(ortho, sp,
-                                                                                    coords[ortho][sp]))
+                logging.error("problem parsing coords. multiple non-gap template cds's for {},{}: {}".format(ortho, sp,
+                                                                                                             coords[
+                                                                                                                 ortho][
+                                                                                                                 sp]))
 
     # Filter aligned exons
     ortho_coords = {}
@@ -144,7 +146,7 @@ def create_filtered_exons(enhanced_alignment_path, fasta_output_path, template_s
                     universal_ortho_coords[ortho] = set()
                 universal_ortho_coords[ortho].add(coord)
             else:
-                print("warning, {} {} has only {}".format(ortho, coord, sp_set))
+                logging.info("2nd alignment broke up {} {}, has only {}. excluding".format(ortho, coord, sp_set))
 
     # fasta prep
     fasta_prep = {}
@@ -193,8 +195,6 @@ if __name__ == '__main__':
     with open(args.configPath) as toml_data:
         config = pytoml.load(toml_data)
 
-    create_filtered_exons(config['enhanced_alignment_path'], config['fasta_output_path'], config['template_species_list'],
+    create_filtered_exons(config['enhanced_alignment_path'], config['fasta_output_path'],
+                          config['template_species_list'],
                           config['min_exon_length'], config['max_gap_length'], config['max_gap_percent'])
-
-
-
