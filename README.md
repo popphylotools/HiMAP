@@ -10,7 +10,7 @@ Here you will find the bioinformatic locus selection and data processing pipelin
 
 **Part03** is for post-sequencing data processing. This takes as input demultiplexed, adapter-trimmed and FLASh-joined FASTQ files, and calls consensus sequences based on read length distributions. It outputs aligned multi-FASTA formatted files (1 per gene), that can be used directly for gene-tree analysis or concatenated for an "all data" approach.
 
-For a detailed tutuorial in re-creating the results of Dupuis et al. 2017, see **Usage** section below. Note, the terminology from Dupuis et al. 2017 is used here ("raw exons", "filtered exons", etc.), so refer to the paper for those details.
+For a detailed tutuorial in re-creating the results of Dupuis et al. 2017, see **Usage: Detailed** section below. Note, the terminology from Dupuis et al. 2017 is used here ("raw exons", "filtered exons", etc.), so refer to the paper for those details.
 
 
 ## Installation
@@ -47,7 +47,7 @@ linux:
 ```
 
 #### Download Data
-(currently on our server, to be replaced with Dryad accession)
+We have included a toy dataset in this GitHub repo ([here](https://github.com/popphylotools/HiMAP/tree/master/data)), which will allow a user to proceed through all parts of this pipeline. This toy dataset includes abbreviated inputs for all parts of the pipeline, to decrease processing time and make it easier to test all steps. Full input used by Dupuis et al. (2017) is available on Dryad [Dryad link] (for part01 and part02) and NCBI (BioProject PRJNA398162, for part03). Full input is also available through the link provided below under **Input data**.
 
 ##### Input data:</br>
 HiMAP_inputData.zip can be unzipped and used to replace the data directory from this git repo.</br>
@@ -95,7 +95,7 @@ Run the desired script, e.g.:
 
 ## Usage: Detailed
 #### config.toml
-The file `config.toml` contains various parameters and data paths for running all three parts of this pipeline. Notably, this includes 2 lists of species names (spelled as in the output of the ortholog prediction): one of all species, and one of species with "high quality annotations". The latter are used to predict exon/intron boundaries for the remaining species. This config file also contains paths to the various inputs/intermediates/outputs for each of the three parts. Only the inputs directories are required to run the scripts (intermediate & output dirs will be generated automatically). If using all steps of this pipeline, we suggest using a data structure such as the following and refer to this directory structure below:
+The file `config.toml` contains various parameters and data paths for running all three parts of this pipeline. Notably, this includes 2 lists of species names (spelled as in the output of the ortholog prediction): one of all species, and one of species with "high quality annotations". The latter are used to predict exon/intron boundaries for the remaining species. This config file also contains paths to the various inputs/intermediates/outputs for each of the three parts. Only the inputs directories are required to run the scripts (intermediate & output dirs will be generated automatically). If using all steps of this pipeline, we suggest using the data structure that is used in this GitHub repo, which is:
 
 ```
 .
