@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 
+import gffutils
 import json
+import logging
 import multiprocessing as mp
 import os
 import re
 import shutil
-from multiprocessing.pool import ThreadPool
-
-import gffutils
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
+from multiprocessing.pool import ThreadPool
 from pyfaidx import Fasta
 
 
@@ -200,6 +200,8 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
                         except ValueError as e:
                             if "imply a diffent length than sequence" in str(e):
                                 cat_seq += Seq(str(fasta[sp][cds.chrom]), IUPAC.ambiguous_dna)
+                                logging.debug(
+                                    "coordinates from gff don't fall within with scaffold, grabbing entire scaffold")
                             else:
                                 raise
 
