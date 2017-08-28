@@ -6,9 +6,9 @@ This script uses the ortho -> sp -> accession relationships from the filtered or
 to create a json file with ortho -> sp -> cds_parent_database_id relationships which are used later.
 
 #### step01
-This script takes our well annotated genomes and creates template fastas of gene orthologs
-consisting of cds's concatinated with fixed length strings of 'N's in place of introns.
-It then runs mafft on these fasta's to align them.
+This script takes the "high-quality data sources" (well-annotated genomes) and creates template fastas of gene orthologs
+consisting of CDS's concatenated with fixed length strings of 'N's in place of introns.
+It then runs MAFFT on these fasta's to align them.
 
 #### step02
 This script takes the aligned padded orthologs from the privious step and splits them on the exon boundries
