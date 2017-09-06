@@ -1,0 +1,14 @@
+TR17739|c1_g1_i1	transdecoder	mRNA	1	8174	.	+	0	ID=TR17739|c1_g1_i1|m.17560;Name=ORF TR17739|c1_g1_i1|g.17560 TR17739|c1_g1_i1|m.17560 type:complete len:586 (+);Parent=TR17739|c1_g1_i1|g.17560;product=Protein FAM122A
+TR17739|c1_g1_i1	transdecoder	exon	1	8174	.	+	0	ID=TR17739|c1_g1_i1|m.17560.exon1;Parent=TR17739|c1_g1_i1|m.17560
+TR17739|c1_g1_i1	transdecoder	three_prime_UTR	2588	8174	.	+	0	ID=TR17739|c1_g1_i1|m.17560.utr3p1;Parent=TR17739|c1_g1_i1|m.17560
+TR17739|c1_g1_i1	transdecoder	five_prime_UTR	1	829	.	+	0	ID=TR17739|c1_g1_i1|m.17560.utr5p1;Parent=TR17739|c1_g1_i1|m.17560
+TR17739|c1_g1_i1	transdecoder	start_codon	830	832	.	+	0	ID=TR17739|c1_g1_i1|m.17560:start;Parent=TR17739|c1_g1_i1|m.17560
+TR17739|c1_g1_i1	transdecoder	stop_codon	2585	830	.	+	0	ID=TR17739|c1_g1_i1|m.17560:stop;Parent=TR17739|c1_g1_i1|m.17560
+TR17739|c1_g1_i1	transdecoder	CDS	830	2587	.	+	0	ID=cds.TR17739|c1_g1_i1|m.17560;Parent=TR17739|c1_g1_i1|m.17560
+TR15206|c0_g1_i1	transdecoder	mRNA	1	3287	.	+	0	ID=TR15206|c0_g1_i1|m.7930;Name=ORF TR15206|c0_g1_i1|g.7930 TR15206|c0_g1_i1|m.7930 type:complete len:751 (+);Parent=TR15206|c0_g1_i1|g.7930;product=E3 ubiquitin-protein ligase Nedd-4
+TR15206|c0_g1_i1	transdecoder	exon	1	3287	.	+	0	ID=TR15206|c0_g1_i1|m.7930.exon1;Parent=TR15206|c0_g1_i1|m.7930
+TR15206|c0_g1_i1	transdecoder	three_prime_UTR	2741	3287	.	+	0	ID=TR15206|c0_g1_i1|m.7930.utr3p1;Parent=TR15206|c0_g1_i1|m.7930
+TR15206|c0_g1_i1	transdecoder	five_prime_UTR	1	487	.	+	0	ID=TR15206|c0_g1_i1|m.7930.utr5p1;Parent=TR15206|c0_g1_i1|m.7930
+TR15206|c0_g1_i1	transdecoder	start_codon	488	490	.	+	0	ID=TR15206|c0_g1_i1|m.7930:start;Parent=TR15206|c0_g1_i1|m.7930
+TR15206|c0_g1_i1	transdecoder	stop_codon	2738	488	.	+	0	ID=TR15206|c0_g1_i1|m.7930:stop;Parent=TR15206|c0_g1_i1|m.7930
+TR15206|c0_g1_i1	transdecoder	CDS	488	2740	.	+	0	ID=cds.TR15206|c0_g1_i1|m.7930;Parent=TR15206|c0_g1_i1|m.7930

@@ -69,9 +69,9 @@ def create_padded_primer_products(orthoExon_path, padded_primer_product_path, un
                                   alternate_sp_fn,
                                   paragon_fn):
     # create handles for all .fasta files in fasta directory
-    fasta_fn = {name.split('.13spp.fasta')[0]: orthoExon_path + name for name in
+    fasta_fn = {name.split('.full.fasta')[0]: orthoExon_path + name for name in
                 os.listdir(orthoExon_path) if
-                ((".13spp.fasta" in name) and (".13spp.fasta.fai" not in name))}
+                ((".full.fasta" in name) and (".full.fasta.fai" not in name))}
 
     # read and parse fasta files for each species
     fasta = {}
@@ -143,20 +143,25 @@ def create_padded_primer_products(orthoExon_path, padded_primer_product_path, un
 
 
 def convertfasta2nex(padded_primer_product_fn, nex_fn):
-    p = subprocess.Popen(["perl", "./convertfasta2nex.pl", padded_primer_product_fn, ">", nex_fn],
+    p = subprocess.Popen(["./convertfasta2nex_driver.sh", padded_primer_product_fn, nex_fn],
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p.communicate()
     return out, err
 
 
-def tapir_driver(nex_sub_path, tapir_out_sub_path, ref_tree_fn):
-    p = subprocess.Popen(["./tapir_driver.sh", nex_sub_path, tapir_out_sub_path, ref_tree_fn],
+def tapir_driver(nex_sub_path, tapir_out_sub_path, ref_tree_fn, tapir_opts_string):
+    p = subprocess.Popen(["./tapir_driver.sh", nex_sub_path, tapir_out_sub_path, ref_tree_fn, tapir_opts_string],
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p.communicate()
+    with open(tapir_out_sub_path + "tapir.out", 'wb') as f:
+        f.write(out)
+    with open(tapir_out_sub_path + "tapir.err", 'wb') as f:
+        f.write(err)
     return out, err
 
 
-def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out_path, pi_score_path, ref_tree_fn):
+def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out_path, pi_score_path, ref_tree_fn,
+                                 tapir_opts_string):
     cpu_count = mp.cpu_count()
 
     # remove and recreate nex and tapir ouput directories
@@ -167,14 +172,14 @@ def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out
 
     # create tapir input and output directories for each core
     for i in range(cpu_count):
-        os.makedirs(nex_path + str(i), exist_ok=True)
-        os.makedirs(tapir_out_path + str(i), exist_ok=True)
+        os.makedirs(nex_path + '{num:02d}'.format(num=i), exist_ok=True)
+        os.makedirs(tapir_out_path + '{num:02d}'.format(num=i), exist_ok=True)
 
     # for each fasta file, make a nex (split into cpu_count subdirectories)
     i = 0
     convertfasta2nex_input = []
     for file in os.listdir(padded_primer_product_path):
-        group = str(i % cpu_count)
+        group = '{num:02d}'.format(num=i % cpu_count)
         padded_primer_product_fn = padded_primer_product_path + file
         nex_fn = nex_path + group + "/" + file + ".nex"
         convertfasta2nex_input.append((padded_primer_product_fn, nex_fn))
@@ -188,9 +193,9 @@ def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out
     # for each core, process a subdirectory
     tapir_driver_input = []
     for i in range(cpu_count):
-        nex_sub_path = nex_path + str(i) + "/"
-        tapir_out_sub_path = tapir_out_path + str(i) + "/"
-        tapir_driver_input.append((nex_sub_path, tapir_out_sub_path, ref_tree_fn))
+        nex_sub_path = nex_path + '{num:02d}/'.format(num=i)
+        tapir_out_sub_path = tapir_out_path + '{num:02d}/'.format(num=i)
+        tapir_driver_input.append((nex_sub_path, tapir_out_sub_path, ref_tree_fn, tapir_opts_string))
 
     pool = ThreadPool(cpu_count)
     pool.starmap(tapir_driver, tapir_driver_input)
@@ -200,10 +205,11 @@ def phylogenetic_informativeness(padded_primer_product_path, nex_path, tapir_out
     # collect sql to a directory
     sql_list = []
     for i in range(cpu_count):
-        tapir_out_sub_path = tapir_out_path + str(i) + "/"
-        sql_list.extend([tapir_out_sub_path + fn for fn in os.listdir(tapir_out_sub_path) if ".sqlite" in fn])
-    for fn in sql_list:
-        shutil.move(fn, pi_score_path)
+        tapir_out_sub_path = tapir_out_path + '{num:02d}/'.format(num=i)
+        sql_list.extend([(tapir_out_sub_path + fn, pi_score_path + '{num:02d}'.format(num=i) + '_' + fn) for fn in
+                         os.listdir(tapir_out_sub_path) if ".sqlite" in fn])
+    for old_fn, new_fn in sql_list:
+        shutil.move(old_fn, new_fn)
 
 
 def summarize(df, fasta, pi_score_path, summary_fn):
@@ -293,6 +299,6 @@ if __name__ == '__main__':
                                                               config['alternate_sp_fn'], config['paragon_fn'])
 
     phylogenetic_informativeness(config['padded_primer_product_path'], config['nex_path'], config['tapir_out_path'],
-                                 config['pi_score_path'], config['ref_tree_fn'])
+                                 config['pi_score_path'], config['ref_tree_fn'], config['tapir_opts_string'])
 
     summarize(working_df, working_fasta, config['pi_score_path'], config['summary_fn'])

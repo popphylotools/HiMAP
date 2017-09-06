@@ -29,7 +29,7 @@ while (my $t=<DATA>) {
 
 }
 push @seqs,$seq;
-print "#NEXUS\nBegin part01_data;\ndimensions ntax=$numtaxa nchar=$maxlength;\nformat datatype=dna missing=-;\nmatrix\n";
+print "#NEXUS\nBegin data;\ndimensions ntax=$numtaxa nchar=$maxlength;\nformat datatype=dna missing=-;\nmatrix\n";
 
 for (my $i=0;$i<scalar@species;$i++) {
 	my $len=length$seqs[$i];

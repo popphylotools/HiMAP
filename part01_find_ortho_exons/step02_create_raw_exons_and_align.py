@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 
+import gffutils
 import json
+import logging
 import multiprocessing as mp
 import os
 import re
 import shutil
-from multiprocessing.pool import ThreadPool
-
-import gffutils
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
+from multiprocessing.pool import ThreadPool
 from pyfaidx import Fasta
 
 
@@ -73,26 +73,24 @@ def longestGap(seq):
 
 
 def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_path, db_path, json_path,
-                     template_species_list, transvestigated_species_list, max_gap_percent, max_gap_length,
+                     template_species_list, max_gap_percent, max_gap_length,
                      min_exon_length, n_count):
-    transvestigated_species_set = set(transvestigated_species_list)
-
     # create handles for all .db files in intermediate directory
     gff_fn = {name.split('.gff.db')[0]: db_path + name for name in os.listdir(db_path) if
               ".gff.db" in name}
     gff = {key: gffutils.FeatureDB(value) for key, value in gff_fn.items()}
 
     # create handles for all .fasta files in fasta directory
-    fasta_fn = {name.split('.nt.fasta')[0]: fasta_path + name for name in os.listdir(fasta_path) if
-                ((".nt.fasta" in name) and (".nt.fasta.fai" not in name))}
+    fasta_fn = {name.split('.')[0]: fasta_path + name for name in os.listdir(fasta_path) if
+                ((".fasta" in name) and (".fai" not in name))}
     fasta = {key: Fasta(value) for key, value in fasta_fn.items()}
 
     # import ortholog groups
     with open(json_path + "groups.json", 'r') as f:
         parent_groups = json.load(f)
 
-    # create handles for all .fasta files in aligned_4spp_fasta directory
-    aligned_fasta_fn = {name.split('.fasta')[0]: template_alignment_path + name for name in
+    # create handles for all .fasta files in aligned template fasta directory
+    aligned_fasta_fn = {name.split('.template.fasta')[0]: template_alignment_path + name for name in
                         os.listdir(template_alignment_path) if
                         ((".fasta.aln" in name) and (".fasta.aln.fai" not in name))}
 
@@ -177,7 +175,7 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
     os.makedirs(enhanced_alignment_path, exist_ok=True)
     for ortho in fasta_prep:
         for coord in fasta_prep[ortho]:
-            filename = enhanced_alignment_path + ortho + "_" + str(coord[0]) + "-" + str(coord[1]) + ".13spp.fasta"
+            filename = enhanced_alignment_path + ortho + "_" + str(coord[0]) + "-" + str(coord[1]) + ".full.fasta"
             with open(filename, "w") as f:
                 for sp in template_species_list:
                     cds = fasta_prep[ortho][coord][sp]
@@ -187,35 +185,34 @@ def create_raw_exons(fasta_path, enhanced_alignment_path, template_alignment_pat
                     f.write(seqReq.format("fasta"))
 
                 for sp in sorted(parent_groups[ortho]):
+
                     if sp in template_species_list:
                         continue
+
                     parent = gff[sp][parent_groups[ortho][sp]]
                     strand = parent.strand
-                    cds_list = [cds for cds in
-                                gff[sp].children(parent, featuretype="CDS", order_by="start")]
+                    cds_list = [cds for cds in gff[sp].children(parent, featuretype="CDS", order_by="start")]
                     cat_seq = Seq("", IUPAC.ambiguous_dna)
-                    for cds in cds_list:
-                        if sp in transvestigated_species_set:
-                            seq = Seq(str(fasta[sp][parent_groups[ortho][sp]]), IUPAC.ambiguous_dna)
-                            cds_len = cds.end - cds.start
-                            if cds_len + 1 == len(seq):
-                                cat_seq += seq
-                            else:
-                                print("{} {} {} {} {}".format(ortho, sp, coord, cds_len, len(seq)))
-                        else:
-                            cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)),
-                                           IUPAC.ambiguous_dna)
 
-                            # cat_seq += Seq(fasta[sp][cds.chrom][cds.start:cds.end].seq, IUPAC.ambiguous_dna)
+                    for cds in cds_list:
+                        try:
+                            cat_seq += Seq(str(cds.sequence(fasta=fasta[sp], use_strand=False)), IUPAC.ambiguous_dna)
+                        except ValueError as e:
+                            if "imply a diffent length than sequence" in str(e):
+                                cat_seq += Seq(str(fasta[sp][cds.chrom]), IUPAC.ambiguous_dna)
+                                logging.debug(
+                                    "coordinates from gff don't fall within with scaffold, grabbing entire scaffold")
+                            else:
+                                raise
+
                     if strand == '-':
                         cat_seq = cat_seq.reverse_complement()
-                    seqReq = SeqRecord(cat_seq, id=sp, description=parent.id)
-                    f.write(seqReq.format("fasta"))
+                    seqRec = SeqRecord(cat_seq, id=sp, description=parent.id)
+                    f.write(seqRec.format("fasta"))
 
 
 def mafft_driver_file(file):
-    p = subprocess.Popen(["./mafft_driver.sh", file, file + ".aln"],
-                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p = subprocess.Popen(["./mafft_driver.sh", file, file + ".aln"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p.communicate()
     return out, err
 
@@ -249,7 +246,7 @@ if __name__ == '__main__':
 
     create_raw_exons(config['fasta_path'], config['enhanced_alignment_path'], config['template_alignment_path'],
                      config['db_path'],
-                     config['json_path'], config['template_species_list'], config['transvestigated_species_list'],
+                     config['json_path'], config['template_species_list'],
                      config['max_gap_percent'], config['max_gap_length'], config['min_exon_length'], config['n_count'])
 
     mafft_driver_path(config['enhanced_alignment_path'])

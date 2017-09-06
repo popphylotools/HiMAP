@@ -2,14 +2,11 @@
 # Part01 Parameters #
 #####################
 
-# species with good annotations
+# species with "high quality" annotations
 template_species_list = ["Bcur", "Bdor", "Bole", "Ccap"]
 
 # full species list
 full_species_list = ['Bcur', 'Bdor', 'Bole', 'Ccap', 'Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl', 'Asus', 'Btry']
-
-# list of species who's part01 came from transvestigator (needs to be parsed slightly different)
-transvestigated_species_list = ['Bcor', 'Blat', 'Bzon', 'Afra', 'Bmin', 'Bjar', 'Aobl']
 
 # number of n's used to create alignment boarders
 n_count = 50
@@ -20,6 +17,29 @@ max_gap_length = 0
 
 # exon length filter parameters
 min_exon_length = 100
+
+#####################
+# Part02 Parameters #
+#####################
+
+# tapir options string
+tapir_opts_string = "--intervals=2-3,3-5,5-8,8-10,10-18 --times=2,3,5,8,10,17 --tree-format=newick"
+
+#####################
+# Part03 Parameters #
+#####################
+
+## summary ##
+
+# exclude if len < min_length
+min_length = 65
+# exclude if length deviates from the mean by more then max_len_dev
+max_len_dev = 20
+
+################################################### Paths #############################################################
+
+# As a rule, variables with "path" in the name are relitive paths to a directory and end in a '/'.
+# Variables with "fn" for "file name" are the relitive path to a file and end with the file's name.
 
 
 ################
@@ -35,17 +55,17 @@ fasta_path =                        "../data/part01/input/fasta/"
 db_path =                           "../data/part01/intermediate/gff_databases/"
 json_path =                         "../data/part01/intermediate/json/"
 template_alignment_path =           "../data/part01/intermediate/template_alignment/"
-enhanced_alignment_path =           "../data/part01/intermediate/supplemental_alignment/"
+enhanced_alignment_path =           "../data/part01/intermediate/full_alignment/"
 
 # output
-fasta_output_path =                 "../data/part01/output/fasta/"
+fasta_output_path =                 "../data/part01/output/orthoExon_fasta/"
 
 ################
 # Part02 Paths #
 ################
 
-# from privious part
-orthoExon_path =                    "../data/part02/input/orthoExons/"
+# from previous part
+orthoExon_path =                    "../data/part02/input/orthoExon_fasta/"
 
 # input
 paragon_fn =                        "../data/part02/input/PGC106.selectedAmp.tab"

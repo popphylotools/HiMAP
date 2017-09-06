@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
 import itertools
-import os
 import time
-import multiprocessing as mp
 
 import gffutils
+import logging
+import multiprocessing as mp
+import os
 
 
 def create_db(db_path, gff_path, species):
@@ -39,25 +40,21 @@ def get_exons(db_path, species):
 
 def create_gff_db(gff_path, db_path, full_species_list):
     start = time.clock()
-    print("created?\n" +
-          "--------")
+    logging.info("clock started")
     with mp.Pool(min(len(full_species_list), mp.cpu_count())) as p:
         results = {sp: db for sp, db in p.starmap(create_db, zip(itertools.repeat(db_path),
                                                                  itertools.repeat(gff_path),
                                                                  full_species_list))}
     for sp, status in results.items():
-        print("{}: {}".format(sp, status))
+        logging.info("processed {}: {}".format(sp, status))
     end = time.clock()
-    print("time: {}".format(end - start))
+    logging.info("db creation time: {}".format(end - start))
 
-    start = time.clock()
     gff_dbs = {sp: db for sp, db in [connect_db(db_path, sp) for sp in full_species_list]}
     exons = {}
     for sp in full_species_list:
-        exons[sp] = gff_dbs[sp].count_features_of_type('exon')
-        print("{} exons: {}".format(sp, exons[sp]))
-    end = time.clock()
-    print("time: {}".format(end - start))
+        exons[sp] = gff_dbs[sp].count_features_of_type('CDS')
+        logging.info("{} CDS's: {}".format(sp, exons[sp]))
 
 
 if __name__ == '__main__':

@@ -1,3 +1,3 @@
-Single input files go here. These include:
- - ortho groups file `groups_filtered_6181genes.txt`
- - reference tree file `959genes.phy.contree_AgeRooted_wholeNumbs.tre`
+The following are expected to exist here:
+
+An ortho groups file `filtered_orthomcl_output_6181genes.txt` as well as directories `gff` and `fasta`, containing `.gff` and `.fasta` files respectivly.

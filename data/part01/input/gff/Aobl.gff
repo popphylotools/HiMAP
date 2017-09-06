@@ -1,0 +1,24 @@
+TR20824|c0_g1_i1	transdecoder	mRNA	1	2488	.	+	0	ID=TR20824|c0_g1_i1|m.9811;Name=ORF TR20824|c0_g1_i1|g.9811 TR20824|c0_g1_i1|m.9811 type:5prime_partial len:554 (+);Parent=TR20824|c0_g1_i1|g.9811;product=Caspase-8
+TR20824|c0_g1_i1	transdecoder	exon	1	2488	.	+	0	ID=TR20824|c0_g1_i1|m.9811.exon1;Parent=TR20824|c0_g1_i1|m.9811
+TR20824|c0_g1_i1	transdecoder	three_prime_UTR	1663	2488	.	+	0	ID=TR20824|c0_g1_i1|m.9811.utr3p1;Parent=TR20824|c0_g1_i1|m.9811
+TR20824|c0_g1_i1	transdecoder	stop_codon	1660	1	.	+	0	ID=TR20824|c0_g1_i1|m.9811:stop;Parent=TR20824|c0_g1_i1|m.9811
+TR20824|c0_g1_i1	transdecoder	CDS	1	1662	.	+	0	ID=cds.TR20824|c0_g1_i1|m.9811;Parent=TR20824|c0_g1_i1|m.9811
+TR19052|c0_g1_i1	transdecoder	mRNA	1	1506	.	+	0	ID=TR19052|c0_g1_i1|m.6523;Name=ORF TR19052|c0_g1_i1|g.6523 TR19052|c0_g1_i1|m.6523 type:3prime_partial len:402 (+);Parent=TR19052|c0_g1_i1|g.6523;product=Transmembrane protein 184C
+TR19052|c0_g1_i1	transdecoder	exon	1	1506	.	+	0	ID=TR19052|c0_g1_i1|m.6523.exon1;Parent=TR19052|c0_g1_i1|m.6523
+TR19052|c0_g1_i1	transdecoder	five_prime_UTR	1	303	.	+	0	ID=TR19052|c0_g1_i1|m.6523.utr5p1;Parent=TR19052|c0_g1_i1|m.6523
+TR19052|c0_g1_i1	transdecoder	start_codon	304	306	.	+	0	ID=TR19052|c0_g1_i1|m.6523:start;Parent=TR19052|c0_g1_i1|m.6523
+TR19052|c0_g1_i1	transdecoder	CDS	304	1506	.	+	0	ID=cds.TR19052|c0_g1_i1|m.6523;Parent=TR19052|c0_g1_i1|m.6523
+TR22154|c2_g2_i1	transdecoder	mRNA	1	2494	.	+	0	ID=TR22154|c2_g2_i1|m.12898;Name=ORF TR22154|c2_g2_i1|g.12898 TR22154|c2_g2_i1|m.12898 type:complete len:440 (+);Parent=TR22154|c2_g2_i1|g.12898;product=Protein rhomboid
+TR22154|c2_g2_i1	transdecoder	exon	1	2494	.	+	0	ID=TR22154|c2_g2_i1|m.12898.exon1;Parent=TR22154|c2_g2_i1|m.12898
+TR22154|c2_g2_i1	transdecoder	three_prime_UTR	1333	2494	.	+	0	ID=TR22154|c2_g2_i1|m.12898.utr3p1;Parent=TR22154|c2_g2_i1|m.12898
+TR22154|c2_g2_i1	transdecoder	five_prime_UTR	1	12	.	+	0	ID=TR22154|c2_g2_i1|m.12898.utr5p1;Parent=TR22154|c2_g2_i1|m.12898
+TR22154|c2_g2_i1	transdecoder	start_codon	13	15	.	+	0	ID=TR22154|c2_g2_i1|m.12898:start;Parent=TR22154|c2_g2_i1|m.12898
+TR22154|c2_g2_i1	transdecoder	stop_codon	1330	13	.	+	0	ID=TR22154|c2_g2_i1|m.12898:stop;Parent=TR22154|c2_g2_i1|m.12898
+TR22154|c2_g2_i1	transdecoder	CDS	13	1332	.	+	0	ID=cds.TR22154|c2_g2_i1|m.12898;Parent=TR22154|c2_g2_i1|m.12898
+TR19754|c0_g1_i1	transdecoder	mRNA	1	3233	.	+	0	ID=TR19754|c0_g1_i1|m.7706;Name=ORF TR19754|c0_g1_i1|g.7706 TR19754|c0_g1_i1|m.7706 type:complete len:581 (+);Parent=TR19754|c0_g1_i1|g.7706;product=Protein FAM122A
+TR19754|c0_g1_i1	transdecoder	exon	1	3233	.	+	0	ID=TR19754|c0_g1_i1|m.7706.exon1;Parent=TR19754|c0_g1_i1|m.7706
+TR19754|c0_g1_i1	transdecoder	three_prime_UTR	2147	3233	.	+	0	ID=TR19754|c0_g1_i1|m.7706.utr3p1;Parent=TR19754|c0_g1_i1|m.7706
+TR19754|c0_g1_i1	transdecoder	five_prime_UTR	1	403	.	+	0	ID=TR19754|c0_g1_i1|m.7706.utr5p1;Parent=TR19754|c0_g1_i1|m.7706
+TR19754|c0_g1_i1	transdecoder	start_codon	404	406	.	+	0	ID=TR19754|c0_g1_i1|m.7706:start;Parent=TR19754|c0_g1_i1|m.7706
+TR19754|c0_g1_i1	transdecoder	stop_codon	2144	404	.	+	0	ID=TR19754|c0_g1_i1|m.7706:stop;Parent=TR19754|c0_g1_i1|m.7706
+TR19754|c0_g1_i1	transdecoder	CDS	404	2146	.	+	0	ID=cds.TR19754|c0_g1_i1|m.7706;Parent=TR19754|c0_g1_i1|m.7706
