@@ -1,0 +1,46 @@
+TR5480|c0_g1_i1	transdecoder	mRNA	1	721	.	+	0	ID=TR5480|c0_g1_i1|m.3803;Name=ORF TR5480|c0_g1_i1|g.3803 TR5480|c0_g1_i1|m.3803 type:5prime_partial len:213 (+);Parent=TR5480|c0_g1_i1|g.3803;product=Pre-rRNA-processing protein TSR2 homolog
+TR5480|c0_g1_i1	transdecoder	exon	1	721	.	+	0	ID=TR5480|c0_g1_i1|m.3803.exon1;Parent=TR5480|c0_g1_i1|m.3803
+TR5480|c0_g1_i1	transdecoder	three_prime_UTR	640	721	.	+	0	ID=TR5480|c0_g1_i1|m.3803.utr3p1;Parent=TR5480|c0_g1_i1|m.3803
+TR5480|c0_g1_i1	transdecoder	stop_codon	637	1	.	+	0	ID=TR5480|c0_g1_i1|m.3803:stop;Parent=TR5480|c0_g1_i1|m.3803
+TR5480|c0_g1_i1	transdecoder	CDS	1	639	.	+	0	ID=cds.TR5480|c0_g1_i1|m.3803;Parent=TR5480|c0_g1_i1|m.3803
+TR59999|c0_g2_i1	transdecoder	mRNA	1	2660	.	+	0	ID=TR59999|c0_g2_i1|m.50804;Name=ORF TR59999|c0_g2_i1|g.50804 TR59999|c0_g2_i1|m.50804 type:complete len:559 (+);Parent=TR59999|c0_g2_i1|g.50804;product=Transmembrane protein 184C
+TR59999|c0_g2_i1	transdecoder	exon	1	2660	.	+	0	ID=TR59999|c0_g2_i1|m.50804.exon1;Parent=TR59999|c0_g2_i1|m.50804
+TR59999|c0_g2_i1	transdecoder	three_prime_UTR	2064	2660	.	+	0	ID=TR59999|c0_g2_i1|m.50804.utr3p1;Parent=TR59999|c0_g2_i1|m.50804
+TR59999|c0_g2_i1	transdecoder	five_prime_UTR	1	386	.	+	0	ID=TR59999|c0_g2_i1|m.50804.utr5p1;Parent=TR59999|c0_g2_i1|m.50804
+TR59999|c0_g2_i1	transdecoder	start_codon	387	389	.	+	0	ID=TR59999|c0_g2_i1|m.50804:start;Parent=TR59999|c0_g2_i1|m.50804
+TR59999|c0_g2_i1	transdecoder	stop_codon	2061	387	.	+	0	ID=TR59999|c0_g2_i1|m.50804:stop;Parent=TR59999|c0_g2_i1|m.50804
+TR59999|c0_g2_i1	transdecoder	CDS	387	2063	.	+	0	ID=cds.TR59999|c0_g2_i1|m.50804;Parent=TR59999|c0_g2_i1|m.50804
+TR42897|c4_g1_i1	transdecoder	mRNA	1	2236	.	+	0	ID=TR42897|c4_g1_i1|m.34553;Name=ORF TR42897|c4_g1_i1|g.34553 TR42897|c4_g1_i1|m.34553 type:complete len:437 (+);Parent=TR42897|c4_g1_i1|g.34553;product=Protein rhomboid
+TR42897|c4_g1_i1	transdecoder	exon	1	2236	.	+	0	ID=TR42897|c4_g1_i1|m.34553.exon1;Parent=TR42897|c4_g1_i1|m.34553
+TR42897|c4_g1_i1	transdecoder	three_prime_UTR	1312	2236	.	+	0	ID=TR42897|c4_g1_i1|m.34553.utr3p1;Parent=TR42897|c4_g1_i1|m.34553
+TR42897|c4_g1_i1	transdecoder	start_codon	1	3	.	+	0	ID=TR42897|c4_g1_i1|m.34553:start;Parent=TR42897|c4_g1_i1|m.34553
+TR42897|c4_g1_i1	transdecoder	stop_codon	1309	1	.	+	0	ID=TR42897|c4_g1_i1|m.34553:stop;Parent=TR42897|c4_g1_i1|m.34553
+TR42897|c4_g1_i1	transdecoder	CDS	1	1311	.	+	0	ID=cds.TR42897|c4_g1_i1|m.34553;Parent=TR42897|c4_g1_i1|m.34553
+TR24176|c0_g1_i2	transdecoder	mRNA	1	3144	.	+	0	ID=TR24176|c0_g1_i2|m.19689;Name=ORF TR24176|c0_g1_i2|g.19689 TR24176|c0_g1_i2|m.19689 type:complete len:821 (+);Parent=TR24176|c0_g1_i2|g.19689;product=E3 ubiquitin-protein ligase Nedd-4
+TR24176|c0_g1_i2	transdecoder	exon	1	3144	.	+	0	ID=TR24176|c0_g1_i2|m.19689.exon1;Parent=TR24176|c0_g1_i2|m.19689
+TR24176|c0_g1_i2	transdecoder	three_prime_UTR	2933	3144	.	+	0	ID=TR24176|c0_g1_i2|m.19689.utr3p1;Parent=TR24176|c0_g1_i2|m.19689
+TR24176|c0_g1_i2	transdecoder	five_prime_UTR	1	469	.	+	0	ID=TR24176|c0_g1_i2|m.19689.utr5p1;Parent=TR24176|c0_g1_i2|m.19689
+TR24176|c0_g1_i2	transdecoder	start_codon	470	472	.	+	0	ID=TR24176|c0_g1_i2|m.19689:start;Parent=TR24176|c0_g1_i2|m.19689
+TR24176|c0_g1_i2	transdecoder	stop_codon	2930	470	.	+	0	ID=TR24176|c0_g1_i2|m.19689:stop;Parent=TR24176|c0_g1_i2|m.19689
+TR24176|c0_g1_i2	transdecoder	CDS	470	2932	.	+	0	ID=cds.TR24176|c0_g1_i2|m.19689;Parent=TR24176|c0_g1_i2|m.19689
+TR18069|c0_g1_i1	transdecoder	mRNA	1	1049	.	+	0	ID=TR18069|c0_g1_i1|m.14658;Name=ORF TR18069|c0_g1_i1|g.14658 TR18069|c0_g1_i1|m.14658 type:complete len:260 (+);Parent=TR18069|c0_g1_i1|g.14658
+TR18069|c0_g1_i1	transdecoder	exon	1	1049	.	+	0	ID=TR18069|c0_g1_i1|m.14658.exon1;Parent=TR18069|c0_g1_i1|m.14658
+TR18069|c0_g1_i1	transdecoder	three_prime_UTR	884	1049	.	+	0	ID=TR18069|c0_g1_i1|m.14658.utr3p1;Parent=TR18069|c0_g1_i1|m.14658
+TR18069|c0_g1_i1	transdecoder	five_prime_UTR	1	103	.	+	0	ID=TR18069|c0_g1_i1|m.14658.utr5p1;Parent=TR18069|c0_g1_i1|m.14658
+TR18069|c0_g1_i1	transdecoder	start_codon	104	106	.	+	0	ID=TR18069|c0_g1_i1|m.14658:start;Parent=TR18069|c0_g1_i1|m.14658
+TR18069|c0_g1_i1	transdecoder	stop_codon	881	104	.	+	0	ID=TR18069|c0_g1_i1|m.14658:stop;Parent=TR18069|c0_g1_i1|m.14658
+TR18069|c0_g1_i1	transdecoder	CDS	104	883	.	+	0	ID=cds.TR18069|c0_g1_i1|m.14658;Parent=TR18069|c0_g1_i1|m.14658
+TR10283|c0_g1_i1	transdecoder	mRNA	1	2061	.	+	0	ID=TR10283|c0_g1_i1|m.8886;Name=ORF TR10283|c0_g1_i1|g.8886 TR10283|c0_g1_i1|m.8886 type:complete len:524 (+);Parent=TR10283|c0_g1_i1|g.8886;product=Caspase-8
+TR10283|c0_g1_i1	transdecoder	exon	1	2061	.	+	0	ID=TR10283|c0_g1_i1|m.8886.exon1;Parent=TR10283|c0_g1_i1|m.8886
+TR10283|c0_g1_i1	transdecoder	three_prime_UTR	1679	2061	.	+	0	ID=TR10283|c0_g1_i1|m.8886.utr3p1;Parent=TR10283|c0_g1_i1|m.8886
+TR10283|c0_g1_i1	transdecoder	five_prime_UTR	1	106	.	+	0	ID=TR10283|c0_g1_i1|m.8886.utr5p1;Parent=TR10283|c0_g1_i1|m.8886
+TR10283|c0_g1_i1	transdecoder	start_codon	107	109	.	+	0	ID=TR10283|c0_g1_i1|m.8886:start;Parent=TR10283|c0_g1_i1|m.8886
+TR10283|c0_g1_i1	transdecoder	stop_codon	1676	107	.	+	0	ID=TR10283|c0_g1_i1|m.8886:stop;Parent=TR10283|c0_g1_i1|m.8886
+TR10283|c0_g1_i1	transdecoder	CDS	107	1678	.	+	0	ID=cds.TR10283|c0_g1_i1|m.8886;Parent=TR10283|c0_g1_i1|m.8886
+TR45984|c0_g1_i1	transdecoder	mRNA	1	3026	.	+	0	ID=TR45984|c0_g1_i1|m.38455;Name=ORF TR45984|c0_g1_i1|g.38455 TR45984|c0_g1_i1|m.38455 type:complete len:586 (+);Parent=TR45984|c0_g1_i1|g.38455;product=Protein FAM122A
+TR45984|c0_g1_i1	transdecoder	exon	1	3026	.	+	0	ID=TR45984|c0_g1_i1|m.38455.exon1;Parent=TR45984|c0_g1_i1|m.38455
+TR45984|c0_g1_i1	transdecoder	three_prime_UTR	2173	3026	.	+	0	ID=TR45984|c0_g1_i1|m.38455.utr3p1;Parent=TR45984|c0_g1_i1|m.38455
+TR45984|c0_g1_i1	transdecoder	five_prime_UTR	1	414	.	+	0	ID=TR45984|c0_g1_i1|m.38455.utr5p1;Parent=TR45984|c0_g1_i1|m.38455
+TR45984|c0_g1_i1	transdecoder	start_codon	415	417	.	+	0	ID=TR45984|c0_g1_i1|m.38455:start;Parent=TR45984|c0_g1_i1|m.38455
+TR45984|c0_g1_i1	transdecoder	stop_codon	2170	415	.	+	0	ID=TR45984|c0_g1_i1|m.38455:stop;Parent=TR45984|c0_g1_i1|m.38455
+TR45984|c0_g1_i1	transdecoder	CDS	415	2172	.	+	0	ID=cds.TR45984|c0_g1_i1|m.38455;Parent=TR45984|c0_g1_i1|m.38455
