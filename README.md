@@ -12,6 +12,7 @@ Here you will find the bioinformatic locus selection and data processing pipelin
 
 For a detailed tutuorial in re-creating the results of Dupuis et al. 2018, see **Usage: Detailed** section below. Note, the terminology from Dupuis et al. 2018 is used here ("raw exons", "filtered exons", etc.), so refer to the paper for those details.
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1208098.svg)](https://doi.org/10.5281/zenodo.1208098)
 
 ## Installation
 
