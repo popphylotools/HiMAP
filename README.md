@@ -2,15 +2,15 @@
 
 ## Description
 
-Here you will find the bioinformatic locus selection and data processing pipelines used in Dupuis et al. 2017 (submitted) for generating phylogenomic datasets using the HiMAP approach. The code is divided into three main sections: 
+Here you will find the bioinformatic locus selection and data processing pipelines used in Dupuis et al. 2018 (Molecular Ecology Resources) for generating phylogenomic datasets using the HiMAP approach. The code is divided into three main sections: 
 
-**Part01** is the main locus selection pipeline, which takes as input ortholog prediction from a variety of genomic and transcriptomic resources (some of which with relatively trustworthy structural annotations: "high quality annotations"). Exon/intron boundaries from the "high quality annotations" are used to predict exon/intron boundaries across all data, and several filtering steps identify conserved exons across data inputs. Dupuis et al. 2017 uses [OrthoMCL](http://orthomcl.org/orthomcl/) for ortholog prediction, and this code is built to ingest OrthoMCL input format, however other ortholog prediction approaches can also be used.
+**Part01** is the main locus selection pipeline, which takes as input ortholog prediction from a variety of genomic and transcriptomic resources (some of which with relatively trustworthy structural annotations: "high quality annotations"). Exon/intron boundaries from the "high quality annotations" are used to predict exon/intron boundaries across all data, and several filtering steps identify conserved exons across data inputs. Dupuis et al. 2018 uses [OrthoMCL](http://orthomcl.org/orthomcl/) for ortholog prediction, and this code is built to ingest OrthoMCL input format, however other ortholog prediction approaches can also be used.
 
-**Part02** generates summary information used to manually filter and select amplicons to include in a final amplicon panel, based on amplicon length, primer characteristics, phylogenetic informativeness, etc. In Dupuis et al. 2017, the input to this step is predicted primers generated from the Paragon Genomics CleanPlex custom amplicon design service.
+**Part02** generates summary information used to manually filter and select amplicons to include in a final amplicon panel, based on amplicon length, primer characteristics, phylogenetic informativeness, etc. In Dupuis et al. 2018, the input to this step is predicted primers generated from the Paragon Genomics CleanPlex custom amplicon design service.
 
 **Part03** is for post-sequencing data processing. This takes as input demultiplexed, adapter-trimmed and FLASh-joined FASTQ files, and calls consensus sequences based on read length distributions. It outputs aligned multi-FASTA formatted files (1 per gene), that can be used directly for gene-tree analysis or concatenated for an "all data" approach.
 
-For a detailed tutuorial in re-creating the results of Dupuis et al. 2017, see **Usage: Detailed** section below. Note, the terminology from Dupuis et al. 2017 is used here ("raw exons", "filtered exons", etc.), so refer to the paper for those details.
+For a detailed tutuorial in re-creating the results of Dupuis et al. 2018, see **Usage: Detailed** section below. Note, the terminology from Dupuis et al. 2018 is used here ("raw exons", "filtered exons", etc.), so refer to the paper for those details.
 
 
 ## Installation
@@ -47,7 +47,7 @@ linux:
 ```
 
 #### Download Data
-We have included a toy dataset in this GitHub repo ([here](https://github.com/popphylotools/HiMAP/tree/master/data)), which will allow a user to proceed through all parts of this pipeline. This toy dataset includes abbreviated inputs for all parts of the pipeline, to decrease processing time and make it easier to test all steps. Full input used by Dupuis et al. (2017) is available on Dryad [Dryad link] (for part01 and part02) and NCBI (BioProject PRJNA398162, for part03). Full input is also available through the link provided below under **Input data**.
+We have included a toy dataset in this GitHub repo ([here](https://github.com/popphylotools/HiMAP/tree/master/data)), which will allow a user to proceed through all parts of this pipeline. This toy dataset includes abbreviated inputs for all parts of the pipeline, to decrease processing time and make it easier to test all steps. Full input used by Dupuis et al. (2018) is available on Dryad [Dryad link](https://datadryad.org//resource/doi:10.5061/dryad.6524f) (for part01 and part02) and NCBI (BioProject PRJNA398162, for part03). Full input is also available through the link provided below under **Input data**.
 
 ##### Input data:</br>
 HiMAP_inputData.zip can be unzipped and used to replace the data directory from this git repo.</br>
@@ -134,7 +134,7 @@ Part01 is run through 5 scripts, that can be run in direct succession:
 Details of the individual scripts can be found in the part01 [README](https://github.com/popphylotools/HiMAP/tree/master/part01_find_ortho_exons). The output of part01 is multi-FASTA formatted conserved exons, and these files are named with the ortholog ID followed by position coordinates for that exon: `orth4955_1027-1296`. These coordinates refer to the positions in the "padded exons" (before orthologs are split up into multiple exons). Note, that part03 (which calls the final consensus sequences, post-sequencing) requires that amplicon names begin with "orth", so this part of the name should be preserved.
 
 #### Part02
-Part02 ingests putative primer information, calculates phylogenetic informativeness and other amplicon summary information, and outputs a summary.csv file containing all summary information. The goal of this process is to generate a file that can then be manually viewed and sorted either on the command line or in Excel or another spreadsheet editing platform. Dupuis et al. (2017) uses Paragon Genomics CleanPlex custom amplicon design service, and thus follow the output format used therein:
+Part02 ingests putative primer information, calculates phylogenetic informativeness and other amplicon summary information, and outputs a summary.csv file containing all summary information. The goal of this process is to generate a file that can then be manually viewed and sorted either on the command line or in Excel or another spreadsheet editing platform. Dupuis et al. (2018) uses Paragon Genomics CleanPlex custom amplicon design service, and thus follow the output format used therein:
 ```
 amplicon_ID	loci_ID	amp_start	amp_end	ampInsert_start	ampInsert_end	amp_len	comment
 SET3976_3049	orth4955_1027-1296	9	258	39	232	250	NoDegenerate
@@ -169,11 +169,11 @@ orth10375_1062-1241,SET202_5619,0.14771179397003442,2,1,1,1,4,2,2,4,2,2,86,59,14
 
 Many of the columns in `summary.csv` match those in the putative primer information input (e.g. `loci_id`, `amplicon_id`, `amp_len`, `insert_length`). `score` refers to PI score, and columns dealing with `ambiguities`, `primer_versions`, and `combinations` are various statistics of the ambiguities present in given primers, and how many individual primer sequences are required given those ambiguities (e.g. a `R` in a primer would lead to 2 "versions" or sequences for that primer, and two potential combinations with a non-degerate partner primer).
 
-Following the general HiMAP approach, this output is then used to select final amplicons based on primer characteristics (e.g. number of degenerate bases), phylogenetic informativeness, etc. See Dupuis et al. (2017) for an example of this filtering process.
+Following the general HiMAP approach, this output is then used to select final amplicons based on primer characteristics (e.g. number of degenerate bases), phylogenetic informativeness, etc. See Dupuis et al. (2018) for an example of this filtering process.
 
 
 #### Part03
-Part03 handles the post-sequencing data processing, and calling consensus sequences. The input for this script is adapter-trimmed and demultiplexed (by individual) FASTQ files. We suggest using [cutadapt](http://cutadapt.readthedocs.io/en/stable/index.html) and [FLASh](https://ccb.jhu.edu/software/FLASH/) for these steps, and provide details of the filtering done for Dupuis et al. (2017) below:
+Part03 handles the post-sequencing data processing, and calling consensus sequences. The input for this script is adapter-trimmed and demultiplexed (by individual) FASTQ files. We suggest using [cutadapt](http://cutadapt.readthedocs.io/en/stable/index.html) and [FLASh](https://ccb.jhu.edu/software/FLASH/) for these steps, and provide details of the filtering done for Dupuis et al. (2018) below:
 
 First, reads need to be demultiplexed by individual. If sequencing is done on an Illumina MiSeq or HiSeq connected to BaseSpace, this demultiplexing may be done on BaseSpace. Alternatively, cutadapt can be used to demultiplex based on individual-specific barcodes.
 
@@ -187,7 +187,7 @@ Then, FLASh can be used to join the paired reads for all data:
 for x in `cat individuals` ; do flash AdapterTrimmed/"$x"_R1_adaptertrimmed.fastq AdapterTrimmed/"$x"_R2_adaptertrimmed.fastq -o Flash/"$x"_flash.fastq | tee Flash/"$x".log ; done
 ```
 
-Finally, cutadapt can be used again, but this time to demultiplex each individual, FLASh-joined FASTQ file by amplicon. Dupuis et al. (2017) pooled 384 individuals and 878 amplicons into single sequencing lanes, so we used a job array on a cluster to speed this process up. The job file (using SGE) looked something like this, and would need to be modified for other job schedulers:
+Finally, cutadapt can be used again, but this time to demultiplex each individual, FLASh-joined FASTQ file by amplicon. Dupuis et al. (2018) pooled 384 individuals and 878 amplicons into single sequencing lanes, so we used a job array on a cluster to speed this process up. The job file (using SGE) looked something like this, and would need to be modified for other job schedulers:
 ```
 #!/bin/sh
 #$-S /bin/sh
@@ -220,7 +220,7 @@ This script finds the most prevalent read length for each individual per amplico
 
 The output of part03 includes individual FASTA files for each consensus sequence, and a single multi-FASTA per amplicon containing all individuals' consensus sequences. This latter format is easily used directly to generate gene-trees, or concatenated using something like [catfasta2phyml.pl](https://github.com/nylander/catfasta2phyml) for concatenated phylogenetic analyses.
 
-Note, the length deviation filter of part03 can throw away potentially good consensus sequences in the case that an amplicon primer set was amplifying multiple products of much different length. For example, if half of the consensus sequences are 300 bp and the other half are 100 bp, the average would be 200 bp, and >20 bp different than every consensus sequence (thus throwing away all sequences). It is a good idea to check over the summary .csv files created by part03 for each individual. If an amplicon's consensus sequences are found in these files, but are not being written into the overall summary.csv or multi-FASTA files, this may be the culprit. The 20 bp threshold in Dupuis et al. (2017) was based on a natural break in the data to remove very short sequences that were obviously not full amplicon sequences. In this scenario, a simple `cat` of all of the singel FASTA files for each individual can create an amplicon-specific mutli-FASTA.
+Note, the length deviation filter of part03 can throw away potentially good consensus sequences in the case that an amplicon primer set was amplifying multiple products of much different length. For example, if half of the consensus sequences are 300 bp and the other half are 100 bp, the average would be 200 bp, and >20 bp different than every consensus sequence (thus throwing away all sequences). It is a good idea to check over the summary .csv files created by part03 for each individual. If an amplicon's consensus sequences are found in these files, but are not being written into the overall summary.csv or multi-FASTA files, this may be the culprit. The 20 bp threshold in Dupuis et al. (2018) was based on a natural break in the data to remove very short sequences that were obviously not full amplicon sequences. In this scenario, a simple `cat` of all of the singel FASTA files for each individual can create an amplicon-specific mutli-FASTA.
 
 ## Uninstall
 
