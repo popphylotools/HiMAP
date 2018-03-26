@@ -47,7 +47,7 @@ linux:
 ```
 
 #### Download Data
-We have included a toy dataset in this GitHub repo ([here](https://github.com/popphylotools/HiMAP/tree/master/data)), which will allow a user to proceed through all parts of this pipeline. This toy dataset includes abbreviated inputs for all parts of the pipeline, to decrease processing time and make it easier to test all steps. Full input used by Dupuis et al. (2018) is available on Dryad [Dryad link](https://datadryad.org//resource/doi:10.5061/dryad.6524f) (for part01 and part02) and NCBI (BioProject PRJNA398162, for part03). Full input is also available through the link provided below under **Input data**.
+We have included a toy dataset in this GitHub repo ([here](https://github.com/popphylotools/HiMAP/tree/master/data)), which will allow a user to proceed through all parts of this pipeline. This toy dataset includes abbreviated inputs for all parts of the pipeline, to decrease processing time and make it easier to test all steps. Full input used by Dupuis et al. (2018) is available on [Dryad](https://datadryad.org//resource/doi:10.5061/dryad.6524f) (for part01 and part02) and NCBI (BioProject PRJNA398162, for part03). Full input is also available through the link provided below under **Input data**.
 
 ##### Input data:</br>
 HiMAP_inputData.zip can be unzipped and used to replace the data directory from this git repo.</br>
