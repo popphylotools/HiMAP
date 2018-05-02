@@ -2,7 +2,7 @@
 
 ## Description
 
-Here you will find the bioinformatic locus selection and data processing pipelines used in Dupuis et al. 2018 (Molecular Ecology Resources, in press) for generating phylogenomic datasets using the HiMAP approach. The code is divided into three main sections: 
+Here you will find the bioinformatic locus selection and data processing pipelines used in [Dupuis et al. 2018 (Molecular Ecology Resources doi:10.1111/1755-0998.12783)](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.12783) for generating phylogenomic datasets using the HiMAP approach. The code is divided into three main sections: 
 
 **Part01** is the main locus selection pipeline, which takes as input ortholog prediction from a variety of genomic and transcriptomic resources (some of which with relatively trustworthy structural annotations: "high quality annotations"). Exon/intron boundaries from the "high quality annotations" are used to predict exon/intron boundaries across all data, and several filtering steps identify conserved exons across data inputs. Dupuis et al. 2018 uses [OrthoMCL](http://orthomcl.org/orthomcl/) for ortholog prediction, and this code is built to ingest OrthoMCL input format, however other ortholog prediction approaches can also be used.
 
