@@ -1,5 +1,8 @@
  # HiMAP: Highly Multiplexed Amplicon-based Phylogenomics
 
+![pipeline as used by Dupuis et al. 2018](pipeline_fig.png)
+Example of HiMAP pipeline used by [Dupuis et al. 2018 (Molecular Ecology Resources doi:10.1111/1755-0998.12783)](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.12783).
+
 ## Description
 
 Here you will find the bioinformatic locus selection and data processing pipelines used in [Dupuis et al. 2018 (Molecular Ecology Resources doi:10.1111/1755-0998.12783)](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.12783) for generating phylogenomic datasets using the HiMAP approach. The code is divided into three main sections: 
