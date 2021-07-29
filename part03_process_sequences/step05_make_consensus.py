@@ -8,7 +8,7 @@ import os
 import pandas as pd
 from Bio import SeqIO
 from Bio import motifs
-from Bio.Alphabet import IUPAC
+from Bio.Data import IUPACData
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 
@@ -38,7 +38,7 @@ def process_sample(sample_dir, called_sequences_path):
         trashed_percent[sample_ortho] = trashed_count[sample_ortho] * 100. / (
             trashed_count[sample_ortho] + good_count[sample_ortho])
 
-        mots[sample_ortho] = motifs.create(good_reads)
+        mots[sample_ortho] = motifs.create(good_reads, alphabet=IUPACData.ambiguous_dna_letters)
         _seq = mots[sample_ortho].degenerate_consensus
 
         # write fasta for each sample_ortho
@@ -63,12 +63,12 @@ def process_sample(sample_dir, called_sequences_path):
 
 
 def summerize(sample_dirs, called_sequences_path, filtered_summary_sequences_path, min_length, max_len_dev):
-    frames = [pd.DataFrame.from_csv(called_sequences_path + sample_nm + ".csv") for sample_nm in sample_dirs.keys()]
+    frames = [pd.read_csv(called_sequences_path + sample_nm + ".csv", index_col=0, parse_dates=True) for sample_nm in sample_dirs.keys()]
     df = pd.concat(frames)
     df["sample_ortho"] = df.index
-    df = df.loc[df['sample_ortho'].str.contains('orth')]  # gets rid of "unknown" pools
-    df["sample"] = df["sample_ortho"].apply(lambda x: x.split('orth')[0][:-1])
-    df["ortho"] = df["sample_ortho"].apply(lambda x: 'orth' + x.split('orth')[1])
+    df = df.loc[df['sample_ortho'].str.contains('.')]  # gets rid of "unknown" pools??
+    df["sample"] = df["sample_ortho"].apply(lambda x: x.split('.',1)[0])
+    df["ortho"] = df["sample_ortho"].apply(lambda x: x.split('.',1)[1])
     df.drop("sample_ortho", axis=1, inplace=True)
 
     # split("N * 40")[0]
@@ -84,14 +84,14 @@ def summerize(sample_dirs, called_sequences_path, filtered_summary_sequences_pat
 
     # exclude if len_dev > max_len_dev
     avg_len_df = df[["ortho", "seq_len"]].groupby("ortho").mean()
-    df["len_deviation_pre_cut"] = df.apply(lambda x: abs(x["seq_len"] - avg_len_df.ix[x["ortho"]]), axis=1)
+    df["len_deviation_pre_cut"] = df.apply(lambda x: abs(x["seq_len"] - avg_len_df.loc[x["ortho"]]), axis=1)
     df = df.loc[df["len_deviation_pre_cut"] <= max_len_dev]
 
     avg_len_df = df[["ortho", "seq_len"]].groupby("ortho").mean()
-    df["len_deviation_post_cut"] = df.apply(lambda x: abs(x["seq_len"] - avg_len_df.ix[x["ortho"]]), axis=1)
+    df["len_deviation_post_cut"] = df.apply(lambda x: abs(x["seq_len"] - avg_len_df.loc[x["ortho"]]), axis=1)
 
     df.sort_values(by=['ortho', 'sample'], ascending=[True, True], inplace=True)
-    df = df.reindex_axis(["sample", "ortho", "good_count", "trashed_count", "trashed_percent", "len_deviation_pre_cut",
+    df.reindex(["sample", "ortho", "good_count", "trashed_count", "trashed_percent", "len_deviation_pre_cut",
                           "len_deviation_post_cut", "seq_len", "seq_str"], axis=1)
 
     # write to csv
@@ -100,7 +100,7 @@ def summerize(sample_dirs, called_sequences_path, filtered_summary_sequences_pat
 
     # create summary fasta file per ortho
     df["fasta_str"] = df.apply(
-        lambda rec: SeqRecord(Seq(rec["seq_str"], alphabet=IUPAC.ambiguous_dna), id=rec["sample"],
+        lambda rec: SeqRecord(Seq(rec["seq_str"]), id=rec["sample"],
                               description="{} matched_{} trashed_{}".format(rec["ortho"], rec["good_count"],
                                                                             rec["trashed_count"])).format("fasta"),
         axis=1)
