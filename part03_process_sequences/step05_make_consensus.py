@@ -28,7 +28,7 @@ def process_sample(sample_dir, called_sequences_path):
     trashed_percent = dict()
     for sample_ortho in fastq_fn:
         reads = [seq_record.seq for seq_record in
-                 SeqIO.parse(fastq_fn[sample_ortho], "fastq", alphabet=IUPAC.ambiguous_dna)]
+                 SeqIO.parse(fastq_fn[sample_ortho], "fastq")]
         common_length = collections.Counter((len(seq) for seq in reads)).most_common()[0][0]
 
         good_reads = list(filter(lambda x: len(x) == common_length, reads))
@@ -45,7 +45,7 @@ def process_sample(sample_dir, called_sequences_path):
         os.makedirs(called_sequences_path + sample_nm, exist_ok=True)
         with open(called_sequences_path + sample_nm + '/' + sample_ortho + "_" + str(
                 len(good_reads)) + "-reads.consensus.fasta", "w") as f:
-            seqReq = SeqRecord(_seq, id=sample_ortho,
+            seqReq = SeqRecord(_seq, id=sample_ortho, 
                                description="good_{} trashed_{}".format(good_count[sample_ortho],
                                                                        trashed_count[sample_ortho]))
             f.write(seqReq.format("fasta"))
@@ -66,7 +66,7 @@ def summerize(sample_dirs, called_sequences_path, filtered_summary_sequences_pat
     frames = [pd.read_csv(called_sequences_path + sample_nm + ".csv", index_col=0, parse_dates=True) for sample_nm in sample_dirs.keys()]
     df = pd.concat(frames)
     df["sample_ortho"] = df.index
-    df = df.loc[df['sample_ortho'].str.contains('.')]  # gets rid of "unknown" pools??
+    df = df.loc[df['sample_ortho'].str.contains('.')]  # gets rid of "unknown" pools
     df["sample"] = df["sample_ortho"].apply(lambda x: x.split('.',1)[0])
     df["ortho"] = df["sample_ortho"].apply(lambda x: x.split('.',1)[1])
     df.drop("sample_ortho", axis=1, inplace=True)
@@ -91,7 +91,7 @@ def summerize(sample_dirs, called_sequences_path, filtered_summary_sequences_pat
     df["len_deviation_post_cut"] = df.apply(lambda x: abs(x["seq_len"] - avg_len_df.loc[x["ortho"]]), axis=1)
 
     df.sort_values(by=['ortho', 'sample'], ascending=[True, True], inplace=True)
-    df.reindex(["sample", "ortho", "good_count", "trashed_count", "trashed_percent", "len_deviation_pre_cut",
+    df = df.reindex(["sample", "ortho", "good_count", "trashed_count", "trashed_percent", "len_deviation_pre_cut",
                           "len_deviation_post_cut", "seq_len", "seq_str"], axis=1)
 
     # write to csv
