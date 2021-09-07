@@ -68,7 +68,7 @@ def summerize(sample_dirs, called_sequences_path, filtered_summary_sequences_pat
     df["sample_ortho"] = df.index
     df = df.loc[df['sample_ortho'].str.contains('.')]  # gets rid of "unknown" pools
     df["sample"] = df["sample_ortho"].apply(lambda x: x.split('.',1)[0])
-    df["ortho"] = df["sample_ortho"].apply(lambda x: x.split('.',1)[1])
+    df["ortho"] = df["sample_ortho"].apply(lambda x: x.split('.',1)[1])  # NOTE, this is where (last three lines) we changed stuff from previous version that recognized "orth" as a ind x locus delimiter. It is now period, as we documented originally.
     df.drop("sample_ortho", axis=1, inplace=True)
 
     # split("N * 40")[0]
