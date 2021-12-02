@@ -24,7 +24,7 @@ For a detailed tutuorial in re-creating the results of Dupuis et al. 2018, see *
 [Anaconda download page](https://www.continuum.io/downloads)
 
 #### Download this git repo
-eaither use git:
+either use git:
 ```
 git https://github.com/popphylotools/HiMAP.git
 cd HiMAP
